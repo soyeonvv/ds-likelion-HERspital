@@ -228,12 +228,3 @@ nav{
     font-weight: 700;
     font-size:17px;
 }
-/* 푸터 영역 CSS */
-footer{
-    bottom:0px;
-    width:100%;
-    background-color: #F0E5D8;
-    color: black;
-    text-align: center;
-    margin-top:20px;
-}
