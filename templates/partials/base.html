@@ -14,7 +14,7 @@
             <a class="navbar__logo" href=""><img src="{% static 'img/logo.png' %}"></a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="">지도</a></li>
+            <li><a href="{% url 'core:mainpage' %}">지도</a></li>
             <li><a href="{% url 'community:communityList' %}">커뮤니티</a></li>
             <li><a href="{% url 'community:expertList' %}">전문인 상담</a></li>
             <li><a href="">마이페이지</a></li>
