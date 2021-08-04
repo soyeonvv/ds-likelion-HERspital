@@ -7,3 +7,5 @@ def communityList(request):
     return render(request, "community/communityList.html")
 def expertList(request):
     return render(request, "community/expertList.html")
+def consulting(request):
+    return render(request, "community/consulting.html")

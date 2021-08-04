@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Consulting page</title>
+    <link rel="stylesheet" href="{% static 'css/consulting.css' %}">
+</head>
+<body>
+{% block navbar %}
+   {% include "partials/base.html" %}
+{% endblock%}
+{% block content %}
+    <p style="text-align: center; font: 27px 'Nanum Gothic', sans-serif; margin-top: 50px;">"<span style="color:#75CFB8">전문인</span>"님께 질문 있어요!</p>
+    <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="board_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" placeholder="제목 입력" name="title"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>작성자</dt>
+                        <dd><input type="text" placeholder="작성자 입력" name="writer"></dd>
+                    </dl>
+                    <dl>
+                        <dt style="padding-left: 90px;">공개 설정</dt>
+                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">공개</span></dd>
+                    </dl>
+                    <dl>
+                        <dt style="padding-left: 90px;">희망 사항</dt>
+                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="choice"><span style="font-size: 15px;">약사</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="choice"><span style="font-size: 15px;">영양사</span></dd>
+                    </dl>
+                    <dl style="margin-top: 30px; text-align: left;">
+                        <dt>태그</dt>
+                        <dd>
+                            <select style="width:85px;height:35px;" >
+                                <option value="female disease">여성 질환</option>
+                                <option value="health">건강</option>
+                                <option value="medicine">의약품</option>
+                                <option value="etc">기타</option>
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt style="padding-left: 90px;">사진 첨부</dt>
+                        <input id="file" type="file" name="image">
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea placeholder="상담 내용을 작성하세요."></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <button type="submit" style="border:0;"><a href="" style="color:white; background-color: black;">등록</a></button>
+                <button type="submit" style="border:0; outline: none; margin: 10px"><a href="" style="color:black;">취소</a></button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+</body>
+</html>
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}
