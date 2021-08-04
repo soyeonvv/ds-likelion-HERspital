@@ -14,14 +14,13 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <link rel="stylesheet" href="{% static 'css/communityList.css' %}">
     <title>Herspital</title>
+    <link rel="stylesheet" href="{% static 'css/expertList.css' %}">
 </head>
 <body>
 {% block navbar %}
     {% include "partials/base.html" %}
 {% endblock%}
-{% block content %}
     <section>
         <div class="topContent">
             <div class="search">
@@ -36,12 +35,12 @@
             </div>
             <div class="secondTab">
                 <div class="preface_wrap">
-                    <ul class="preface"> <!-- 머릿말 누르면 해당 내용으로 정렬되도록 해야함 > Django랑 연결해서 수정할 예정 -->
-                        <li><a href="">#10대</a></li>
-                        <li><a href="">#20대</a></li>
-                        <li><a href="">#30대</a></li>
-                        <li><a href="">#40대</a></li>
-                        <li><a href="">#50대</a></li>
+                    <ul class="preface"> <!-- 머릿말 누르면 내용이 달라지도록 변경해야함 -->
+                        <li><a href="">#약사</a></li>
+                        <li><a href="">#영양사</a></li>
+                        <li><a href="">#의약품</a></li>
+                        <li><a href="">#여성질환</a></li>
+                        <li><a href="">#병원 안내</a></li>
                     </ul>
                 </div>
                 <div class="newPostBtn_wrap">
@@ -52,121 +51,120 @@
         </div>
         <div class="bottomContent">
             <table class="table">
-            {% comment %} db에 저장된 값을 가져오도록 고쳐야 함 {% endcomment %}
                 <thead>
                     <tr>
                         <th>말머리</th>
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
-                        <th>댓글</th>
+                        <th>답변</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
+                        <td>여성질환</td>
+                        <td>산부인과 여성질환 질문</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>23</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
+                        <td>병원 안내</td>
                         <td>요즘 얼굴이 많이 화끈거리네요...</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>28</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td>영양사</td>
+                        <td>여성질환에 좋은 음식 알려주세요</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>45</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
-                        <td>익명<i class="fas fa-mars"></i></td>
-                        <td>07-28</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
+                        <td>여성질환</td>
+                        <td>산부인과 여성질환 질문</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>23</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
+                        <td>병원 안내</td>
                         <td>요즘 얼굴이 많이 화끈거리네요...</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>28</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td>영양사</td>
+                        <td>여성질환에 좋은 음식 알려주세요</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>45</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
+                        <td>여성질환</td>
+                        <td>산부인과 여성질환 질문</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>123</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>23</td>
-                    </tr>
-                    <tr>
-                        <td>40대</td>
+                        <td>병원 안내</td>
                         <td>요즘 얼굴이 많이 화끈거리네요...</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>28</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td>영양사</td>
+                        <td>여성질환에 좋은 음식 알려주세요</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>45</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
+                        <td>여성질환</td>
+                        <td>산부인과 여성질환 질문</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>123</td>
+                        <td>0</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
+                        <td>병원 안내</td>
                         <td>요즘 얼굴이 많이 화끈거리네요...</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>28</td>
+                        <td>1</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td>영양사</td>
+                        <td>여성질환에 좋은 음식 알려주세요</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>45</td>
+                        <td>2</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
+                        <td>여성질환</td>
+                        <td>산부인과 여성질환 질문</td>
                         <td>익명<i class="fas fa-venus"></i></td>
                         <td>07-28</td>
-                        <td>123</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>병원 안내</td>
+                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td>익명<i class="fas fa-venus"></i></td>
+                        <td>07-28</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>영양사</td>
+                        <td>여성질환에 좋은 음식 알려주세요</td>
+                        <td>익명<i class="fas fa-venus"></i></td>
+                        <td>07-28</td>
+                        <td>2</td>
                     </tr>
                 </tbody>
             </table>
@@ -189,6 +187,5 @@
         Kim sujeong Na gyeong-yoon Park Soyeon Seo Jisu Sin jung-yoon Lee boyeon Yoo Dayeong<br>
         All rights reserved.
     </footer>
-{% endblock %}
 </body>
 </html>
