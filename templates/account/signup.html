@@ -1,0 +1,90 @@
+{% load static %}
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <title>HERspital: 회원가입</title>
+</head>
+<body>
+    <div>
+        <img id="logo" src="{% static 'img/logo.png' %}">
+    </div>
+    <div id="txt">회원가입</div>
+    <div id="main">
+		<section class="section">
+			<form action="/my-handling-form-page" method="post">
+                <select id="user" onclick="certify()">
+                    <option disabled selected>회원구분</option>
+                    <option value="일반인">일반인</option>
+                    <option value="전문인">전문인</option>
+                </select>
+                <div id="upload" style="display:none">
+                    <div id="jointxt">사진을 등록하세요</div>
+                    <input type="file" accept="img/*">
+                </div>
+				<div>
+					<div id="jointxt">아이디</div>
+					<input type="text" placeholder="아이디를 입력하세요">
+				</div>
+				<div>
+					<div id="jointxt">비밀번호</div>
+					<input type="password" id="pw1" placeholder="비밀번호를 입력하세요">
+				</div>
+                <div>
+					<div id="jointxt">비밀번호 확인</div>
+					<input type="password" id="pw2" placeholder="비밀번호를 다시 입력하세요" onkeyup='compare_pw()'>
+                    <div id="pwcheck" style="display:none">비밀번호가 일치하지 않습니다.</div>
+				</div>
+                <div>
+					<div id="jointxt">이름</div>
+					<input type="text" placeholder="이름을 입력하세요">
+				</div>
+                <div>
+                    <div id="jointxt">생년월일</div>
+                    <input type="date">
+                </div>
+                <div id="gender">
+					<div id="jointxt">성별</div>
+					<label><input type="radio" name="gender" value="male">남</label>
+                    <label><input type="radio" name="gender" value="female">여</label>
+				</div>
+                <div>
+                    <div id="jointxt">이메일</div>
+                    <input type="email" placeholder="이메일을 입력하세요">
+                </div>
+                <div>
+					<input type="submit" class="form_submit_button" value="JOIN IN"></button>
+				</div>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        function certify() {
+            var user = document.getElementById('user').value;
+
+            if(user == "전문인") {
+                document.getElementById('upload').style="display:visible";
+            }
+            else if(user == "일반인") {
+                document.getElementById('upload').style="display:none";
+            }
+        }
+
+        function compare_pw() {
+            var pw1 = document.getElementById('pw1').value;
+            var pw2 = document.getElementById('pw2').value;
+
+            if(pw1 != pw2) {
+                document.getElementById('pwcheck').style="display:visible";
+            }
+            else {
+                document.getElementById('pwcheck').style="display:none";
+            }
+        }
+    </script>
+</body>
+</html>

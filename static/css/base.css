@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Cafe24SsurroundAir';
+}
+
+body {
+    padding-top: 70px;
+}
+
+.navbar {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #ffffff;
+}
+
+.navbar__logo img {
+    width: 121px; 
+    height: 56px;
+    justify-content: left;
+    margin: 10px 0 0 10px;
+}
+
+.navbar__menu {
+    display: flex;
+    list-style: none;
+}
+
+.navbar__menu li {
+    padding: 12px 20px 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #74D0B9;
+}
+
+.navbar__menu li a:hover {
+    text-decoration: none;
+    color: #FFC478;
+}
+
+.navbar__menu li a:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #F1E5D9;
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+.navbar__menu li a:hover:after { transform: scaleX(1); }
+
+.navbar__login {
+    margin-left: auto;
+}
+
+#login {
+    background-color: #BAE0C9;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    width: 90px;
+    height: 30px;
+    margin: 23px 20px 0 0;
+}
+
+#login:hover {
+    background-color: #FFC478;
+}

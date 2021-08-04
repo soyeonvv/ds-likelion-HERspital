@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>HERspital</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div>
+            <a class="navbar__logo" href=""><img src="{% static 'img/logo.png' %}"></a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="">지도</a></li>
+            <li><a href="">커뮤니티</a></li>
+            <li><a href="">전문인 상담</a></li>
+            <li><a href="">마이페이지</a></li>
+        </ul>
+        <div class="navbar__login">
+            <a href=""><button id="login">Login</button></a>
+        </div>
+    </nav>
+</body>
+</html>
