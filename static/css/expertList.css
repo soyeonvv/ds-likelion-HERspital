@@ -1,0 +1,239 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    width:100%;
+    padding:0;
+    margin:0;
+}
+/* 헤더 영역 CSS */
+header{
+    position:static;
+    order:1;
+    justify-content:space-around;
+    width:100%;
+    padding-left:10px;
+    margin-top:20px;
+}
+nav{
+    display:inline-block;
+    align-items: center;
+    position:static;
+    width:85.5%;
+}
+.logo{
+    display:inline;
+    width:12.5%;
+}
+.logo img{
+    width:12.5%;
+    max-width:125px;
+}
+.gnb{
+    display:flex !important;
+    flex-direction: row;
+    width:100%;
+}
+.gnb li{
+    display:block;
+    margin-left:5.20833333333333%;
+    background:none;
+}
+.gnb li a{
+    width:auto;
+    padding:0;
+    text-indent:0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size:20px;
+    color:#bbdfc8;
+}
+.gnb li a:hover{
+    color:#F0E5D8;
+}
+    /* 로그인 영역 CSS */
+#loginSuccess{
+    display:none;
+}
+/* 세션 영역 CSS */ 
+/* 검색 영역 CSS */
+.input{
+    border:0;
+    outline:none;
+    color:#8b7d77;
+    background:#F0E5D8;
+}
+.search{
+    display:flex;
+    width:100%;
+    justify-content: flex-end;
+}
+.search_wrap{
+    width: 400px;
+    display:flex;
+}
+.search_wrap .search_box{
+    position: relative;
+    width:100%;
+    height:40px;
+    margin:10px;
+}
+.search_wrap .search_box .input{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size:18px;
+    padding-right: 80px;
+    border-radius:50px;
+}
+.search_wrap .search_box .btn{
+    position: absolute;
+    top:0;
+    width: 40px;
+    height: 100%;
+    background: #75CFB8;
+    z-index:1;
+    cursor:pointer;
+    right:0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-radius:50%;
+}
+.search_wrap .search_box .btn.btn_common .fas{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    font-size:20px;
+}
+/* 탑컨텐트 영역 CSS */
+.secondTab {
+    display: flex;
+}
+.topContent{
+    width:100%;
+    margin-top:20px;
+    background:#bbdfc8;
+}
+.preface_wrap{
+    display:inline-block;
+    padding:10px;
+    font-size:15px;
+    font-weight: bold;
+    flex-grow: 1;
+}
+.preface{
+    display:flex !important;
+    flex-direction: row;
+    width:100%;
+}
+.preface li{
+    display:block;
+    margin-left:5.20833333333333%;
+    background:none;
+}
+.preface li a{
+    width:auto;
+    padding:0;
+    text-indent:0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size:17px;
+    color:#777;
+}
+.preface li a:hover{
+    color:#FFC478;
+}
+.newPostBtn{
+    background:#75CFB8;
+    color:#fff;
+    border-color:lemonchiffon;
+    font-family:'Poppins',sans-serif;
+    margin:1rem 0;
+    font-size:1.8rem;
+    border-radius:10px;
+    padding:5px;
+    display:inline-block;
+    outline:none;
+    border:none;
+    cursor:pointer;
+    background-size:200%;
+    background-image:#32be8f;
+    text-transform:uppercase;
+}
+.newPostBtn_wrap{
+    display:inline-block;
+    flex-grow: 0;
+    margin-right:20px;
+}
+/* 표 영역 CSS */
+.bottomContent{
+    width:100%;
+    max-width:1120px;
+    margin:auto;
+    margin-top:20px;
+}
+/* 하위컨텐트 영역 CSS */
+.pageNum_wrap{
+    display:flex;
+    justify-content: center;
+}
+.pageul{
+    position: relative;
+    background:#fff;
+    display:flex;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+.pageul li{
+    list-style: none;
+    line-height: 30px;
+    margin:0 5px;
+}
+.pageul li.pageNumber{
+    width:30px;
+    height:30px;
+    line-height:30px;
+    text-align: center;
+}
+.pageul li a{
+    display: block;
+    text-decoration: none;
+    color:#777;
+    font-weight: 600;
+    border-radius: 50%;
+}
+.pageul li.pageNumber:hover a,
+.pageul li.pageNumber.active a
+{
+    background:#75CFB8;
+    color:#fff;
+}
+.pageul li:first-child{
+    margin-right:30px;
+    font-weight: 700;
+    font-size:17px;
+}
+.pageul li:last-child{
+    margin-left:30px;
+    font-weight: 700;
+    font-size:17px;
+}
+/* 푸터 영역 CSS */
+footer{
+    bottom:0px;
+    width:100%;
+    background-color: #F0E5D8;
+    color: black;
+    text-align: center;
+    margin-top:20px;
+}

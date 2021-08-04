@@ -5,4 +5,7 @@ app_name = "community"
 
 urlpatterns = [
     path("detail/", community_views.detail, name="detail"),
+    path("communityList/", community_views.communityList, name="communityList"),
+    path("expertList/", community_views.expertList, name="expertList"),
+
 ]

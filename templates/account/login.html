@@ -1,0 +1,60 @@
+{% load static %}
+<DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--웹페이지 title부분에 표시되는 작은 아이콘-->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"> 
+    <title>Herspital</title>
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <form action="index.html">
+                <a href="#"><img class="logo" src="{% static 'img/logo.png' %}"></a>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Username</h5>
+                        <input class="input" type="text">
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Password</h5>
+                        <input class="input" type="password">
+                    </div>
+                </div>
+                <a class="Register" href="{% url 'account:signup' %}">Create Account</a>
+                <input type="submit" class="btn" value="Login">
+            </form>
+        </div>
+    </div>
+    <script>
+        const inputs = document.querySelectorAll('.input');
+        function focusFunc(){
+            let parent = this.parentNode.parentNode;
+            parent.classList.add('focus');
+        }
+        function blurFunc(){
+            let parent = this.parentNode.parentNode;
+            if(this.value == ""){
+                parent.classList.remove('focus');
+            }
+        }
+        inputs.forEach(input => {
+            input.addEventListener('focus', focusFunc);
+            input.addEventListener('blur', blurFunc);
+        })
+    </script>
+</body>
+</html>
