@@ -1,59 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-*{
-    margin:0;
-    padding:0;
-}
+
 body{
     width:100%;
     padding:0;
     margin:0;
 }
-/* 헤더 영역 CSS */
-header{
-    position:static;
-    order:1;
-    justify-content:space-around;
-    width:100%;
-    padding-left:10px;
-    margin-top:20px;
-}
-nav{
-    display:inline-block;
-    align-items: center;
-    position:static;
-    width:85.5%;
-}
-.logo{
-    display:inline;
-    width:12.5%;
-}
-.logo img{
-    width:12.5%;
-    max-width:125px;
-}
-.gnb{
-    display:flex !important;
-    flex-direction: row;
-    width:100%;
-}
-.gnb li{
-    display:block;
-    margin-left:5.20833333333333%;
-    background:none;
-}
-.gnb li a{
-    width:auto;
-    padding:0;
-    text-indent:0;
-    text-decoration: none;
-    font-weight: bold;
-    font-size:20px;
-    color:#bbdfc8;
-}
-.gnb li a:hover{
-    color:#F0E5D8;
-}
+
     /* 로그인 영역 CSS */
 #loginSuccess{
     display:none;
@@ -158,7 +111,7 @@ nav{
     border-color:lemonchiffon;
     font-family:'Poppins',sans-serif;
     margin:1rem 0;
-    font-size:1.8rem;
+    font-size:1.1rem;
     border-radius:10px;
     padding:5px;
     display:inline-block;
@@ -180,6 +133,44 @@ nav{
     max-width:1120px;
     margin:auto;
     margin-top:20px;
+}
+.table{
+    width:100%;
+    max-width: 100%;
+    margin-bottom:20px;
+    background-color:transparent;
+    border-spacing:0;
+    border-collapse: collapse;
+    margin:0;
+    padding:0;
+}
+.table>thead{
+    text-align: left;
+}
+.table>th{
+    text-align:left;
+    display:table-cell;
+    font-weight: bold;
+}
+.table>thead>tr>th{
+    vertical-align: bottom;
+    border-bottom:2px solid #ddd;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
+    border-top: 0;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.table>td{
+    display:table-cell;
 }
 /* 하위컨텐트 영역 CSS */
 .pageNum_wrap{
@@ -227,13 +218,4 @@ nav{
     margin-left:30px;
     font-weight: 700;
     font-size:17px;
-}
-/* 푸터 영역 CSS */
-footer{
-    bottom:0px;
-    width:100%;
-    background-color: #F0E5D8;
-    color: black;
-    text-align: center;
-    margin-top:20px;
 }

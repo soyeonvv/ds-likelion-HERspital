@@ -7,12 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--웹페이지 title부분에 표시되는 작은 아이콘-->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico'%}">
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <title>Herspital</title>
     <link rel="stylesheet" href="{% static 'css/expertList.css' %}">
@@ -182,10 +176,9 @@
             </div>
         </div>
     </section>
-    <footer>
-        9th Like Lion in Duksung team Herspital 2021<br>
-        Kim sujeong Na gyeong-yoon Park Soyeon Seo Jisu Sin jung-yoon Lee boyeon Yoo Dayeong<br>
-        All rights reserved.
-    </footer>
 </body>
 </html>
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}
