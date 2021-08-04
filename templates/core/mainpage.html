@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="first.css" rel="stylesheet">
+    <title>HERspital</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ceiqn7sip1"></script>
+</head>
+<body>
+    <div id="home">
+        <header>
+            {% load static %}
+
+            {% block css %}
+                <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+            {% endblock %}
+
+            {% block navbar %}  
+                {% include "partials/base.html" %}
+            {% endblock %}
+        </header>
+
+        <div id="map" style="width:65%; height:600px; display: block; margin: auto; border: 2px solid #FFC478; border-radius: 10px;"></div>
+
+        <div id="content">
+            <div id="info">
+                <br><br><p style="text-align: center;" >{병원 정보 가져오기}</p><br><br>
+                <hr style="border-color: rgba(190, 190, 190, 0.26); width: 73%;"><br>
+            </div>
+
+            <div id="review">
+                <h2 style="text-align: center;">리뷰 ㅣ <span id="review-count">1</span>건</h2><br>
+                <a class="review_star">별점 : </a> 
+                <div class="star-rating space-x-4 mx-auto">
+                    <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                    <label for="5-stars" class="star pr-4">★</label>
+                    <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                    <label for="4-stars" class="star">★</label>
+                    <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                    <label for="3-stars" class="star">★</label>
+                    <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                    <label for="2-stars" class="star">★</label>
+                    <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
+                    <label for="1-star" class="star">★</label>
+                </div>
+
+                <div class="review-row">
+                    <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 수정은 불가능합니다."></textarea><br>
+                    <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
+                </div>
+                <br><br>
+                <div class="review-box">
+                    <div class="review-row">
+                        <div class="review-date" style="float: left;">익명<br>2021-08-03</div>
+                        <div class="review-remove" style="font-size: 13px; margin-left: 1150px;"><a href="#">삭제</a></div>
+                        <div class="review-content" style="padding-top: 40px;" >sample review</div><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+<script type="text/javascript">
+
+    // 별점 구현
+    function ratingToPercent() {
+        const score = +this.restaurant.averageScore * 20;
+        return score + 1.5;
+    }
+
+    //리뷰 작성
+    function warnEmpty(){
+        alert("내용을 입력해주세요.");
+    }
+    function dateToString(date){
+        const dateString = date.toISOString();
+        const dateToString = dateString.substring(0,10);
+        return dateToString;
+    }
+    function submitReview(){
+        const newreviewEL = document.getElementById("new-review");
+        const newreview = newreviewEL.value.trim();
+
+        if(newreview){
+            const dateEL = document.createElement('div');
+            dateEL.classList.add('review-date');
+            const dateString = dateToString(new Date());
+            dateEL.innerText = dateString;
+
+            const contentEL = document.createElement('div');
+            contentEL.classList.add('review-content');
+            contentEL.innerText = newreview;
+
+            const br = document.createElement('div');
+            br.innerHTML = "<br><br><br>"
+
+            const name = document.createElement('div');
+            name.innerHTML = "익명 &emsp;"
+
+            const br2 = document.createElement('div');
+            br2.innerHTML = "<br>"
+
+            const reviewEL = document.createElement('div');
+            reviewEL.classList.add('review-row');
+            reviewEL.appendChild(br);
+            reviewEL.appendChild(name);
+            reviewEL.appendChild(dateEL);
+            reviewEL.appendChild(br2);
+            reviewEL.appendChild(contentEL);
+
+            document.getElementById('review').appendChild(reviewEL);
+            newreviewEL.value = "";
+
+            const countEL = document.getElementById('review-count');
+            const count = countEL.innerText;
+            countEL.innerText = parseInt(count) + 1;
+        }else{
+            warnEmpty();
+        }
+    }
+    
+    //지도
+    var curtLoca = ""; //현재 위치 위도, 경도 좌표 담을 변수
+    var oBGy = new naver.maps.LatLng(37.63712014864708, 127.02519708943323); //문산부인과의원 좌표
+    var oBGy2 = new naver.maps.LatLng(37.63995751082928, 127.02564183007249); //정산부인과의원 좌표
+    var map = new naver.maps.Map('map', {
+        center: curtLoca,
+        scaleControl: false,
+        mapDateControl: false,
+        zoom: 15
+    });
+    var marker = new naver.maps.Marker({
+        position: oBGy,
+        map: map
+    });
+    var marker = new naver.maps.Marker({
+        position: oBGy2,
+        map: map
+    });
+
+    //마커 클릭 이벤트 핸들러 함수
+    var makerClickHandler = function() {
+        return function(e) { alert("문산부인과의원"); }
+    }
+    naver.maps.Event.addListener(marker, 'click', makerClickHandler());
+    
+    naver.maps.Event.once(marker, 'init_stylemap', function(){
+
+        cstmCtrl.setMap(map);
+
+        naver.maps.Event.addDOMListener(cstmCtrl.getElement(), 'click', function(){
+            if(curtLoca){
+                map.setCenter(curtLoca);
+                map.setZoom(13);
+            }
+            else{
+                alert("위치 액세스가 거부되었습니다. \n사용하시려면 위치 액세스를 허용해주세요.");
+            }
+        });
+    });
+
+    var onSuccessGeolocation = function(position){
+        curtLoca = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(curtLoca);
+        map.setZoom(15);
+        
+        var marker = new naver.maps.Marker({
+        position: curtLoca,
+        map: map,
+        icon: {url: "/img/curmarker.png",
+        size: new naver.maps.Size(15, 15),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(0, 0)}
+        });
+    }
+
+    var onErrorGeolocation = function(){
+        var agent = navigator.userAgent.toLowerCase(), name = navigator.appName;
+        if(name === 'Microsoft Internet Explorer' || agent.indexOf('trident') > -1 || agent.indexOf('edge/') > -1){
+            alert("지원하지 않는 브라우저입니다.");
+        }
+        else{
+            console.log("현재 위치를 가져오는데 에러가 발생하였습니다.");
+        }
+    }
+
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+    }
+    else{
+        console.log("Geolocation Not supported Required");
+    }
+
+</script>
+</body>
+</html>
