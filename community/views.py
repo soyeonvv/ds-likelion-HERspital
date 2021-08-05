@@ -9,3 +9,5 @@ def expertList(request):
     return render(request, "community/expertList.html")
 def consulting(request):
     return render(request, "community/consulting.html")
+def communityWrite(request):
+    return render(request, "community/communityWrite.html")
