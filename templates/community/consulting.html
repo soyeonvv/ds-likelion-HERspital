@@ -9,7 +9,7 @@
 {% block navbar %}
    {% include "partials/base.html" %}
 {% endblock%}
-    <p style="text-align: center; font: 27px 'Nanum Gothic', sans-serif; margin-top: 50px;">"<span style="color:#75CFB8">전문인</span>"님께 질문 있어요!</p>
+    <p style="text-align: center; font-size:30px; margin-top: 60px;">"<span style="color:#75CFB8">전문인</span>"님께 질문 있어요!</p>
     <form action="" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="board_wrap">
@@ -36,7 +36,7 @@
                     <dl style="margin-top: 30px; text-align: left;">
                         <dt>태그</dt>
                         <dd>
-                            <select style="width:85px;height:35px;" >
+                            <select style="width:85px;height:35px;">
                                 <option value="female disease">여성 질환</option>
                                 <option value="health">건강</option>
                                 <option value="medicine">의약품</option>
@@ -46,7 +46,7 @@
                     </dl>
                     <dl>
                         <dt style="padding-left: 60px;">사진 첨부</dt>
-                        <input id="file" type="file" name="image">
+                        <input id="file" type="file" name="image" style="position: fixed; top:37%; left: 49%;">
                     </dl>
                 </div>
                 <div class="cont">
