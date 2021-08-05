@@ -36,6 +36,7 @@
                         <li><a href="">#30대</a></li>
                         <li><a href="">#40대</a></li>
                         <li><a href="">#50대</a></li>
+                        <li><a href="">#60대 이상</a></li>
                     </ul>
                 </div>
                 <div class="newPostBtn_wrap">
@@ -57,110 +58,112 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for community in communities %}
                     <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>23</td>
+                        <td id="tag">{{community.age_tag}}</td>
+                        <td id="title"><a href="{% url 'community:detail' community.id%}">{{community.summary}}</a></td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">{{community.pub_date}}</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td id="tag">40대</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">28</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>28</td>
+                        <td id="tag">30대</td>
+                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">45</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>45</td>
+                        <td id="tag">20대</td>
+                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">23</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
-                        <td>익명<i class="fas fa-mars"></i></td>
-                        <td>07-28</td>
-                        <td>123</td>
+                        <td id="tag">40대</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">28</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>23</td>
+                        <td id="tag">30대</td>
+                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">45</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>28</td>
+                        <td id="tag">20대</td>
+                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">23</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>45</td>
+                        <td id="tag">40대</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">28</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>123</td>
+                        <td id="tag">30대</td>
+                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">45</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>잔여백신 백케팅 성공한 사람?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>23</td>
+                        <td id="tag">20대</td>
+                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">23</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>28</td>
+                        <td id="tag">40대</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">28</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>45</td>
+                        <td id="tag">30대</td>
+                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">45</td>
                     </tr>
                     <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>123</td>
+                        <td id="tag">20대</td>
+                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">23</td>
                     </tr>
                     <tr>
-                        <td>40대</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>28</td>
+                        <td id="tag">40대</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">28</td>
                     </tr>
                     <tr>
-                        <td>30대</td>
-                        <td>체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>45</td>
-                    </tr>
-                    <tr>
-                        <td>20대</td>
-                        <td>자궁경부암이 사람유두종바이러스 때문에...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>123</td>
+                        <td id="tag">30대</td>
+                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">45</td>
                     </tr>
                 </tbody>
             </table>
