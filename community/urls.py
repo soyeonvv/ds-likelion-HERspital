@@ -8,4 +8,5 @@ urlpatterns = [
     path("communityList/", community_views.communityList, name="communityList"),
     path("expertList/", community_views.expertList, name="expertList"),
     path("consulting/", community_views.consulting, name="consulting"),
+    path("communityWrite/", community_views.communityWrite, name="communityWrite"),
 ]

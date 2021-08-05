@@ -9,7 +9,7 @@
 {% block navbar %}
    {% include "partials/base.html" %}
 {% endblock%}
-    <p style="text-align: center; font-size:30px; margin-top: 60px;">"<span style="color:#75CFB8">전문인</span>"님께 질문 있어요!</p>
+    <p style="text-align: center; font-size:30px; margin-top: 60px;"><span style="color:#FFC478">커뮤니티</span>&nbsp;&nbsp;글 작성</p>
     <form action="" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="board_wrap">
@@ -20,7 +20,7 @@
                         <dd><input type="text" placeholder="제목 입력" name="title"></dd>
                     </dl>
                 </div>
-                <div class="info">
+                <div class="info" style="border-top: 1px dashed #75CFB8;">
                     <dl>
                         <dt>공개 설정</dt>
                         <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">공개</span></dd>
@@ -29,24 +29,22 @@
                         <dt style="padding-left: 60px;">비밀번호</dt>
                         <dd><input type="password" id="b" style="width: 100px; height: 30px;" name="pwd"></dd>
                     </dl>
-                    <dl>
-                        <dt style="padding-left: 58px;">희망 사항</dt>
-                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="choice"><span style="font-size: 15px;">약사</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="choice"><span style="font-size: 15px;">영양사</span></dd>
-                    </dl>
-                    <dl style="margin-top: 30px; text-align: left;">
-                        <dt>태그</dt>
+                    <dl style="padding-left: 95px;">
+                        <dt>연령</dt>
                         <dd>
-                            <select style="width:85px;height:35px;">
-                                <option value="female disease">여성 질환</option>
-                                <option value="health">건강</option>
-                                <option value="medicine">의약품</option>
-                                <option value="etc">기타</option>
+                            <select style="width:85px;height:35px;" >
+                                <option value="10s">10대</option>
+                                <option value="20s">20대</option>
+                                <option value="30s">30대</option>
+                                <option value="40s">40대</option>
+                                <option value="50s">50대</option>
+                                <option value="60s">60대</option>
+                                <option value="60up">60대 이상</option>
                             </select>
                         </dd>
                     </dl>
-                    <dl>
-                        <dt style="padding-left: 60px;">사진 첨부</dt>
-                        <input id="file" type="file" name="image" style="position: fixed; top:37%; left: 49%;">
+                        <dt style="margin-top: 30px;">사진 첨부</dt>
+                        <input id="file" type="file" name="image" style="position: fixed; top:37%; left: 30%;">
                     </dl>
                 </div>
                 <div class="cont">

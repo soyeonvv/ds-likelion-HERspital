@@ -1,16 +1,9 @@
-label{
-    display: block;
-}
 input, textarea{
     height: 50px;
 }
-#file{
-    position: fixed;
-    left: 50%;
-}
 .board_wrap {
     width: 1000px;
-    margin: 70px auto;
+    margin: 50px auto;
 }
 
 .board_title {
@@ -34,7 +27,7 @@ input, textarea{
 
 .bt_wrap a {
     display: inline-block;
-    min-width: 80px;
+    min-width: 100px;
     margin-left: 10px;
     padding: 10px;
     border: 1px solid #000;
@@ -79,9 +72,8 @@ input, textarea{
     font-size: 1.2rem;
 }
 
-.board_write .title dt,
-.board_write .info dt {
-    width: 100px;
+.board_write .title dt{
+    width: 40px;
 }
 
 .board_write .title dd {
@@ -94,13 +86,12 @@ input, textarea{
     padding: 5px;
     box-sizing: border-box;
 }
-
 .board_write .title input[type="text"] {
     width: 100%;
 }
 
 .board_write .cont {
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #000;
 }
 
 .board_write .cont textarea {
@@ -112,6 +103,8 @@ input, textarea{
     border: 0;
     resize: vertical;
 }
-dl{
-    margin: 0px;
+body{
+    width:100%;
+    padding:0;
+    margin:0;
 }
