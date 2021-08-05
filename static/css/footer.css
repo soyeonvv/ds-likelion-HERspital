@@ -6,4 +6,6 @@ footer{
     background-color: #F0E5D8;
     color: black;
     text-align: center;
+    padding: 7px;
+    margin: -7px;
 }
