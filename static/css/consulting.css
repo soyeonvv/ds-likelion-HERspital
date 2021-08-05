@@ -1,6 +1,4 @@
-label{
-    display: block;
-}
+
 input, textarea{
     height: 50px;
 }
@@ -8,6 +6,7 @@ input, textarea{
     position: fixed;
     left: 50%;
 }
+
 .board_wrap {
     width: 1000px;
     margin: 70px auto;
@@ -79,9 +78,8 @@ input, textarea{
     font-size: 1.2rem;
 }
 
-.board_write .title dt,
-.board_write .info dt {
-    width: 100px;
+.board_write .title dt{
+    width: 40px;
 }
 
 .board_write .title dd {
@@ -94,7 +92,6 @@ input, textarea{
     padding: 5px;
     box-sizing: border-box;
 }
-
 .board_write .title input[type="text"] {
     width: 100%;
 }
@@ -111,7 +108,4 @@ input, textarea{
     box-sizing: border-box;
     border: 0;
     resize: vertical;
-}
-dl{
-    margin: 0px;
 }
