@@ -1,0 +1,36 @@
+#main {
+  background-color: RGB(241 229 217);
+  position: center;
+  line-height: 3;
+  text-align: center;
+}
+
+h1 {text-align: center;}
+
+a {text-decoration:none;}
+
+#table {
+  position: center;
+  line-height: 3;
+  padding: 30px;
+
+}
+
+table, th, td {
+  border: 1px solid #bcbcbc;
+}
+
+table {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#button {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+h5 {text-align: center;}

@@ -17,7 +17,7 @@
             <li><a href="{% url 'core:mainpage' %}">지도</a></li>
             <li><a href="{% url 'community:communityList' %}">커뮤니티</a></li>
             <li><a href="{% url 'community:expertList' %}">전문인 상담</a></li>
-            <li><a href="">마이페이지</a></li>
+            <li><a href="{% url 'account:mypage' %}">마이페이지</a></li>
         </ul>
         <div class="navbar__login">
             <a href="{% url 'account:login' %}"><button id="login">Login</button></a>
