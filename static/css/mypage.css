@@ -1,0 +1,42 @@
+#main {
+    background-color: RGB(241 229 217);
+    position: center;
+    line-height: 2;
+    text-align: center;
+    border-bottom: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h1 {text-align: center;}
+h4 {text-align: center;}
+strong {color: RGB(116 208 185);}
+strong1 {font-weight:bold;}
+
+a {text-decoration:none;}
+
+#etc {
+    display:flex;
+    justify-content: center;
+    line-height: 2;
+}
+
+section{
+    width:50%;
+    padding:20px;
+}
+
+article{
+    border-radius:10px;
+    padding:20px;
+    background-color: RGB(240 240 240);
+}
+
+.love_expert {
+    text-align: center;
+    padding-top:50px;
+}
+
+h2 {text-align: center;}
+
+h5 {text-align: right;}
