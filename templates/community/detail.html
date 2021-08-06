@@ -9,12 +9,93 @@
 {% endblock %}
 
 {% block content %}
-    <div>세부 페이지</div>
-    {% if community.image %}
-        <img src="{{community.image.url}}">
-    {% endif %}
-    <h1>{{ community.title }}</h1>
-    <p>{{ community.body }}</p>
+    <div class="community__detail">
+        <h3>[ {{ community.age_tag }} ]</h3>
+        <h1>{{ community.title }}</h1>
+        <div class="modify_delete">
+            <a href="">수정</a> |
+            <a href="">삭제</a>
+        </div>
+        <hr>
+        <p>{{ community.body }}</p>
+        <br><br><br>
+        <div class="community__reply">
+            <img id="replyicon" src="{% static 'img/reply.png' %}">
+            <div id="replytxt">댓글</div>
+            <span id="review-count">1</span>
+            <div id="review">
+                <div class="review-row">
+                    <textarea id="new-review" name="new_review" rows="5" cols="100" placeholder="댓글 남기기."></textarea><br>
+                    <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
+                </div>
+                <br><br>
+                <div class="review-box">
+                    <div class="review-row">
+                        <div class="review-date" style="float: left;">익명<br>2021-08-03</div>
+                        <div class="review-remove" style="font-size: 13px;"><a href="#">삭제</a></div>
+                        <div class="review-content" style="padding-top: 40px;" >sample review<br><br></div><br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function warnEmpty(){
+        alert("내용을 입력해주세요.");
+        }
+        function dateToString(date){
+            const dateString = date.toISOString();
+            const dateToString = dateString.substring(0,10);
+            return dateToString;
+        }
+        function submitReview(){
+            const newreviewEL = document.getElementById("new-review");
+            const newreview = newreviewEL.value.trim();
+
+            if(newreview){
+                const dateEL = document.createElement('div');
+                dateEL.classList.add('review-date');
+                const dateString = dateToString(new Date());
+                dateEL.innerText = dateString;
+
+                const contentEL = document.createElement('div');
+                contentEL.classList.add('review-content');
+                contentEL.innerText = newreview;
+
+                const br = document.createElement('div');
+                br.innerHTML = "<br><hr><br><br>"
+
+                const name = document.createElement('div');
+                name.innerHTML = "익명 &emsp;"
+
+                const br2 = document.createElement('div');
+                br2.innerHTML = "<br><br>"
+
+                const reviewEL = document.createElement('div');
+                reviewEL.classList.add('review-row');
+                reviewEL.appendChild(br);
+                reviewEL.appendChild(name);
+                reviewEL.appendChild(dateEL);
+                reviewEL.appendChild(br2);
+                reviewEL.appendChild(contentEL);
+                reviewEL.appendChild(br2);
+
+                document.getElementById('review').appendChild(reviewEL);
+                newreviewEL.value = "";
+
+                const countEL = document.getElementById('review-count');
+                const count = countEL.innerText;
+                countEL.innerText = parseInt(count) + 1;
+            }else{
+                warnEmpty();
+            }
+        }
+    </script>
+    
+    
+    
 {% endblock %}
 
 {% block footer %}

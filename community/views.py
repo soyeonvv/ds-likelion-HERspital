@@ -7,6 +7,11 @@ from .models import Community
 #     return render(request, "community/detail.html")
 def communityList(request):
     communities = Community.objects.all()
+    tag = request.GET.get('tag')
+    if tag == 'true':
+        agetag = request.GET.get('ageTag')
+        communities = Community.objects.filter(age_tag=agetag).order_by('-pub_date')
+        return render(request,'community/communityList.html', {'communities':communities})
     return render(request, "community/communityList.html", {'communities':communities})
 def detail(request,id):
     community = get_object_or_404(Community, pk = id)

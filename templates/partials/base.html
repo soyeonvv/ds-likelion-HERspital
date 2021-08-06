@@ -14,14 +14,24 @@
             <a class="navbar__logo" href=""><img src="{% static 'img/logo.png' %}"></a>
         </div>
         <ul class="navbar__menu">
-            <li><a href="{% url 'core:mainpage' %}">지도</a></li>
-            <li><a href="{% url 'community:communityList' %}">커뮤니티</a></li>
-            <li><a href="{% url 'community:expertList' %}">전문인 상담</a></li>
-            <li><a href="{% url 'account:mypage' %}">마이페이지</a></li>
+            <li><a href="{% url 'core:mainpage' %}" class="navitem">지도</a></li>
+            <li><a href="{% url 'community:communityList' %}" class="navitem">커뮤니티</a></li>
+            <li><a href="{% url 'community:expertList' %}" class="navitem">전문인 상담</a></li>
+            <li><a href="{% url 'account:mypage' %}" class="navitem">마이페이지</a></li>
         </ul>
         <div class="navbar__login">
             <a href="{% url 'account:login' %}"><button id="login">Login</button></a>
         </div>
     </nav>
+    <script>
+        const currentLocation = location.href;
+        const navItem = document.querySelectorAll('.navitem');
+        const navLength = navItem.length;
+        for(let i=0; i<navLength; i++){
+            if(navItem[i].href === currentLocation){
+                navItem[i].className = "navitem active"
+            }
+        }
+    </script>
 </body>
 </html>

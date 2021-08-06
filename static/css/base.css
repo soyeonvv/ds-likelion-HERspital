@@ -59,6 +59,11 @@ a {
   }
 .navbar__menu li a:hover:after { transform: scaleX(1); }
 
+.navitem.active{
+    border-bottom: solid 3px #F1E5D9;
+    color:#FFC478;
+}
+
 .navbar__login {
     margin-left: auto;
 }
