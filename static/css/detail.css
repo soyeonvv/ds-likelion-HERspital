@@ -1,3 +1,79 @@
-div {
-    text-align: center;
+.community__detail {
+    border: solid 3px #F1E5D9;
+    border-radius: 20px;
+    height: 100vh;
+    margin: 10px 200px 20px 200px;
+    padding: 20px 30px 20px 30px;
+    
+    
+}
+
+.titletxt {
+    display: inline-block;
+
+}
+
+h1 {
+    display: inline-block;
+}
+
+.modify_delete {
+    color: #74D0B9;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 0;
+}
+
+.community__reply {
+    display: inline-block;
+}
+
+#replyicon {
+    width: 30px;
+    height: 29px;
+    float: left;
+    margin-right: 5px;
+}
+
+#replytxt {
+    display: inline-block;
+    font-weight: bold;
+    color: #74D0B9;
+    font-size: large;
+    padding-top: 3px;
+}
+
+#review-count {
+    font-weight: bold;
+    color: #74D0B9;
+    font-size: large;
+}
+
+#new-review {
+    width: 700px;
+    height: 70px;
+    background-color: #F1E5D9;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    border-style: none;
+}
+
+hr {
+    background-color: #F1E5D9;
+    border: 0px;
+    height: 2px;
+}
+
+.review_btn {
+    background-color: #FFC478;
+    color: #ffffff;
+    font-size: large;
+    font-weight: 570;
+    border-style: none;
+    border-radius: 20px;
+    width: 50px;
+    height: 25px;
+    margin-top: 5px;
+    float: right;
 }
