@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="first.css" rel="stylesheet">
     <title>HERspital</title>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ceiqn7sip1"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2&libraries=LIBRARY"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
     {% block navbar %}
@@ -14,7 +17,68 @@
     {% endblock%}
     
     <div id="home">
-        <div id="map" style="width:65%; height:600px; display: block; margin: auto; border: 2px solid #FFC478; border-radius: 10px;"></div>
+
+        <!-- 지도 -->
+        <div id="map" style="width:65%;height:600px; display: block; margin: auto; border: 2px solid #FFC478; border-radius: 10px;"></div>
+	    <script>
+        		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
+
+		var map = new kakao.maps.Map(container, options);
+
+        if (navigator.geolocation) {
+    
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function(position) {
+        
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+        
+        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px;">내 위치!</div>'; // 인포윈도우에 표시될 내용입니다
+        
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+            
+        });
+    
+        } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+    
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+            message = 'geolocation을 사용할수 없어요..'
+        
+        displayMarker(locPosition, message);
+        }
+
+        // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+        function displayMarker(locPosition, message) {
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({  
+            map: map, 
+            position: locPosition
+        }); 
+    
+        var iwContent = message, // 인포윈도우에 표시할 내용
+            iwRemoveable = true;
+
+        // 인포윈도우를 생성합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content : iwContent,
+            removable : iwRemoveable
+        });
+    
+        // 인포윈도우를 마커위에 표시합니다 
+        infowindow.open(map, marker);
+    
+        // 지도 중심좌표를 접속위치로 변경합니다
+        map.setCenter(locPosition);      
+        } 
+
+	    </script>
 
         <div id="content">
             <div id="info">
@@ -47,7 +111,7 @@
                     <div class="review-row">
                         <div class="review-date" style="float: left;">익명<br>2021-08-03</div>
                         <div class="review-remove" style="font-size: 13px; margin-left: 1150px;"><a href="#">삭제</a></div>
-                        <div class="review-content" style="padding-top: 40px;" >sample review</div><br>
+                        <div class="review-content" style="padding-top: 40px;" >sample review<br><br></div><br>
                     </div>
                 </div>
             </div>
@@ -86,13 +150,13 @@
             contentEL.innerText = newreview;
 
             const br = document.createElement('div');
-            br.innerHTML = "<br><br><br>"
+            br.innerHTML = "<br><hr><br><br>"
 
             const name = document.createElement('div');
             name.innerHTML = "익명 &emsp;"
 
             const br2 = document.createElement('div');
-            br2.innerHTML = "<br>"
+            br2.innerHTML = "<br><br>"
 
             const reviewEL = document.createElement('div');
             reviewEL.classList.add('review-row');
@@ -101,6 +165,7 @@
             reviewEL.appendChild(dateEL);
             reviewEL.appendChild(br2);
             reviewEL.appendChild(contentEL);
+            reviewEL.appendChild(br2);
 
             document.getElementById('review').appendChild(reviewEL);
             newreviewEL.value = "";
@@ -113,78 +178,7 @@
         }
     }
     
-    //지도
-    var curtLoca = ""; //현재 위치 위도, 경도 좌표 담을 변수
-    var oBGy = new naver.maps.LatLng(37.63712014864708, 127.02519708943323); //문산부인과의원 좌표
-    var oBGy2 = new naver.maps.LatLng(37.63995751082928, 127.02564183007249); //정산부인과의원 좌표
-    var map = new naver.maps.Map('map', {
-        center: curtLoca,
-        scaleControl: false,
-        mapDateControl: false,
-        zoom: 15
-    });
-    var marker = new naver.maps.Marker({
-        position: oBGy,
-        map: map
-    });
-    var marker = new naver.maps.Marker({
-        position: oBGy2,
-        map: map
-    });
-
-    //마커 클릭 이벤트 핸들러 함수
-    var makerClickHandler = function() {
-        return function(e) { alert("문산부인과의원"); }
-    }
-    naver.maps.Event.addListener(marker, 'click', makerClickHandler());
-    
-    naver.maps.Event.once(marker, 'init_stylemap', function(){
-
-        cstmCtrl.setMap(map);
-
-        naver.maps.Event.addDOMListener(cstmCtrl.getElement(), 'click', function(){
-            if(curtLoca){
-                map.setCenter(curtLoca);
-                map.setZoom(13);
-            }
-            else{
-                alert("위치 액세스가 거부되었습니다. \n사용하시려면 위치 액세스를 허용해주세요.");
-            }
-        });
-    });
-
-    var onSuccessGeolocation = function(position){
-        curtLoca = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        map.setCenter(curtLoca);
-        map.setZoom(15);
-        
-        var marker = new naver.maps.Marker({
-        position: curtLoca,
-        map: map,
-        icon: {url: "/img/curmarker.png",
-        size: new naver.maps.Size(15, 15),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(0, 0)}
-        });
-    }
-
-    var onErrorGeolocation = function(){
-        var agent = navigator.userAgent.toLowerCase(), name = navigator.appName;
-        if(name === 'Microsoft Internet Explorer' || agent.indexOf('trident') > -1 || agent.indexOf('edge/') > -1){
-            alert("지원하지 않는 브라우저입니다.");
-        }
-        else{
-            console.log("현재 위치를 가져오는데 에러가 발생하였습니다.");
-        }
-    }
-
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
-    }
-    else{
-        console.log("Geolocation Not supported Required");
-    }
-
+   
 </script>
 </body>
 </html>
