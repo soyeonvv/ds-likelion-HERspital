@@ -28,14 +28,14 @@
                 <th>아이디</th>
                 <td>
                     <label for="changeid"></label>
-                    <input type="text" id="changeid" name="changeid" placeholder="{{user.name}}">
+                    <input type="text" id="changeid" name="changeid" placeholder="user.name">
                     <button type="cofirm">중복 확인</button>
                 </td>
             </tr>
 
             <tr>
                 <th>이름</th>
-                <td>{{user.name}}</td>
+                <td>user.name</td>
             </tr>
             <tr>
                 <th>성별</th>
@@ -46,22 +46,14 @@
                 </td>
             </tr>
 
-            <!-- <tr>
-                <th>닉네임</th>
-                <td>
-                    <label for="changenick"></label>
-                    <input type="text" id="changenick" name="changenick" placeholder="{{user.nickname}}">
-                </td>
-            </tr> -->
-
             <tr>
                 <th>주소</th>
                 <td>
-                    <input type="text" id="sample6_postcode" placeholder="{{user.postcode}}">
+                    <input type="text" id="sample6_postcode" placeholder="user.postcode">
                     <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                    <input type="text" id="sample6_address" placeholder="{{user.address}}"><br>
-                    <input type="text" id="sample6_detailAddress" placeholder="{{user.detailAddress}}">
-                    <input type="text" id="sample6_extraAddress" placeholder="{{user.extraAddress}}">
+                    <input type="text" id="sample6_address" placeholder="user.address"><br>
+                    <input type="text" id="sample6_detailAddress" placeholder="user.detailAddress">
+                    <input type="text" id="sample6_extraAddress" placeholder="user.extraAddress">
                     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                     <script>
                         function sample6_execDaumPostcode() {
@@ -128,7 +120,7 @@
                 <th>핸드폰</th>
                 <td>
                     <label for="changenum"></label>
-                    <input type="tel" id="changenum" name="changenum" placeholder="{{user.number}}">
+                    <input type="tel" id="changenum" name="changenum" placeholder="user.number">
                 </td>
             </tr>
 
@@ -136,7 +128,7 @@
                 <th>이메일</th>
                 <td>
                     <label for="changeemail"></label>
-                    <input type="email" id="changeemail" name="changeemail" placeholder="{{user.email}}">
+                    <input type="email" id="changeemail" name="changeemail" placeholder="user.email">
                 </td>
             </tr>
         </table>
