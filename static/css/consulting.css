@@ -22,7 +22,6 @@ input, textarea{
 .bt_wrap {
     margin-top: 30px;
     text-align: center;
-    font-size: 0;
 }
 
 .bt_wrap a {
@@ -82,7 +81,7 @@ input, textarea{
 
 .board_write .title input[type="text"],
 .board_write .info input[type="text"],
-.board_write .info input[type="password"] {
+.board_write .info input[type="password"]{
     padding: 5px;
     box-sizing: border-box;
 }

@@ -2,8 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Consulting page</title>
+    <title>Herspital</title>
     <link rel="stylesheet" href="{% static 'css/consulting.css' %}">
+    <script>
+        function change(obj){
+        var n = confirm("글 작성을 취소하시겠습니까?");
+        if(n == true){
+            obj.href = "{% url 'community:expertList' %}";
+        }
+    }
+    </script>
 </head>
 <body>
 {% block navbar %}
@@ -23,7 +31,7 @@
                 <div class="info">
                     <dl>
                         <dt>공개 설정</dt>
-                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">공개</span></dd>
+                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="publicSetting"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">공개</span></dd>
                     </dl>
                     <dl>
                         <dt style="padding-left: 60px;">비밀번호</dt>
@@ -36,7 +44,7 @@
                     <dl style="margin-top: 30px; text-align: left;">
                         <dt>태그</dt>
                         <dd>
-                            <select style="width:85px;height:35px;">
+                            <select name="opage"style="width:85px;height:35px;">
                                 <option value="female disease">여성 질환</option>
                                 <option value="health">건강</option>
                                 <option value="medicine">의약품</option>
@@ -44,18 +52,18 @@
                             </select>
                         </dd>
                     </dl>
-                    <dl>
-                        <dt style="padding-left: 60px;">사진 첨부</dt>
-                        <input id="file" type="file" name="image" style="position: fixed; top:37%; left: 49%;">
+                    <dl style="width: 500px;">
+                        <dt style="padding-left: 60px;">사진첨부</dt>
+                        <dd><input id="file" type="file" name="image" style="height: 30px;"></dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea placeholder="상담 내용을 작성하세요."></textarea>
+                    <textarea placeholder="상담 내용을 작성하세요." name="body"></textarea>
                 </div>
             </div>
             <div class="bt_wrap">
                 <button type="submit" style="border:0;"><a href="" style="color:white; background-color: black;">등록</a></button>
-                <button type="submit" style="border:0; outline: none; margin: 10px"><a href="" style="color:black;">취소</a></button>
+                <button type="submit" style="border:0; outline: none; margin: 10px"><a href="" style="color:black;" onclick="change(this)">취소</a></button>
             </div>
         </div>
     </form>

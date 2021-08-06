@@ -11,4 +11,5 @@ urlpatterns = [
     path("consulting/", community_views.consulting, name="consulting"),
     path("communityWrite/", community_views.communityWrite, name="communityWrite"),
     path('detail/<str:id>', community_views.detail, name="detail"),
+    path('create/', create, name="create"),
 ]
