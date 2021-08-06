@@ -1,10 +1,15 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from .models import Community
 
-def detail(request):
-    return render(request, "community/detail.html")
+# def detail(request):
+#     return render(request, "community/detail.html")
 def communityList(request):
-    return render(request, "community/communityList.html")
+    communities = Community.objects.all()
+    return render(request, "community/communityList.html", {'communities':communities})
+def detail(request,id):
+    community = get_object_or_404(Community, pk = id)
+    return render(request, "community/detail.html", {'community':community})
 def expertList(request):
     return render(request, "community/expertList.html")
 def consulting(request):
