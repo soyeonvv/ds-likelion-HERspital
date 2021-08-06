@@ -1,7 +1,4 @@
-body {
-    padding-top: 70px;
-    margin: 30px 0px 60px 0px;
-}
+
 a {
     text-decoration: none;
 }
@@ -9,6 +6,7 @@ a {
 #content{
     padding-left: 70px;
     padding-right: 70px;
+    margin-bottom: 8%;
 }
 #review{
     margin-left: 12%;
