@@ -13,7 +13,7 @@
         <h3>[ {{ community.age_tag }} ]</h3>
         <h1>{{ community.title }}</h1>
         <div class="modify_delete">
-            <a href="">수정</a> |
+            <a href="{%url 'community:communityedit' community.id%}">수정</a> |
             <a href="">삭제</a>
         </div>
         <hr>
@@ -36,7 +36,6 @@
                         <div class="review-content" style="padding-top: 40px;" >sample review<br><br></div><br>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
