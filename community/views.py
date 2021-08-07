@@ -13,15 +13,20 @@ def communityList(request):
         communities = Community.objects.filter(age_tag=agetag).order_by('-pub_date')
         return render(request,'community/communityList.html', {'communities':communities})
     return render(request, "community/communityList.html", {'communities':communities})
+
 def detail(request,id):
     community = get_object_or_404(Community, pk = id)
     return render(request, "community/detail.html", {'community':community})
+
 def expertList(request):
     return render(request, "community/expertList.html")
+
 def consulting(request):
     return render(request, "community/consulting.html")
+
 def communityWrite(request):
     return render(request, 'community/communityWrite.html')
+
 def create(request):
     new_community = Community()
     new_community.title = request.POST['title']
@@ -33,3 +38,20 @@ def create(request):
     new_community.pub_date = timezone.now()
     new_community.save()
     return redirect('community:detail', new_community.id)
+
+def communityedit(request,id):
+    edit_community = Community.objects.get(id=id)
+    return render(request, 'community/communityedit.html', {'edit' : edit_community})
+    
+def update(request, id):
+    update_community = Community.objects.get(id=id)
+    update_community.title = request.POST['title']
+    update_community.publicSetting = True
+    update_community.password_Post = request.POST['pwd']
+    update_community.age_tag = request.POST['opage']
+    update_community.image = request.FILES['image']
+    update_community.body = request.POST.get('body', '')
+    update_community.pub_date = timezone.now()
+    update_community.save()
+    return redirect('community:detail', update_community.id)
+
