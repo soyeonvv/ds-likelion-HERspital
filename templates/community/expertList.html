@@ -15,6 +15,7 @@
 {% block navbar %}
     {% include "partials/base.html" %}
 {% endblock%}
+{% block content %}
     <section>
         <div class="topContent">
             <div class="search">
@@ -45,6 +46,7 @@
         </div>
         <div class="bottomContent">
             <table class="table">
+                {% comment %} db에 저장된 값을 가져오도록 고쳐야 함 {% endcomment %}
                 <thead>
                     <tr>
                         <th>말머리</th>
@@ -55,110 +57,112 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for expert in experts %}
                     <tr>
-                        <td>여성질환</td>
-                        <td>산부인과 여성질환 질문</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>0</td>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
                     </tr>
                     <tr>
-                        <td>병원 안내</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>1</td>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
                     </tr>
                     <tr>
-                        <td>영양사</td>
-                        <td>여성질환에 좋은 음식 알려주세요</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>2</td>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
                     </tr>
                     <tr>
-                        <td>여성질환</td>
-                        <td>산부인과 여성질환 질문</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>0</td>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
                     </tr>
                     <tr>
-                        <td>병원 안내</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>1</td>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
                     </tr>
                     <tr>
-                        <td>영양사</td>
-                        <td>여성질환에 좋은 음식 알려주세요</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>2</td>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
                     </tr>
                     <tr>
-                        <td>여성질환</td>
-                        <td>산부인과 여성질환 질문</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>0</td>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
                     </tr>
                     <tr>
-                        <td>병원 안내</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>1</td>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
                     </tr>
                     <tr>
-                        <td>영양사</td>
-                        <td>여성질환에 좋은 음식 알려주세요</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>2</td>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
                     </tr>
                     <tr>
-                        <td>여성질환</td>
-                        <td>산부인과 여성질환 질문</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>0</td>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
                     </tr>
                     <tr>
-                        <td>병원 안내</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>1</td>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
                     </tr>
                     <tr>
-                        <td>영양사</td>
-                        <td>여성질환에 좋은 음식 알려주세요</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>2</td>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
                     </tr>
                     <tr>
-                        <td>여성질환</td>
-                        <td>산부인과 여성질환 질문</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>0</td>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
                     </tr>
                     <tr>
-                        <td>병원 안내</td>
-                        <td>요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>영양사</td>
-                        <td>여성질환에 좋은 음식 알려주세요</td>
-                        <td>익명<i class="fas fa-venus"></i></td>
-                        <td>07-28</td>
-                        <td>2</td>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
                     </tr>
                 </tbody>
             </table>
@@ -176,6 +180,7 @@
             </div>
         </div>
     </section>
+{% endblock %}
 </body>
 </html>
 
