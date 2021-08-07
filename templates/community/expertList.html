@@ -59,10 +59,10 @@
                 <tbody>
                 {% for expert in experts %}
                     <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="tag">{{expert.age_tag}}</td>
+                        <td id="title"><a href="{% url 'community:expert_detail' expert.id %}">{{expert.title}}</a></td>
                         <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
+                        <td id="date">{{expert.pub_date}}</td>
                         <td id="commentNum">0</td>
                     </tr>
                 {% endfor %}

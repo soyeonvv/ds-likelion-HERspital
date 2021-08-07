@@ -22,9 +22,9 @@ def detail(request,id):
 def expertList(request):
     experts = Expert.objects.all()
     return render(request, "community/expertList.html", {'experts':experts})
-def detailexpert(request,ex_id):
+def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
-    return render(request, "community/detail_expert.html", {'expert':expert})
+    return render(request, "community/expert_detail.html", {'expert':expert})
 def consulting(request):
     return render(request, "community/consulting.html")
 
