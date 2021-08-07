@@ -1,0 +1,22 @@
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}
+
+{% block navbar %}
+    {% include "partials/base.html" %}
+{% endblock %}
+
+{% block content %}
+
+    <div>세부 페이지</div>
+    <h1>{{ expert.title }}</h1>
+    <p>{{ expert.body }}</p>
+    <!-- 기본적인 양식 부분만 가져왔습니다 -->
+
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}
