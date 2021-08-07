@@ -7,7 +7,7 @@ from .models import Expert
 # def detail(request):
 #     return render(request, "community/detail.html")
 def communityList(request):
-    communities = Community.objects.all()
+    communities = Community.objects.all().order_by('-pub_date')
     tag = request.GET.get('tag')
     if tag == 'true':
         agetag = request.GET.get('ageTag')
@@ -21,6 +21,11 @@ def detail(request,id):
 
 def expertList(request):
     experts = Expert.objects.all()
+    tag = request.GET.get('tag')
+    if tag == 'true':
+        agetag = request.GET.get('ageTag')
+        experts = Expert.objects.filter(age_tag = agetag).order_by('-pub_date')
+        return render(request,'community/expertList.html', {'experts':experts})
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
