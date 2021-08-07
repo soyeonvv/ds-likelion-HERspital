@@ -17,11 +17,15 @@
             <li><a href="{% url 'core:mainpage' %}" class="navitem">지도</a></li>
             <li><a href="{% url 'community:communityList' %}" class="navitem">커뮤니티</a></li>
             <li><a href="{% url 'community:expertList' %}" class="navitem">전문인 상담</a></li>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'account:mypage' %}" class="navitem">마이페이지</a></li>
+            {% endif%}
         </ul>
+
         <div class="navbar__login">
             <a href="{% url 'account:login' %}"><button id="login">Login</button></a>
         </div>
+
     </nav>
     <script>
         const currentLocation = location.href;
