@@ -2,6 +2,7 @@ import requests
 from django.shortcuts import redirect, render,get_object_or_404
 from django.utils import timezone
 from .models import Community
+from .models import Expert
 
 # def detail(request):
 #     return render(request, "community/detail.html")
@@ -19,8 +20,11 @@ def detail(request,id):
     return render(request, "community/detail.html", {'community':community})
 
 def expertList(request):
-    return render(request, "community/expertList.html")
-
+    experts = Expert.objects.all()
+    return render(request, "community/expertList.html", {'experts':experts})
+def detailexpert(request,ex_id):
+    expert = get_object_or_404(Expert, pk = ex_id)
+    return render(request, "community/detail_expert.html", {'expert':expert})
 def consulting(request):
     return render(request, "community/consulting.html")
 
