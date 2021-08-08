@@ -153,8 +153,8 @@
                 <br><br>
                 <div class="review-box">
                     <div class="review-row">
-                        <div class="review-date">익명<br><img id="starimg" src="{% static 'img/star1.png' %}"><br>2021-08-03</div>
-                        <div class="review-content">sample review<br></div>
+                        <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
+                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div>
                     </div>
                 </div>
             </div>
@@ -171,15 +171,15 @@
     function starReview(){
 
         if(document.getElementById("1-star").checked){
-            starData = "(1)"; //이미지 가져오기 안 됨 ^_ㅜ
+            starData = "★☆☆☆☆(1)";
         }else if(document.getElementById("2-stars").checked){
-            starData = "(2)";
+            starData = "★★☆☆☆(2)";
         }else if(document.getElementById("3-stars").checked){
-            starData = "(3)";
+            starData = "★★★☆☆(3)";
         }else if(document.getElementById("4-stars").checked){
-            starData = "(4)";
+            starData = "★★★★☆(4)";
         }else{
-            starData = "(5)";
+            starData = "★★★★★(5)";
         }
         return starData;
     }
@@ -195,11 +195,11 @@
         const newreview = newreviewEL.value.trim();
 
         if(newreview){
-            const starEL = document.createElement('div');
+            const starEL = document.createElement('span');
             const starString = starReview(document.getElementById);
-            starEL.innerText = starString;
+            starEL.innerHTML = starString + "&emsp;";
 
-            const dateEL = document.createElement('div');
+            const dateEL = document.createElement('span');
             dateEL.classList.add('review-date');
             const dateString = dateToString(new Date());
             dateEL.innerText = dateString;
@@ -211,16 +211,24 @@
             const br = document.createElement('div');
             br.innerHTML = "<hr><br><br>"
 
-            const name = document.createElement('div');
+            const br2 = document.createElement('div');
+            br2.innerHTML = "<br><br>"
+
+            const br3 = document.createElement('div');
+            br3.innerHTML = "<br>"
+
+            const name = document.createElement('span');
             name.innerHTML = "익명 &emsp;"
 
-            const reviewEL = document.createElement('div');
+            const reviewEL = document.createElement('span');
             reviewEL.classList.add('review-row');
             reviewEL.appendChild(br);
             reviewEL.appendChild(name);
             reviewEL.appendChild(starEL);
             reviewEL.appendChild(dateEL);
+            reviewEL.appendChild(br3);
             reviewEL.appendChild(contentEL);
+            reviewEL.appendChild(br2);
 
             document.getElementById('review').appendChild(reviewEL);
             newreviewEL.value = "";
