@@ -6,6 +6,7 @@ from .forms import RegisterForm
 
 from django.contrib.auth.models import User
 from django.contrib import auth
+from .models import CustomUser
 
 #Authen=로그인, UserCre=회원가입
 
@@ -17,7 +18,9 @@ def login_view(request):
   if request.method == 'POST':
     username = request.POST['username']
     password = request.POST['password']
-    user = auth.authenticate(request, username=username, password=password)
+    user = CustomUser.objects.get(username = request.POST['username'])
+    
+    # user = auth.authenticate(request, username=username, password=password)
     if user is not None:
       auth.login(request, user)
       return redirect('mainpage')
@@ -35,11 +38,7 @@ def login_view(request):
 #       username = form.cleaned_data.get("username")
 #       password = form.cleaned_data.get("password")
 
-#       user=authenticate(
-#         request=request,
-#         username=username,
-#         password=password
-#         )
+#       user=authenticate(request=request, username=username, password=password)
 #       if request.user is not None:
 #         login(request, user)
 #     return redirect("mainpage")
@@ -51,16 +50,34 @@ def logout_view(request):
   logout(request)
   return redirect("mainpage")
 
+
 def signup(request):
-  if request.method=="POST":
-    form = RegisterForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-    return redirect('mainpage')
-  else:
-    form = RegisterForm()
-    return render(request, 'account/signup.html',{'form':form})
+  if request.method == 'POST':
+    
+    if request.POST['password'] == request.POST['password2']:
+      try:
+        user = CustomUser.objects.get(username = request.POST['userid'])
+        return render(request, 'account/signup.html', {'error':'Username has already been taken.'})
+      except CustomUser.DoesNotExist:
+        user = CustomUser.objects.create_user(
+          request.POST['userid'], request.POST['password'], request.POST['username'], request.POST[''])
+        auth.login(request,user)
+        return redirect("mainpage")
+    else:
+      return render(request, 'account/signup.html')
+  return render(request, 'account/signup.html')
+
+
+# def signup(request):
+#   if request.method=="POST":
+#     form = RegisterForm(request.POST)
+#     if form.is_valid():
+#       user = form.save()
+#       login(request, user)
+#     return redirect('mainpage')
+#   else:
+#     form = RegisterForm()
+#     return render(request, 'account/signup.html',{'form':form})
     
 def mypage(request):
     return render(request, "account/mypage.html")
