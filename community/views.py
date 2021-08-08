@@ -20,7 +20,7 @@ def detail(request,id):
     return render(request, "community/detail.html", {'community':community})
 
 def expertList(request):
-    experts = Expert.objects.all()
+    experts = Expert.objects.all().order_by('-pub_date')
     tag = request.GET.get('tag')
     if tag == 'true':
         agetag = request.GET.get('ageTag')
