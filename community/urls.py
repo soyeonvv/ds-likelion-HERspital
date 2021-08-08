@@ -15,4 +15,7 @@ urlpatterns = [
     path('create/', create, name="create"),
     path('communityedit/<str:id>',community_views.communityedit, name="communityedit"),
     path('update/<str:id>',update, name="update"),
+    path('expertcreate/',expertcreate, name="expertcreate"),
+    path('expert_edit/<str:id>',community_views.expert_edit, name="expert_edit"),
+    path('expert_update/<str:id>',expert_update, name="expert_update"),
 ]

@@ -13,6 +13,8 @@ a {
     margin-right: 13%;
 }
 #new-review{
+    display: block;
+    margin: auto;
     resize: none; 
     border-color: rgb(190, 190, 190); 
     padding: 10px; 
