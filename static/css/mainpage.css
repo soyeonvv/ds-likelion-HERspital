@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+#home {
+    z-index: -1;
+}
+
 #content{
     padding-left: 70px;
     padding-right: 70px;

@@ -19,6 +19,7 @@ body {
     width: 100%;
     top: 0;
     background-color: #ffffff;
+    z-index: 999;
 }
 
 .navbar__logo img {
