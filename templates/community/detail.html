@@ -25,15 +25,14 @@
             <span id="review-count">1</span>
             <div id="review">
                 <div class="review-row">
-                    <textarea id="new-review" name="new_review" rows="5" cols="100" placeholder="댓글 남기기."></textarea><br>
+                    <textarea id="new-review" name="new_review" rows="5" cols="90" placeholder="댓글 남기기."></textarea><br>
                     <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
                 </div>
                 <br><br>
                 <div class="review-box">
                     <div class="review-row">
-                        <div class="review-date" style="float: left;">익명<br>2021-08-03</div>
-                        <div class="review-remove" style="font-size: 13px;"><a href="#">삭제</a></div>
-                        <div class="review-content" style="padding-top: 40px;" >sample review<br><br></div><br>
+                        <div class="review-date" style="float: left;">2021-08-03</div>
+                        <div class="review-content" style="padding-top: 40px;" >sample review<br></div>
                     </div>
                 </div>
             </div>
@@ -64,22 +63,13 @@
                 contentEL.innerText = newreview;
 
                 const br = document.createElement('div');
-                br.innerHTML = "<br><hr><br><br>"
-
-                const name = document.createElement('div');
-                name.innerHTML = "익명 &emsp;"
-
-                const br2 = document.createElement('div');
-                br2.innerHTML = "<br><br>"
+                br.innerHTML = "<br><hr><br>"
 
                 const reviewEL = document.createElement('div');
                 reviewEL.classList.add('review-row');
                 reviewEL.appendChild(br);
-                reviewEL.appendChild(name);
                 reviewEL.appendChild(dateEL);
-                reviewEL.appendChild(br2);
                 reviewEL.appendChild(contentEL);
-                reviewEL.appendChild(br2);
 
                 document.getElementById('review').appendChild(reviewEL);
                 newreviewEL.value = "";
