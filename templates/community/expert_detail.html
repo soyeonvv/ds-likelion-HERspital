@@ -18,6 +18,33 @@
         #questionContent{
             line-height:30px;
         }
+
+/* 답변 갯수 표시 영역 CSS */
+.community__reply {
+    display: block;
+}
+
+#replyicon {
+    width: 30px;
+    height: 29px;
+    float: left;
+    margin-right: 5px;
+}
+
+#replytxt {
+    display: inline-block;
+    font-weight: bold;
+    color: #74D0B9;
+    font-size: large;
+    padding-top: 3px;
+}
+
+#review-count {
+    font-weight: bold;
+    color: #74D0B9;
+    font-size: large;
+}
+
 /* 답변 영역 CSS */
         .responseBtn , .cancelBtn{
             background-color: #FFC478;
@@ -32,11 +59,14 @@
             cursor:pointer;
         }
         .cancelBtn{
-            float:right;
+            display:none;
         }
         .response_content{
             width:100%;
-            
+            border: solid 3px #F1E5D9;
+            border-radius: 20px;
+            padding:10px;
+            margin-bottom:10px;
         }
         #doctor_profile{
             width:40px;
@@ -46,7 +76,7 @@
         #info_tab div{ flex-grow:0; }
 
 /* 테이블 */
-        table{width:100%;}
+        table{width:100%; padding:10px;}
         .profileTD{
             width:20px;
         }
@@ -72,27 +102,34 @@
     <h1>[{{expert.age_tag}}] {{ expert.title }}</h1>
     <hr>
     <div id="info_tab">
-        <p>익명 {{ expert.pub_date }} </p>
-        <div><span><a href="{%url 'community:expert_edit' expert.id%}">수정</span> / <span>삭제</span></div>
+        <p>익명 {{ expert.pub_date | date:'m-d,H:i'}} </p>
+        <div><span><a href="{%url 'community:expert_edit' expert.id%}">수정</a></span> / <span>삭제</span></div>
     </div>
     <p id="questionContent">{{ expert.body }}</p>
-
+<div class="community__reply">
+    <img id="replyicon" src="{% static 'img/reply.png' %}">
+    <div id="replytxt">답변</div>
+    <span id="review-count">1</span>
+</div>
+<hr>
     <button class="responseBtn" type="submit" onclick=openResponse()>답변하기</button>
+    <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
+    
     <div class="response_submit">
-        <input class="response_content" type="textarea"></input>
-        <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
+        <textarea class="response_content" placeholder="답변을 적어주세요:)" rows="10" wrap="hard"></textarea>
     </div>
 
     {% comment %} 답변 부분 {% endcomment %}
     <div class="response">
-        <table border="1px solid">
+        <table>
             <tr>
                 <td class="profileTD">
                     <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
                 </td>
                 <td>이복단 전문의 <br>하늘산부인과의원</td>
                 <td class="likeTD">
-                    <i class="fas fa-thumbs-up">20</i>
+                    <i class="far fa-thumbs-up"><span class="numb">19</span></i>
+                    <i class="fas fa-thumbs-up"><span class="numb">20</span></i>
                 </td>
             </tr>
             <tr>
@@ -121,17 +158,24 @@
         if(state === 'close'){ //닫혀있던 폼을 열고, 등록하는 버튼으로 바꿈
             $(".response_submit").css("display", "block");
             $(".responseBtn").text('답변등록');
+            $(".cancelBtn").css("display","inline-block");
             state = 'open';
         }
         else if(state ==='open'){//폼이 열려있으므로 답변을 등록해야 함
 
+
+            //기존에 입력해둔 내용 지우기
+            $(".response_content").val("");
         }
     }
     function closeResponse(){
         if(state === 'open'){ //내용 
             $(".response_submit").css("display", "none");
             $(".responseBtn").text('답변하기');
+            $(".cancelBtn").css("display","none");
             state = 'close';
+        //취소하기 버튼을 누르면 기존에 입력해둔 내용 지우기
+            $(".response_content").val("");
         }
     }
 </script>
