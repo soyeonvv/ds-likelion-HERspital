@@ -1,0 +1,188 @@
+{% load static %}
+<DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--웹페이지 title부분에 표시되는 작은 아이콘-->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico'%}">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <title>Herspital</title>
+    <link rel="stylesheet" href="{% static 'css/expertList.css' %}">
+</head>
+<body>
+{% block navbar %}
+    {% include "partials/base.html" %}
+{% endblock%}
+{% block content %}
+    <section>
+        <div class="topContent">
+            <div class="search">
+            <div class="search_wrap">
+                <div class="search_box">
+                    <div class="btn btn_common">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" class="input" placeholder="Search...">
+                </div>
+            </div>
+            </div>
+            <div class="secondTab">
+                <div class="preface_wrap">
+                    <ul class="preface"> <!-- 머릿말 누르면 내용이 달라지도록 변경해야함 -->
+                        <li><a href="?tag=true&ageTag=여성 질환">#여성 질환</a></li>
+                        <li><a href="?tag=true&ageTag=건강">#건강</a></li>
+                        <li><a href="?tag=true&ageTag=의약품">#의약품</a></li>
+                        <li><a href="?tag=true&ageTag=기타">#기타</a></li>
+                    </ul>
+                </div>
+                <div class="newPostBtn_wrap">
+                    <button class="newPostBtn"><i class="fas fa-pencil-alt"></i><a href="{% url 'community:consulting' %}" style="color: white;"> 글 작성하기</a></button>
+                </div>
+            </div>
+            
+        </div>
+        <div class="bottomContent">
+            <table class="table">
+                {% comment %} db에 저장된 값을 가져오도록 고쳐야 함 {% endcomment %}
+                <thead>
+                    <tr>
+                        <th>말머리</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>답변</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for expert in experts %}
+                    <tr>
+                        <td id="tag">{{expert.age_tag}}</td>
+                        <td id="title"><a href="{% url 'community:expert_detail' expert.id %}">{{expert.title}}</a></td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">{{expert.pub_date}}</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">여성질환</td>
+                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">0</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">병원 안내</td>
+                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">1</td>
+                    </tr>
+                    <tr>
+                        <td id="tag">영양사</td>
+                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
+                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="date">07-28</td>
+                        <td id="commentNum">2</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pageNum_wrap">
+                <ul class="pageul">
+                    <li><a href="#" class="prev">< Prev</a></li>
+                    <li class="pageNumber active"><a href="#">1</a></li>
+                    <li class="pageNumber"><a href="#">2</a></li>
+                    <li class="pageNumber"><a href="#">3</a></li>
+                    <li class="pageNumber"><a href="#">4</a></li>
+                    <li class="pageNumber"><a href="#">5</a></li>
+                    <li class="pageNumber"><a href="#">6</a></li>
+                    <li><a href="#" class="next">Next ></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+</body>
+</html>
+
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %}

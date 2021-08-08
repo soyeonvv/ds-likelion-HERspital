@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Herspital</title>
+    <link rel="stylesheet" href="{% static 'css/consulting.css' %}">
+    <script>
+        function change(obj){
+            var n = confirm("글 수정을 취소하시겠습니까?");
+            if(n == true){
+                obj.href = "{% url 'community:communityList' %}";
+            }
+        }
+    </script>
+</head>
+<body>
+{% block navbar %}
+   {% include "partials/base.html" %}
+{% endblock%}
+    <p style="text-align: center; font-size:30px; margin-top: 60px;"><span style="color:#FFC478">커뮤니티</span>&nbsp;&nbsp;글 수정</p>
+    <form action="{%url 'community:update' edit.id%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="board_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" placeholder="제목 입력" name="title" value="{{edit.title}}"></dd>
+                    </dl>
+                </div>
+                <div class="info" style="border-top: 1px dashed #75CFB8;">
+                    <dl>
+                        <dt>공개 설정</dt>
+                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="publicSetting"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="option"><span style="font-size: 15px;">공개</span></dd>
+                    </dl>
+                    <dl>
+                        <dt style="padding-left: 60px;">비밀번호</dt>
+                        <dd><input type="password" id="b" style="width: 100px; height: 30px;" name="pwd" value="{{edit.password_Post}}"></dd>
+                    </dl>
+                    <dl style="padding-left: 95px;">
+                        <dt>연령</dt>
+                        <dd>
+                            <select name="opage" style="width:85px;height:35px;" value="{{edit.opage}}">
+                                <option value="10대">10대</option>
+                                <option value="20대">20대</option>
+                                <option value="30대">30대</option>
+                                <option value="40대">40대</option>
+                                <option value="50대">50대</option>
+                                <option value="60대">60대</option>
+                                <option value="60대 이상">60대 이상</option>
+                            </select>
+                        </dd>
+                    </dl style="width: 300px;">
+                        <dt>사진 첨부</dt>
+                        <input id="file" type="file" name="image" style="height: 30px; padding-left: 45px; padding-top: 30px;" value="{{edit.image}}">
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea placeholder="상담 내용을 작성하세요." name="body">{{edit.body}}</textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <button type="submit" style="border:0; width:120px; font-size: 18px; color: white; background-color: black; height: 43px;">등록</button>
+                <button type="submit" style="border:0; outline: none; margin: 10px"><a href="" style="color:black;" onclick="change(this)">취소</a></button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+{% block footer %}
+    {% include "partials/footer.html" %}
+{% endblock %} 
