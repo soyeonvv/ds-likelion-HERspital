@@ -14,8 +14,9 @@
 <body>
     <div class="container">
         <div class="login-container">
-            <form action="index.html">
-                <a href="#"><img class="logo" src="{% static 'img/logo.png' %}"></a>
+
+            <form action="{% url 'account:login'%}" method="POST">
+                <a href="{% url 'mainpage' %}"><img class="logo" src="{% static 'img/logo.png' %}"></a>
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>

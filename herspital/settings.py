@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account',
     'community',
     'core.apps.CoreConfig',
+
 ]
 
 MIDDLEWARE = [
