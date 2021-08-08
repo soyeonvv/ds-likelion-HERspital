@@ -1,7 +1,8 @@
 import requests
-from django.shortcuts import redirect, render
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from .forms import RegisterForm
 
 #Authen=로그인, UserCre=회원가입
 
@@ -11,18 +12,22 @@ def signup(request):
 def login_view(request):
   if request.method=='POST':
     form=AuthenticationForm(request=request, data=request.POST)
+
     if form.is_valid():
-      username=form.cleaned_data.get("username")
-      password=form.cleaned_data.get("password")
-      user=authenticate(request=request, username=username, password=password)
-      if user is not None:
+      username = form.cleaned_data.get("username")
+      password = form.cleaned_data.get("password")
+
+      user=authenticate(
+        request=request,
+        username=username,
+        password=password
+        )
+      if request.user is not None:
         login(request, user)
-
     return redirect("mainpage")
-
   else: 
     form=AuthenticationForm()
-    return render(request, "account/login.html",{'form':form})
+  return render(request, "account/login.html",{'form':form})
 
 def logout_view(request):
   logout(request)
@@ -30,14 +35,13 @@ def logout_view(request):
 
 def register_view(request):
   if request.method=="POST":
-    form = UserCreationForm(request.POST)
+    form = RegisterForm(request.POST)
     if form.is_valid():
-      user=form.save()
-      login(request, user)
+      user = form.save()
+      login(user)
     return redirect('mainpage')
-
   else:
-    form = UserCreationForm()
+    form = RegisterForm()
     return render(request, 'account/signup.html',{'form':form})
     
 def mypage(request):
