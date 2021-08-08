@@ -61,7 +61,7 @@
                 {% for community in communities %}
                     <tr>
                         <td id="tag">{{community.age_tag}}</td>
-                        <td id="title"><a href="{% url 'community:detail' community.id%}">{{community.summary}}</a></td>
+                        <td id="title"><a href="{% url 'community:detail' community.id %}">{{community.summary}}</a></td>
                         <td id="writer">익명<i class="fas fa-venus"></i></td>
                         <td id="date">{{community.pub_date}}</td>
                         <td id="commentNum">2</td>

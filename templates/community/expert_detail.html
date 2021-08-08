@@ -2,19 +2,139 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
-{% endblock %}
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    
+    <style>
+        .sec{
+            border: solid 3px #F1E5D9;
+            border-radius: 20px;
+            height: 100vh;
+            margin: 10px 200px 20px 200px;
+            padding: 20px 30px 20px 30px;
+            overflow: auto;
+        }
+/* 질문 내용 너비 주기 */
+        #questionContent{
+            line-height:30px;
+        }
+/* 답변 영역 CSS */
+        .responseBtn , .cancelBtn{
+            background-color: #FFC478;
+            color: #ffffff;
+            font-size: large;
+            font-weight: 570;
+            border-style: none;
+            border-radius: 20px;
+            width: 100px;
+            height: 25px;
+            margin:5px;
+            cursor:pointer;
+        }
+        .cancelBtn{
+            float:right;
+        }
+        .response_content{
+            width:100%;
+            
+        }
+        #doctor_profile{
+            width:40px;
+        }
+        #info_tab { display:flex; }
+        #info_tab p{ flex-grow:1;}
+        #info_tab div{ flex-grow:0; }
 
+/* 테이블 */
+        table{width:100%;}
+        .profileTD{
+            width:20px;
+        }
+        .likeTD{
+            text-align: right;
+        }
+        .responseTD{
+            line-height: 30px;
+        }
+        .response_submit{
+            display:none;
+        }
+        .response{background:#BBDFC8;}
+    </style>
+{% endblock %}
 {% block navbar %}
     {% include "partials/base.html" %}
 {% endblock %}
 
 {% block content %}
 
-    <div>세부 페이지</div>
-    <h1>{{ expert.title }}</h1>
-    <p>{{ expert.body }}</p>
-    <!-- 기본적인 양식 부분만 가져왔습니다 -->
+<section class="sec">
+    <h1>[{{expert.age_tag}}] {{ expert.title }}</h1>
+    <hr>
+    <div id="info_tab">
+        <p>익명 {{ expert.pub_date }} </p>
+        <div><span>수정</span> / <span>삭제</span></div>
+    </div>
+    <p id="questionContent">{{ expert.body }}</p>
 
+    <button class="responseBtn" type="submit" onclick=openResponse()>답변하기</button>
+    <div class="response_submit">
+        <input class="response_content" type="textarea"></input>
+        <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
+    </div>
+
+    {% comment %} 답변 부분 {% endcomment %}
+    <div class="response">
+        <table border="1px solid">
+            <tr>
+                <td class="profileTD">
+                    <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
+                </td>
+                <td>이복단 전문의 <br>하늘산부인과의원</td>
+                <td class="likeTD">
+                    <i class="fas fa-thumbs-up">20</i>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="responseTD">
+                    안녕하세요. 하이닥-네이버 지식in 상담의 이복단 입니다.<br>
+                    <br>
+                    여성질환 중심으로 산부인과 내원을 생각하고 계시는군요.<br>
+                    <br>
+                    질염과 방광염 같은 여성질환은 여성들이 가장 많이 걸리는 질환이기도 하여 산부인과 내원을 잘 하지 않고 약국에서 임의로 해결을 하려는 경향이 많은데요.<br>
+                    물론 가벼운 증상으로는 약국의 처방으로도 나을 수 있지만, 재발의 위험은 언제나 있습니다.<br>
+                    우선 산부인과에 내원하셔서 정확한 질환을 알고 진단받으셔서 치료를 받는 것이 신체 건강에 더 도움이 되니, 산부인과에 내원하셔서 전문의에게 상담 및 진단을 받아보시기 바랍니다.<br>
+                    <br>
+                    위와 같은 여성질환은 무엇보다도 면역력이 떨어지지 않게끔 영양 보충 및 체력관리를 잘 해주시는 것이 좋습니다.<br>
+                    빠른 시일 내에 병원을 찾으셔서 정확한 진단을 받으신 후 신속히 치료를 하시길 바랍니다.​<br>
+                    <br>
+                    자세한 사항은 산부인과에 내원하셔서 산부인과 전문의에게 진단을 받아보시고 상담해보시기 바랍니다.<br>
+                    감사합니다.<br>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<script>
+    var state = 'close';
+    function openResponse(){
+        if(state === 'close'){ //닫혀있던 폼을 열고, 등록하는 버튼으로 바꿈
+            $(".response_submit").css("display", "block");
+            $(".responseBtn").text('답변등록');
+            state = 'open';
+        }
+        else if(state ==='open'){//폼이 열려있으므로 답변을 등록해야 함
+
+        }
+    }
+    function closeResponse(){
+        if(state === 'open'){ //내용 
+            $(".response_submit").css("display", "none");
+            $(".responseBtn").text('답변하기');
+            state = 'close';
+        }
+    }
+</script>
 {% endblock %}
 
 {% block footer %}

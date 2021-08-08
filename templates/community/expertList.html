@@ -31,11 +31,10 @@
             <div class="secondTab">
                 <div class="preface_wrap">
                     <ul class="preface"> <!-- 머릿말 누르면 내용이 달라지도록 변경해야함 -->
-                        <li><a href="">#약사</a></li>
-                        <li><a href="">#영양사</a></li>
-                        <li><a href="">#의약품</a></li>
-                        <li><a href="">#여성질환</a></li>
-                        <li><a href="">#병원 안내</a></li>
+                        <li><a href="?tag=true&ageTag=여성 질환">#여성 질환</a></li>
+                        <li><a href="?tag=true&ageTag=건강">#건강</a></li>
+                        <li><a href="?tag=true&ageTag=의약품">#의약품</a></li>
+                        <li><a href="?tag=true&ageTag=기타">#기타</a></li>
                     </ul>
                 </div>
                 <div class="newPostBtn_wrap">
@@ -59,10 +58,10 @@
                 <tbody>
                 {% for expert in experts %}
                     <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
+                        <td id="tag">{{expert.age_tag}}</td>
+                        <td id="title"><a href="{% url 'community:expert_detail' expert.id %}">{{expert.title}}</a></td>
                         <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
+                        <td id="date">{{expert.pub_date}}</td>
                         <td id="commentNum">0</td>
                     </tr>
                 {% endfor %}
