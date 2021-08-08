@@ -67,6 +67,14 @@ a {
 
 .navbar__login {
     margin-left: auto;
+    display:flex;
+    align-items: baseline;
+}
+
+#greeting{
+    margin-left:auto;
+    text-align: right;
+    margin-right:10px;
 }
 
 #login {
