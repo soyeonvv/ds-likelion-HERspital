@@ -18,14 +18,14 @@
    {% include "partials/base.html" %}
 {% endblock%}
     <p style="text-align: center; font-size:30px; margin-top: 60px;">"<span style="color:#75CFB8">전문인</span>"님께 질문 있어요!</p>
-    <form action="{%url 'community:expertcreate'%}"method="post" enctype="multipart/form-data">
+    <form action="{%url 'community:expert_update' expert_edit.id%}"  method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="board_wrap">
             <div class="board_write">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력" name="title"></dd>
+                        <dd><input type="text" placeholder="제목 입력" name="title" value="{{expert_edit.title}}"></dd>
                     </dl>
                 </div>
                 <div class="info">
@@ -35,7 +35,7 @@
                     </dl>
                     <dl>
                         <dt style="padding-left: 60px;">비밀번호</dt>
-                        <dd><input type="password" id="b" style="width: 100px; height: 30px;" name="pwd"></dd>
+                        <dd><input type="password" id="b" style="width: 100px; height: 30px;" name="pwd" value="{{expert_edit.password_Post}}"></dd>
                     </dl>
                     <dl>
                         <dt style="padding-left: 58px;">희망 사항</dt>
@@ -59,7 +59,7 @@
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea placeholder="상담 내용을 작성하세요." name="body"></textarea>
+                    <textarea placeholder="상담 내용을 작성하세요." name="body">{{expert_edit.body}}</textarea>
                 </div>
             </div>
             <div class="bt_wrap">
