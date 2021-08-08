@@ -3,40 +3,65 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    
     <style>
         .sec{
             border: solid 3px #F1E5D9;
             border-radius: 20px;
-            padding:30px; 
-            margin:10px;
+            height: 100vh;
+            margin: 10px 200px 20px 200px;
+            padding: 20px 30px 20px 30px;
+            overflow: auto;
         }
-
+/* 질문 내용 너비 주기 */
+        #questionContent{
+            line-height:30px;
+        }
+/* 답변 영역 CSS */
+        .responseBtn , .cancelBtn{
+            background-color: #FFC478;
+            color: #ffffff;
+            font-size: large;
+            font-weight: 570;
+            border-style: none;
+            border-radius: 20px;
+            width: 100px;
+            height: 25px;
+            margin:5px;
+            cursor:pointer;
+        }
+        .cancelBtn{
+            float:right;
+        }
+        .response_content{
+            width:100%;
+            
+        }
         #doctor_profile{
             width:40px;
         }
         #info_tab { display:flex; }
         #info_tab p{ flex-grow:1;}
         #info_tab div{ flex-grow:0; }
-/* 질문 내용 너비 주기 */
-        #questionContent{
-            line-height:30px;
-        }
+
 /* 테이블 */
+        table{width:100%;}
         .profileTD{
             width:20px;
         }
         .likeTD{
             text-align: right;
         }
+        .responseTD{
+            line-height: 30px;
+        }
         .response_submit{
             display:none;
         }
-        .response{background:lightblue;}
+        .response{background:#BBDFC8;}
     </style>
 {% endblock %}
-<script>
-    
-</script>
 {% block navbar %}
     {% include "partials/base.html" %}
 {% endblock %}
@@ -44,26 +69,31 @@
 {% block content %}
 
 <section class="sec">
-    <h1>{{ expert.title }}</h1>
+    <h1>[{{expert.age_tag}}] {{ expert.title }}</h1>
     <hr>
     <div id="info_tab">
         <p>익명 {{ expert.pub_date }} </p>
         <div><span>수정</span> / <span>삭제</span></div>
     </div>
     <p id="questionContent">{{ expert.body }}</p>
-    <button class="responseBtn" type="submit">답변하기</button>
+
+    <button class="responseBtn" type="submit" onclick=openResponse()>답변하기</button>
     <div class="response_submit">
-        <input type="textarea"></input>
+        <input class="response_content" type="textarea"></input>
+        <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
     </div>
+
     {% comment %} 답변 부분 {% endcomment %}
     <div class="response">
-        <table>
+        <table border="1px solid">
             <tr>
                 <td class="profileTD">
                     <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
                 </td>
                 <td>이복단 전문의 <br>하늘산부인과의원</td>
-                <td class="likeTD"><i class="fas fa-thumbs-up">20</i></td>
+                <td class="likeTD">
+                    <i class="fas fa-thumbs-up">20</i>
+                </td>
             </tr>
             <tr>
                 <td colspan="3" class="responseTD">
@@ -85,6 +115,26 @@
         </table>
     </div>
 </section>
+<script>
+    var state = 'close';
+    function openResponse(){
+        if(state === 'close'){ //닫혀있던 폼을 열고, 등록하는 버튼으로 바꿈
+            $(".response_submit").css("display", "block");
+            $(".responseBtn").text('답변등록');
+            state = 'open';
+        }
+        else if(state ==='open'){//폼이 열려있으므로 답변을 등록해야 함
+
+        }
+    }
+    function closeResponse(){
+        if(state === 'open'){ //내용 
+            $(".response_submit").css("display", "none");
+            $(".responseBtn").text('답변하기');
+            state = 'close';
+        }
+    }
+</script>
 {% endblock %}
 
 {% block footer %}
