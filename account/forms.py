@@ -5,4 +5,4 @@ class RegisterForm(UserCreationForm): #class상속
 
   class Meta:
     model= CustomUser
-    fields= ['username','password1','password2','gender']
+    fields= ['username','password','password2','gender']
