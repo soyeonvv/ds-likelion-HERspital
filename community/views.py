@@ -30,8 +30,6 @@ def expertList(request):
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
     return render(request, "community/expert_detail.html", {'expert':expert})
-def consulting(request):
-    return render(request, "community/consulting.html")
 
 def communityWrite(request):
     return render(request, 'community/communityWrite.html')
@@ -64,3 +62,34 @@ def update(request, id):
     update_community.save()
     return redirect('community:detail', update_community.id)
 
+def consulting(request):
+    return render(request, "community/consulting.html")
+
+def expertcreate(request):
+    new_expert = Expert()
+    new_expert.title = request.POST['title']
+    new_expert.publicSetting = True
+    new_expert.password_Post = request.POST['pwd']
+    new_expert.age_tag = request.POST['opage']
+    new_expert.image = request.FILES['image']
+    new_expert.body = request.POST.get('body', '')
+    new_expert.pub_date = timezone.now()
+    new_expert.save()
+    return redirect('community:expert_detail', new_expert.id)
+
+def expert_edit(request,id):
+    edit_expert = Expert.objects.get(id=id)
+    return render(request, 'community/expert_edit.html', {'expert_edit' : edit_expert})
+
+    
+def expert_update(request, id):
+    update_Expert = Expert.objects.get(id=id)
+    update_Expert.title = request.POST['title']
+    update_Expert.publicSetting = True
+    update_Expert.password_Post = request.POST['pwd']
+    update_Expert.age_tag = request.POST['opage']
+    update_Expert.image = request.FILES['image']
+    update_Expert.body = request.POST.get('body', '')
+    update_Expert.pub_date = timezone.now()
+    update_Expert.save()
+    return redirect('community:expert_detail', update_Expert.id)

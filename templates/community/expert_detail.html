@@ -73,7 +73,7 @@
     <hr>
     <div id="info_tab">
         <p>익명 {{ expert.pub_date }} </p>
-        <div><span>수정</span> / <span>삭제</span></div>
+        <div><span><a href="{%url 'community:expert_edit' expert.id%}">수정</span> / <span>삭제</span></div>
     </div>
     <p id="questionContent">{{ expert.body }}</p>
 
