@@ -71,6 +71,12 @@ def expertList(request):
         except EmptyPage:
             experts = paginator.page(paginator.num_pages)
         return render(request,'community/expertList.html', {'experts':experts})
+    
+    # 검색기능
+    search_key = request.GET.get('search_key')
+    if search_key:
+        experts = Expert.objects.filter(title__icontains=search_key)
+
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
