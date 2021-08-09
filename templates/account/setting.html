@@ -13,6 +13,12 @@
             obj.href = "{% url 'account:mypage' %}";
         }
     }
+        function change(obj){
+            var n = confirm("정말로 탈퇴하시겠습니까?")
+            if(n == true){
+                obj.href = "{% url 'account:userDelete'%}";
+            }
+        }
     </script>
 </head>
 <body>
@@ -133,7 +139,7 @@
         <div id=button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">수정</button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="cancel(this)">취소</a></button>
-        <a href=""s><h5>회원 탈퇴하기</h5></a>
+        <a href="" onclick="change(this)"><h5>회원 탈퇴하기</h5></a>
         </div>
     </div>
 {% endblock %}
@@ -142,3 +148,4 @@
 {% block footer %}
 {% include "partials/footer.html" %}
 {% endblock %}
+
