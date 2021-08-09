@@ -79,7 +79,7 @@ def create(request):
     new_community.publicSetting = True
     new_community.password_Post = request.POST['pwd']
     new_community.age_tag = request.POST['opage']
-    new_community.image = request.FILES['image']
+    new_community.image = request.FILES.get('image')
     new_community.body = request.POST.get('body', '')
     new_community.pub_date = timezone.now()
     new_community.save()
@@ -95,7 +95,7 @@ def update(request, id):
     update_community.publicSetting = True
     update_community.password_Post = request.POST['pwd']
     update_community.age_tag = request.POST['opage']
-    update_community.image = request.FILES['image']
+    update_community.image = request.FILES.get('image')
     update_community.body = request.POST.get('body', '')
     update_community.pub_date = timezone.now()
     update_community.save()
@@ -110,7 +110,7 @@ def expertcreate(request):
     new_expert.publicSetting = True
     new_expert.password_Post = request.POST['pwd']
     new_expert.age_tag = request.POST['opage']
-    new_expert.image = request.FILES['image']
+    new_expert.image = request.FILES.get('image')
     new_expert.body = request.POST.get('body', '')
     new_expert.pub_date = timezone.now()
     new_expert.save()
@@ -127,7 +127,7 @@ def expert_update(request, id):
     update_Expert.publicSetting = True
     update_Expert.password_Post = request.POST['pwd']
     update_Expert.age_tag = request.POST['opage']
-    update_Expert.image = request.FILES['image']
+    update_Expert.image = request.FILES.get('image')
     update_Expert.body = request.POST.get('body', '')
     update_Expert.pub_date = timezone.now()
     update_Expert.save()
