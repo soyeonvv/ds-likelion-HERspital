@@ -3,16 +3,37 @@ from django.shortcuts import redirect, render,get_object_or_404
 from django.utils import timezone
 from .models import Community
 from .models import Expert
+from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
+
 
 # def detail(request):
 #     return render(request, "community/detail.html")
 def communityList(request):
     communities = Community.objects.all().order_by('-pub_date')
     tag = request.GET.get('tag')
+    # paginator코드
+    paginator = Paginator(communities,10)
+    page = request.GET.get('page')
+    try:
+        communities=paginator.page(page)
+    except PageNotAnInteger:
+        communities = paginator.page(1)
+    except EmptyPage:
+        communities = paginator.page(paginator.num_pages)
     if tag == 'true':
         agetag = request.GET.get('ageTag')
         communities = Community.objects.filter(age_tag=agetag).order_by('-pub_date')
+        # paginator코드
+        paginator = Paginator(communities,10)
+        page = request.GET.get('page')
+        try:
+            communities=paginator.page(page)
+        except PageNotAnInteger:
+            communities = paginator.page(1)
+        except EmptyPage:
+            communities = paginator.page(paginator.num_pages)
         return render(request,'community/communityList.html', {'communities':communities})
+
     return render(request, "community/communityList.html", {'communities':communities})
 
 def detail(request,id):
@@ -22,9 +43,27 @@ def detail(request,id):
 def expertList(request):
     experts = Expert.objects.all().order_by('-pub_date')
     tag = request.GET.get('tag')
+    # paginator코드
+    paginator = Paginator(experts,10)
+    page = request.GET.get('page')
+    try:
+        experts=paginator.page(page)
+    except PageNotAnInteger:
+        experts = paginator.page(1)
+    except EmptyPage:
+        experts = paginator.page(paginator.num_pages)
     if tag == 'true':
         agetag = request.GET.get('ageTag')
         experts = Expert.objects.filter(age_tag = agetag).order_by('-pub_date')
+        # paginator코드
+        paginator = Paginator(experts,10)
+        page = request.GET.get('page')
+        try:
+            experts=paginator.page(page)
+        except PageNotAnInteger:
+            experts = paginator.page(1)
+        except EmptyPage:
+            experts = paginator.page(paginator.num_pages)
         return render(request,'community/expertList.html', {'experts':experts})
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):

@@ -65,116 +65,25 @@
                         <td id="commentNum">0</td>
                     </tr>
                 {% endfor %}
-                    <tr>
-                        <td id="tag">병원 안내</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">1</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">영양사</td>
-                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">2</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">0</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">병원 안내</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">1</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">영양사</td>
-                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">2</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">0</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">병원 안내</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">1</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">영양사</td>
-                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">2</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">0</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">병원 안내</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">1</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">영양사</td>
-                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">2</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">여성질환</td>
-                        <td id="title">산부인과 여성질환 질문</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">0</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">병원 안내</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">1</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">영양사</td>
-                        <td id="title">여성질환에 좋은 음식 알려주세요</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">2</td>
-                    </tr>
                 </tbody>
             </table>
             <div class="pageNum_wrap">
                 <ul class="pageul">
-                    <li><a href="#" class="prev">< Prev</a></li>
-                    <li class="pageNumber active"><a href="#">1</a></li>
-                    <li class="pageNumber"><a href="#">2</a></li>
-                    <li class="pageNumber"><a href="#">3</a></li>
-                    <li class="pageNumber"><a href="#">4</a></li>
-                    <li class="pageNumber"><a href="#">5</a></li>
-                    <li class="pageNumber"><a href="#">6</a></li>
-                    <li><a href="#" class="next">Next ></a></li>
+                    {% if experts.has_previous %}
+                    <li><a href="?page={{experts.previous_page_number}}" class="prev">&lt; Prev</a></li>
+                    {% else %}
+                    <li><a href="" class="prev">&lt; Prev</a></li>
+                    {% endif %}
+                    
+                    <li class="pageNumber active"><a href="">{{experts.number}}</a></li>
+                    <li class="pageNumber"><a href="">of</a></li>
+                    <li class="pageNumber active"><a href="">{{experts.paginator.num_pages}}</a></li>
+
+                    {% if experts.has_next %}
+                    <li><a href="?page={{experts.next_page_number}}" class="next">Next &gt;</a></li>
+                    {% else %}
+                    <li><a href="" class="next">Next &gt;</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
