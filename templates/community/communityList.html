@@ -8,6 +8,7 @@
     <!--웹페이지 title부분에 표시되는 작은 아이콘-->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico'%}">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="{% static 'css/communityList.css' %}">
     <title>Herspital</title>
 </head>
@@ -24,7 +25,9 @@
                     <div class="btn btn_common">
                         <i class="fas fa-search"></i>
                     </div>
-                    <input type="text" class="input" placeholder="Search...">
+                    <form action="" method="GET">
+                        <input type="text" class="input" name="search_key" value="{{ search_key }}" placeholder="Search...">
+                    </form>
                 </div>
             </div>
             </div>
@@ -61,122 +64,39 @@
                 {% for community in communities %}
                     <tr>
                         <td id="tag">{{community.age_tag}}</td>
-                        <td id="title"><a href="{% url 'community:detail' community.id %}">{{community.summary}}</a></td>
+                        <td id="title">
+                            {% if user.is_authenticated %} 
+                            <a href="{% url 'community:detail' community.id %}">
+                            {% else %}
+                            <a href="{% url 'account:login' %}">
+                            {% endif %}
+                            {{community.summary}}</a>
+                        </td>
                         <td id="writer">익명<i class="fas fa-venus"></i></td>
                         <td id="date">{{community.pub_date | date:'m-d'}}</td>
                         <td id="commentNum">2</td>
                     </tr>
                 {% endfor %}
-                    <tr>
-                        <td id="tag">40대</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">28</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">30대</td>
-                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">45</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">20대</td>
-                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">23</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">40대</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">28</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">30대</td>
-                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">45</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">20대</td>
-                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">23</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">40대</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">28</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">30대</td>
-                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">45</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">20대</td>
-                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">23</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">40대</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">28</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">30대</td>
-                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">45</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">20대</td>
-                        <td id="title">잔여백신 백케팅 성공한 사람?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">23</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">40대</td>
-                        <td id="title">요즘 얼굴이 많이 화끈거리네요...</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">28</td>
-                    </tr>
-                    <tr>
-                        <td id="tag">30대</td>
-                        <td id="title">체력이 많이 떨어지면 역시 운동인가?</td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
-                        <td id="date">07-28</td>
-                        <td id="commentNum">45</td>
-                    </tr>
                 </tbody>
             </table>
+            
             <div class="pageNum_wrap">
                 <ul class="pageul">
-                    <li><a href="#" class="prev">< Prev</a></li>
-                    <li class="pageNumber active"><a href="#">1</a></li>
-                    <li class="pageNumber"><a href="#">2</a></li>
-                    <li class="pageNumber"><a href="#">3</a></li>
-                    <li class="pageNumber"><a href="#">4</a></li>
-                    <li class="pageNumber"><a href="#">5</a></li>
-                    <li class="pageNumber"><a href="#">6</a></li>
-                    <li><a href="#" class="next">Next ></a></li>
+                    {% if communities.has_previous %}
+                    <li><a href="?page={{communities.previous_page_number}}" class="prev">&lt; Prev</a></li>
+                    {% else %}
+                    <li><a href="" class="prev">&lt; Prev</a></li>
+                    {% endif %}
+                    
+                    <li class="pageNumber active"><a href="">{{communities.number}}</a></li>
+                    <li class="pageNumber"><a href="">of</a></li>
+                    <li class="pageNumber active"><a href="">{{communities.paginator.num_pages}}</a></li>
+
+                    {% if communities.has_next %}
+                    <li><a href="?page={{communities.next_page_number}}" class="next">Next &gt;</a></li>
+                    {% else %}
+                    <li><a href="" class="next">Next &gt;</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

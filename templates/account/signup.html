@@ -19,18 +19,22 @@
 		<section class="section">
 			<form action="{% url 'account:signup' %}" method="post">
         {% csrf_token %}
-                <select id="user" onclick="certify()">
+                <select id="user" onclick="certify()" name="position">
                     <option disabled selected>회원구분</option>
-                    <option value="일반인">일반인</option>
-                    <option value="전문인">전문인</option>
+                    <option value="normal" >일반인</option>
+                    <option value="specialist" >전문인</option>
                 </select>
                 <div id="upload" style="display:none">
                     <div id="jointxt">사진을 등록하세요</div>
-                    <input type="file" accept="img/*">
+                    <input type="file" accept="img/*" name="certifyImg">
+                </div>
+                <div id="workplace" style="display:none">
+                  <div id="jointxt">기관명</div>
+                  <input type="text" placeholder="소속된 의료기관을 입력하세요" name="workplace">
                 </div>
           <div>
           <div id="jointxt">아이디</div>
-            <input type="text" placeholder="아이디를 입력하세요" name="userid">
+            <input type="text" placeholder="아이디를 입력하세요" name="username">
           </div>
           <div id = "password1">
             <div id="jointxt">비밀번호</div>
@@ -43,11 +47,11 @@
           </div>
           <div id="username">
             <div id="jointxt">이름</div>
-            <input type="text" placeholder="이름을 입력하세요" name="username">
+            <input type="text" placeholder="이름을 입력하세요" name="nickname">
           </div>
           <div>
               <div id="jointxt">생년월일</div>
-              <input type="date" >
+              <input type="date" name="birth">
           </div>
           <div id="gender">
             <div id="jointxt">성별</div>
@@ -56,7 +60,7 @@
 				  </div>
           <div>
               <div id="jointxt">이메일</div>
-              <input type="email" placeholder="이메일을 입력하세요">
+              <input type="email" placeholder="이메일을 입력하세요" name="email">
           </div>
           <div>
             <input type="submit" class="form_submit_button" value="JOIN IN"></button>
@@ -69,11 +73,13 @@
         function certify() {
             var user = document.getElementById('user').value;
 
-            if(user == "전문인") {
+            if(user == "specialist") {
                 document.getElementById('upload').style="display:visible";
+                document.getElementById('workplace').style="display:visible";
             }
-            else if(user == "일반인") {
+            else if(user == "normal") {
                 document.getElementById('upload').style="display:none";
+                document.getElementById('workplace').style = "display:none";
             }
         }
 

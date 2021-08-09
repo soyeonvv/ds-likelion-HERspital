@@ -7,6 +7,7 @@ from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import CustomUser
+from .models import Setting
 
 #Authen=로그인, UserCre=회원가입
 
@@ -56,11 +57,20 @@ def signup(request):
     
     if request.POST['password'] == request.POST['password2']:
       try:
-        user = CustomUser.objects.get(username = request.POST['userid'])
+        user = CustomUser.objects.get(username = request.POST['username'])
         return render(request, 'account/signup.html', {'error':'Username has already been taken.'})
       except CustomUser.DoesNotExist:
         user = CustomUser.objects.create_user(
-          request.POST['userid'], request.POST['password'], request.POST['username'])
+          request.POST['username'], #create_user가 username만 파라미터 받아서 다른 것은 직접 연결해줌
+          password = request.POST['password'], 
+          nickname = request.POST['nickname'],
+          birth = request.POST['birth'],
+          gender = request.POST['gender'],
+          email = request.POST['email'],
+          position = request.POST['position'], 
+          workplace = request.POST['workplace'],
+          certifyImg = request.POST['certifyImg']
+          )
         auth.login(request,user)
         return redirect("mainpage")
     else:
@@ -83,9 +93,11 @@ def mypage(request):
     return render(request, "account/mypage.html")
 def setting(request):
     return render(request, "account/setting.html")
-def stchange(request):
-    return render(request, "account/stchange.html")
-def stcancel(request):
-    return render(request, "account/stcancel.html")
-def stdelete(request):
-    return render(request, "account/stdelete.html")
+
+def setting_update(request, id):
+    update_Setting = Setting.objects.get(id=id)
+    update_Setting.postcode = request.POST['postcode']
+    update_Setting.address = request.POST['address']
+    update_Setting.extraAddress = request.POST['extraAddress']
+    update_Setting.save()
+    return redirect('account:mypage', update_Setting.id)
