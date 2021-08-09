@@ -14,7 +14,7 @@
 {% block content %}
     <div id="main">
         <div style="border: 1px">
-            <span style="margin-top:20px;font-size:40px;" ><strong1>오늘도 건강하신가요? <strong>{{user.username}}</strong> 님</strong1></span>
+            <span style="margin-top:20px;font-size:40px;" ><strong1>오늘도 건강하신가요? <strong>{{user.nickname}}</strong> 님</strong1></span>
             <a href="{% url 'account:setting' %}"><img src="{% static 'img/설정.png' %}" height=18 style="vertical-align: buttom;"></a>
         </div>
     </div>
