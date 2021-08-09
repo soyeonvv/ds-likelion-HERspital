@@ -13,8 +13,16 @@
         <h3>[ {{ community.age_tag }} ]</h3>
         <h1>{{ community.title }}</h1>
         <div class="modify_delete">
-            <a href="{%url 'community:communityedit' community.id%}">수정</a> |
-            <a href="{%url 'community:community_delete' community.id%}">삭제</a>
+            <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer">수정</span> |
+            <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer">삭제</span>
+        </div>
+        <div id="modify_password" style="display:none">
+            <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
+            <form action="" method="GET">
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}">
+                <div class="storedpw" style="display:none">{{ community.password_Post }}</div>
+                <div class="modify_password_btn" onclick="check_pw()">확인</div>
+            </form>
         </div>
         <hr>
         {% if community.image %}
@@ -82,6 +90,29 @@
                 countEL.innerText = parseInt(count) + 1;
             }else{
                 warnEmpty();
+            }
+        }
+
+        function showpwbox(m_or_d) {
+            if(document.getElementById("modify_password").style=="display:none") {
+                document.getElementById("modify_password").style="display:visible";
+            }else document.getElementById("modify_password").style="display:visible";
+            const btnvalue = m_or_d;
+        }
+
+        function check_pw() {
+            const inputpwd = document.querySelector(".writerpw").value;
+            const writerpwd = document.querySelector(".storedpw").innerText;
+            const warning = document.getElementById("modify_password");
+
+            if(inputpwd == writerpwd) {
+                location.href="{%url 'community:communityedit' community.id%}";
+            }else {
+                var warningtxt = document.createElement("div");
+                warningtxt.innerHTML = "비밀번호가 일치하지 않습니다.";
+                warningtxt.setAttribute("id","warningtxt");
+                warningtxt.style.color="red";
+                warning.appendChild(warningtxt);
             }
         }
     </script>

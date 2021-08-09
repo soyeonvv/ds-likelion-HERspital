@@ -21,6 +21,28 @@ h1 {
     display: inline-block;
     font-weight: bold;
     margin-right: 0;
+    
+}
+
+#modify_password {
+    border: solid 2px #74D0B9;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+}
+
+.modify_password_btn {
+    background-color: #74D0B9;
+    color: #ffffff;
+    border-style: none;
+    width: 30px;
+    height: 18px;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
+    padding-top: 5px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .community__reply {
