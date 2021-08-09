@@ -7,7 +7,7 @@
     <title>setting</title>
     <link rel="stylesheet" href="{% static 'css/setting.css' %}"/>
     <script>
-        function change(obj){
+        function cancel(obj){
         var n = confirm("개인 정보 수정을 취소하시겠습니까?");
         if(n == true){
             obj.href = "{% url 'account:mypage' %}";
@@ -43,14 +43,15 @@
                 <th>이름</th>
                 <td>{{user.nickname}}</td>
             </tr>
-            <tr>
-                <th>성별</th>
-                <td>{{user.gender}}</td>
-            </tr>
 
             <tr>
                 <th>생년월일</th>
-                <td>{{user.birth}</td>
+                <td>{{user.birth}}</td>
+            </tr>
+
+            <tr>
+                <th>성별</th>
+                <td>{{user.gender}}</td>
             </tr>
 
             <tr>
@@ -130,9 +131,9 @@
         </table>
         </form>
         <div id=button>
-            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">등록</button>
-            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="change(this)">취소</a></button>
-        <a href="{% url 'account:stdelete' %}"target="_blank"><h5>회원 탈퇴하기</h5></a>
+            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">수정</button>
+            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="cancel(this)">취소</a></button>
+        <a href=""s><h5>회원 탈퇴하기</h5></a>
         </div>
     </div>
 {% endblock %}
