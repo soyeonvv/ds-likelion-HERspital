@@ -132,3 +132,13 @@ def expert_update(request, id):
     update_Expert.pub_date = timezone.now()
     update_Expert.save()
     return redirect('community:expert_detail', update_Expert.id)
+
+def community_delete(request, id):
+    delete_community = Community.objects.get(id=id)
+    delete_community.delete()
+    return redirect('community:communityList')
+
+def expert_delete(request, id):
+    delete_expert = Expert.objects.get(id=id)
+    delete_expert.delete()
+    return redirect('community:expertList')
