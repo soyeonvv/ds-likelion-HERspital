@@ -6,6 +6,14 @@
     <meta charset="UTF-8">
     <title>setting</title>
     <link rel="stylesheet" href="{% static 'css/setting.css' %}"/>
+    <script>
+        function change(obj){
+            var n = confirm("정말로 탈퇴하시겠습니까?");
+            if(n == true){
+                obj.href = "{% url 'account:userDelete'%}";
+            }
+        }
+    </script>
 </head>
 <body>
 {% block navbar %}
@@ -121,7 +129,7 @@
             <a href="{% url 'account:stcancel' %}"target="_blank">
                 <button type="reset">취소</button>
             </a>
-            <a href="{% url 'account:stdelete' %}"target="_blank"><h5>회원 탈퇴하기</h5></a>
+            <h5><a href="" onclick ="change(this)">회원 탈퇴하기</a></h5>
         </div>
     </div>
 {% endblock %}

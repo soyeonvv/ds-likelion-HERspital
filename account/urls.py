@@ -18,4 +18,5 @@ urlpatterns = [
     path("stchange/", account_views.stchange, name="stchange"),
     path("stcancel/", account_views.stcancel, name="stcancel"),
     path("stdelete/", account_views.stdelete, name="stdelete"),
+    path("userDelete/", account_views.userDelete, name="userDelete"),
 ]
