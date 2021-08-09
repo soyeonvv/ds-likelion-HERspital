@@ -19,21 +19,24 @@
             <li><a href="{% url 'community:communityList' %}" class="navitem">커뮤니티</a></li>
             <li><a href="{% url 'community:expertList' %}" class="navitem">전문인 상담</a></li>
 
-            {% comment %} <!-- {% if user.is_authenticated %} --> {% endcomment %}
+            {% if user.is_authenticated %}
             <li><a href="{% url 'account:mypage' %}" class="navitem">마이페이지</a></li>
+            {% endif %}
 
-            {% comment %} <!-- <div class="navbar__login">
-              <a href="{% url 'account:login' %}"><button id="login">Logout</button></a>
-              <p>Welcome, {{username}}님 환영합니다!</p>
-            </div>
-            {% endif %} --> {% endcomment %}
         </ul>
-
+        {% if user.is_authenticated %}
+            <div class="navbar__login">
+                <p id="greeting">Welcome, {{user.username}}님 환영합니다!</p>
+                <a href="{% url 'account:logout' %}"><button id="login" class="logoutBtn">Logout</button></a>
+            </div>
+        {% endif %}
+        {% if not user.is_authenticated %}
         <div class="navbar__login">
-            <a href="{% url 'account:login' %}"><button id="login">Login</button></a>
+            <a href="{% url 'account:login' %}"><button id="login" class="loginBtn">Login</button></a>
         </div>
-
+        {% endif %}
     </nav>
+
     <script>
         const currentLocation = location.href;
         const navItem = document.querySelectorAll('.navitem');
