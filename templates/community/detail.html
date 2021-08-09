@@ -114,7 +114,11 @@
                     location.href="{%url 'community:communityedit' community.id%}";
                 }
                 else if(m_or_d == 'detail_delete') {
-                    location.href="{%url 'community:community_delete' community.id%}";
+                    var n = confirm("정말로 삭제하시겠습니까?");
+                    if(n == true) {
+                        location.href="{%url 'community:community_delete' community.id%}";
+                    }
+                    
                 }
                 
             }else {
