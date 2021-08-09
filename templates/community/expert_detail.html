@@ -103,8 +103,11 @@
     <hr>
     <div id="info_tab">
         <p>익명 {{ expert.pub_date | date:'m-d,H:i'}} </p>
-        <div><span><a href="{%url 'community:expert_edit' expert.id%}">수정</a></span> / <span>삭제</span></div>
+        <div><span><a href="{%url 'community:expert_edit' expert.id%}">수정</a></span> / <span><a href="{%url 'community:expert_delete' expert.id%}">삭제</a></span></div>
     </div>
+    {% if expert.image %}
+            <img src="{{expert.image.url}}">
+    {% endif %}
     <p id="questionContent">{{ expert.body }}</p>
 <div class="community__reply">
     <img id="replyicon" src="{% static 'img/reply.png' %}">

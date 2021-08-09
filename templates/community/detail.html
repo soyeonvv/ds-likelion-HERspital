@@ -14,9 +14,12 @@
         <h1>{{ community.title }}</h1>
         <div class="modify_delete">
             <a href="{%url 'community:communityedit' community.id%}">수정</a> |
-            <a href="">삭제</a>
+            <a href="{%url 'community:community_delete' community.id%}">삭제</a>
         </div>
         <hr>
+        {% if community.image %}
+            <img src="{{community.image.url}}">
+        {% endif %}
         <p>{{ community.body }}</p>
         <br><br><br>
         <div class="community__reply">
