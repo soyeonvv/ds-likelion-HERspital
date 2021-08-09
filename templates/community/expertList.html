@@ -40,9 +40,11 @@
                         <li><a href="?tag=true&ageTag=기타">#기타</a></li>
                     </ul>
                 </div>
-                <div class="newPostBtn_wrap">
-                    <button class="newPostBtn"><i class="fas fa-pencil-alt"></i><a href="{% url 'community:consulting' %}" style="color: white;"> 글 작성하기</a></button>
-                </div>
+                {% if user.is_authenticated%}
+                    <div class="newPostBtn_wrap">
+                        <button class="newPostBtn"><i class="fas fa-pencil-alt"></i><a href="{% url 'community:consulting' %}" style="color: white;"> 글 작성하기</a></button>
+                    </div>
+                {% endif %}
             </div>
             
         </div>
