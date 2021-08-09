@@ -98,13 +98,14 @@ def mypage(request):
     return render(request, "account/mypage.html")
 def setting(request):
     return render(request, "account/setting.html")
-
-def stchange(request):
-    return render(request, "account/stchange.html")
-def stcancel(request):
-    return render(request, "account/stcancel.html")
-def stdelete(request):
-    return render(request, "account/stdelete.html")
+    
+def setting_update(request, id):
+    update_Setting = Setting.objects.get(id=id)
+    update_Setting.postcode = request.POST['postcode']
+    update_Setting.address = request.POST['address']
+    update_Setting.extraAddress = request.POST['extraAddress']
+    update_Setting.save()
+    return redirect('account:mypage', update_Setting.id)
 
 @login_message_required
 def userDelete(request):
