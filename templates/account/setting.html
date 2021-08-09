@@ -26,24 +26,16 @@
         <table border="1">
             <tr>
                 <th>아이디</th>
-                <td>
-                    <label for="changeid"></label>
-                    <input type="text" id="changeid" name="changeid" placeholder="user.name">
-                    <button type="cofirm">중복 확인</button>
-                </td>
+                <td>{{user.username}}</td>
             </tr>
 
             <tr>
                 <th>이름</th>
-                <td>user.name</td>
+                <td>{{user.name}}</td>
             </tr>
             <tr>
                 <th>성별</th>
-                <td><label for="sex"></label>
-                    <input type="radio" name="gender" value="female">여성</option>
-                    <input type="radio" name="gender" value="male">남성</option>
-                </select>
-                </td>
+                <td>{{user.gender}}</td>
             </tr>
 
             <tr>
@@ -117,19 +109,8 @@
             </tr>
 
             <tr>
-                <th>핸드폰</th>
-                <td>
-                    <label for="changenum"></label>
-                    <input type="tel" id="changenum" name="changenum" placeholder="user.number">
-                </td>
-            </tr>
-
-            <tr>
                 <th>이메일</th>
-                <td>
-                    <label for="changeemail"></label>
-                    <input type="email" id="changeemail" name="changeemail" placeholder="user.email">
-                </td>
+                <td>{{user.email}}</td>
             </tr>
         </table>
         
