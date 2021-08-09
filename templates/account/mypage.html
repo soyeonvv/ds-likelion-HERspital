@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}"/>
 </head>
 <body>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+    {% endfor %}
+{% endif %}
 {% block navbar %}
 {% include "partials/base.html" %}
 {% endblock%}

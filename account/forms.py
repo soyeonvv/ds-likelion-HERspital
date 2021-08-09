@@ -1,7 +1,12 @@
-from django.contrib.auth.forms import UserCreationForm #상속받기
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User #상속받기
 from .models import CustomUser
 from django.contrib.auth.hashers import check_password
 from django import forms
+
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
+
 class RegisterForm(UserCreationForm): #class상속
 
   class Meta:
@@ -28,3 +33,8 @@ class CheckPasswordForm(forms.Form):
     fields= ['username','password','password2','nickname','email','birth','gender','position','certifyImg','workplace'
       ,'postcode','address','extraAddress'
     ]
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['postcode','address','extraAddress']
