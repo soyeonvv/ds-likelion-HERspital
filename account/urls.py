@@ -15,4 +15,5 @@ urlpatterns = [
 
     path("mypage/", account_views.mypage, name="mypage"),
     path("setting/", account_views.setting, name="setting"),
+    path("userDelete/", account_views.userDelete, name="userDelete"),
 ]
