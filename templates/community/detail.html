@@ -18,11 +18,13 @@
         </div>
         <div id="modify_password" style="display:none">
             <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
-            <form action="" method="GET">
-                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}">
+            <form action="" method="POST">
+                {% csrf_token %}
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey();">
                 <div class="storedpw" style="display:none">{{ community.password_Post }}</div>
-                <div class="modify_password_btn" onclick="check_pw()">확인</div>
+                <div id="modify_password_btn" onclick="check_pw(this.className)">확인</div>
             </form>
+            <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
         </div>
         <hr>
         {% if community.image %}
@@ -97,22 +99,32 @@
             if(document.getElementById("modify_password").style=="display:none") {
                 document.getElementById("modify_password").style="display:visible";
             }else document.getElementById("modify_password").style="display:visible";
+            
             const btnvalue = m_or_d;
+            
+            document.getElementById("modify_password_btn").className = btnvalue;
         }
 
-        function check_pw() {
+        function check_pw(m_or_d) {
             const inputpwd = document.querySelector(".writerpw").value;
             const writerpwd = document.querySelector(".storedpw").innerText;
-            const warning = document.getElementById("modify_password");
-
+            
             if(inputpwd == writerpwd) {
-                location.href="{%url 'community:communityedit' community.id%}";
+                if(m_or_d == 'detail_modify') {
+                    location.href="{%url 'community:communityedit' community.id%}";
+                }
+                else if(m_or_d == 'detail_delete') {
+                    location.href="{%url 'community:community_delete' community.id%}";
+                }
+                
             }else {
-                var warningtxt = document.createElement("div");
-                warningtxt.innerHTML = "비밀번호가 일치하지 않습니다.";
-                warningtxt.setAttribute("id","warningtxt");
-                warningtxt.style.color="red";
-                warning.appendChild(warningtxt);
+                document.getElementById("warningtxt").style="display:visible";
+            }
+        }
+
+        function enterkey() {
+            if(window.event.keyCode == 13) {
+                check_pw();
             }
         }
     </script>

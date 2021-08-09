@@ -45,7 +45,7 @@ def communityList(request):
 
 def detail(request,id):
     community = get_object_or_404(Community, pk = id)
-    writerpw = request.GET.get('writerpw')
+    writerpw = request.POST.get('writerpw')
     return render(request, "community/detail.html", {'community':community})
 
 def expertList(request):
