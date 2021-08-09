@@ -6,6 +6,14 @@
     <meta charset="UTF-8">
     <title>setting</title>
     <link rel="stylesheet" href="{% static 'css/setting.css' %}"/>
+    <script>
+        function change(obj){
+        var n = confirm("개인 정보 수정을 취소하시겠습니까?");
+        if(n == true){
+            obj.href = "{% url 'account:mypage' %}";
+        }
+    }
+    </script>
 </head>
 <body>
 {% block navbar %}
@@ -23,6 +31,8 @@
         <div style="border: 1px">
             <span style="margin-top:20px;font-size:40px;"></span>
         </div>
+        <form action= "{% url 'account:mypage' %}" method = "POST">
+        {% csrf_token %}
         <table border="1">
             <tr>
                 <th>아이디</th>
@@ -31,7 +41,7 @@
 
             <tr>
                 <th>이름</th>
-                <td>{{user.name}}</td>
+                <td>{{user.nickname}}</td>
             </tr>
             <tr>
                 <th>성별</th>
@@ -39,10 +49,15 @@
             </tr>
 
             <tr>
+                <th>생년월일</th>
+                <td>{{user.birth}</td>
+            </tr>
+
+            <tr>
                 <th>주소</th>
                 <td>
                     <input type="text" id="sample6_postcode" placeholder="user.postcode">
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                    <input type="button" style="border:0; width:70px; font-size: 10px; color: black; background-color:rgb(241 229 217); height: 30px;"onclick="sample6_execDaumPostcode()" value="우편번호 찾기" a href=""><br>
                     <input type="text" id="sample6_address" placeholder="user.address"><br>
                     <input type="text" id="sample6_detailAddress" placeholder="user.detailAddress">
                     <input type="text" id="sample6_extraAddress" placeholder="user.extraAddress">
@@ -113,15 +128,11 @@
                 <td>{{user.email}}</td>
             </tr>
         </table>
-        
+        </form>
         <div id=button>
-            <a href="{% url 'account:stchange' %}"target="_blank">
-                <button type="submit">수정</button>
-            </a>
-            <a href="{% url 'account:stcancel' %}"target="_blank">
-                <button type="reset">취소</button>
-            </a>
-            <a href="{% url 'account:stdelete' %}"target="_blank"><h5>회원 탈퇴하기</h5></a>
+            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">등록</button>
+            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="change(this)">취소</a></button>
+        <a href="{% url 'account:stdelete' %}"target="_blank"><h5>회원 탈퇴하기</h5></a>
         </div>
     </div>
 {% endblock %}

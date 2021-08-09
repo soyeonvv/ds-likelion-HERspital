@@ -41,3 +41,67 @@ article{
 h2 {text-align: center;}
 
 h5 {text-align: right;}
+
+#content{
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-bottom: 8%;
+}
+#review{
+    margin-left: 12%;
+    margin-right: 13%;
+}
+#new-review{
+    display: block;
+    margin: auto;
+    resize: none; 
+    border-color: rgb(190, 190, 190); 
+    padding: 10px; 
+    border: 2px solid #FFC478; 
+    border-radius: 10px;
+}
+.review_btn{
+    font-size: 15px; 
+    color: rgb(37, 37, 37);
+    margin-left: 50%;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 7px;
+    background: #FFC478;
+    border: none;
+    border-radius: 5px;
+}
+.star-rating {
+    display:flex;
+    flex-direction: row-reverse;
+    font-size:1.4em;
+    justify-content:space-around;
+    padding:0 .2em;
+    text-align:center;
+    width:5em;
+    margin-bottom: 5px;
+}
+
+.star-rating input {
+    display:none;
+}
+  
+.star-rating label {
+    color:#ccc;
+    cursor:pointer;
+}
+  
+.star-rating :checked ~ label {
+    color:#f90;
+}
+  
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color:#fc0;
+}
+
+.review_star{
+    font-size: 17px;
+    float: left; 
+    margin-left: 2%;
+}
