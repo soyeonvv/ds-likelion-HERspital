@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>setting</title>
     <link rel="stylesheet" href="{% static 'css/setting.css' %}"/>
     <script>
@@ -37,8 +39,8 @@
         <div style="border: 1px">
             <span style="margin-top:20px;font-size:40px;"></span>
         </div>
-        <form action= "{% url 'account:mypage' %}" method = "POST">
-        {% csrf_token %}
+        <form action= "{%url 'account:update2' %}" method = "POST">
+        {%csrf_token%}
         <table border="1">
             <tr>
                 <th>아이디</th>
@@ -118,15 +120,6 @@
                             }).open();
                         }
                     </script>
-                    <!-- <label for="homenum"></label>
-                    <input type="text" id="homenum" name="homenum" placeholder="{{user.homenum}}">
-                    <button type="find">찾기</button>
-                    <br>
-                    <label for="location"></label>
-                    <input type="text" id="location" name="location" placeholder="{{user.location}}">
-                    <label for="detaillocation"></label>
-                    <input type="text" id="detaillocation" name="detaillocation" placeholder="{{user.detaillocation}}">
-                    <br> -->
                 </td>
             </tr>
 

@@ -7,11 +7,11 @@ from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import CustomUser
+from .models import Setting
 from django.contrib.auth.hashers import check_password
 from .forms import CheckPasswordForm
 from django.contrib import messages
 from account.decorators import login_message_required
-from .models import Setting
 
 
 #Authen=로그인, UserCre=회원가입
@@ -98,14 +98,14 @@ def mypage(request):
     return render(request, "account/mypage.html")
 def setting(request):
     return render(request, "account/setting.html")
-    
-def setting_update(request, id):
-    update_Setting = Setting.objects.get(id=id)
-    update_Setting.postcode = request.POST['postcode']
-    update_Setting.address = request.POST['address']
-    update_Setting.extraAddress = request.POST['extraAddress']
-    update_Setting.save()
-    return redirect('account:mypage', update_Setting.id)
+
+def update2(request):
+    update_setting = Setting.objects.get(id=id)
+    update_setting.postcode = request.POST['postcode']
+    update_setting.address = request.POST['address']
+    update_setting.extraAddress = request.POST['extraAddress']
+    update_setting.save()
+    return redirect('account:mypage', update_setting.id)
 
 @login_message_required
 def userDelete(request):
@@ -121,11 +121,3 @@ def userDelete(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'account/userDelete.html', {'password_form':password_form})
-
-def setting_update(request, id):
-    update_Setting = Setting.objects.get(id=id)
-    update_Setting.postcode = request.POST['postcode']
-    update_Setting.address = request.POST['address']
-    update_Setting.extraAddress = request.POST['extraAddress']
-    update_Setting.save()
-    return redirect('account:mypage', update_Setting.id)

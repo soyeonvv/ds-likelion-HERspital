@@ -14,6 +14,10 @@ urlpatterns = [
     path("logout/", account_views.logout_view, name="logout"),
 
     path("mypage/", account_views.mypage, name="mypage"),
+    
     path("setting/", account_views.setting, name="setting"),
+
     path("userDelete/", account_views.userDelete, name="userDelete"),
+
+    path("update2/<str:id>", update2, name="update2"),
 ]
