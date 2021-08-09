@@ -39,7 +39,6 @@
         <div style="border: 1px">
             <span style="margin-top:20px;font-size:40px;"></span>
         </div>
-        <form action= "{%url 'account:update2' %}" method = "POST">
         {%csrf_token%}
         <table border="1">
             <tr>
@@ -128,7 +127,6 @@
                 <td>{{user.email}}</td>
             </tr>
         </table>
-        </form>
         <div id=button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">수정</button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="cancel(this)">취소</a></button>

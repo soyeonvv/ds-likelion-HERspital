@@ -19,5 +19,5 @@ urlpatterns = [
 
     path("userDelete/", account_views.userDelete, name="userDelete"),
 
-    path("update2/<str:id>", update2, name="update2"),
+    # path("update2/<str:id>", update2, name="update2"),
 ]
