@@ -1,72 +1,43 @@
-
-a {
-    text-decoration: none;
+#main {
+    background-color: RGB(241 229 217);
+    position: center;
+    line-height: 2;
+    text-align: center;
+    border-bottom: 200px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: -8px;
 }
 
-#home {
-    z-index: -1;
-}
+h1 {text-align: center;}
+h4 {text-align: center;}
+strong {color: RGB(116 208 185);}
+strong1 {font-weight:bold;}
 
-#content{
-    padding-left: 70px;
-    padding-right: 70px;
-    margin-bottom: 8%;
-}
-#review{
-    margin-left: 12%;
-    margin-right: 13%;
-}
-#new-review{
-    display: block;
-    margin: auto;
-    resize: none; 
-    border-color: rgb(190, 190, 190); 
-    padding: 10px; 
-    border: 2px solid #FFC478; 
-    border-radius: 10px;
-}
-.review_btn{
-    font-size: 15px; 
-    color: rgb(37, 37, 37);
-    margin-left: 50%;
-    display: inline-block;
-    cursor: pointer;
-    padding: 4px 7px;
-    background: #FFC478;
-    border: none;
-    border-radius: 5px;
-}
-.star-rating {
+a {text-decoration:none;}
+
+#etc {
     display:flex;
-    flex-direction: row-reverse;
-    font-size:1.4em;
-    justify-content:space-around;
-    padding:0 .2em;
-    text-align:center;
-    width:5em;
-    margin-bottom: 5px;
+    justify-content: center;
+    line-height: 2;
 }
 
-.star-rating input {
-    display:none;
-}
-  
-.star-rating label {
-    color:#ccc;
-    cursor:pointer;
-}
-  
-.star-rating :checked ~ label {
-    color:#f90;
-}
-  
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-    color:#fc0;
+section{
+    width:50%;
+    padding:20px;
 }
 
-.review_star{
-    font-size: 17px;
-    float: left; 
-    margin-left: 2%;
+article{
+    border-radius:10px;
+    padding:20px;
+    background-color: RGB(240 240 240);
 }
+
+.love_expert {
+    text-align: center;
+    padding-top:50px;
+}
+
+h2 {text-align: center;}
+
+h5 {text-align: right;}
