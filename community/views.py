@@ -4,6 +4,7 @@ from django.utils import timezone
 from .models import Community
 from .models import Expert
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
+from django.db.models import Q
 
 
 # def detail(request):
@@ -33,6 +34,11 @@ def communityList(request):
         except EmptyPage:
             communities = paginator.page(paginator.num_pages)
         return render(request,'community/communityList.html', {'communities':communities})
+
+    # 검색기능
+    search_key = request.GET.get('search_key')
+    if search_key:
+        communities = Community.objects.filter(title__icontains=search_key)
 
     return render(request, "community/communityList.html", {'communities':communities})
 
