@@ -17,6 +17,7 @@
     {% include "partials/base.html" %}
 {% endblock%}
 {% block content %}
+  <div id="wrapper">
     <section>
         <div class="topContent">
             <div class="search">
@@ -110,7 +111,7 @@
             searchIcon.setAttribute('href', `?search_key=${inputValue}` );
         }
     </script>
-
+  </div>
 {% endblock %}
 </body>
 </html>

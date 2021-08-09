@@ -1,5 +1,6 @@
 footer{
-    position:static;
+    /* position:static; */
+    position: relative;
     bottom:0px;
     width:100%;
     left: 0;
@@ -8,5 +9,8 @@ footer{
     text-align: center;
     padding: 7px;
     margin: -7px;
-    position:fixed;
+    
+    height: 60px;
+    /* transform: translateY(-100%); */
+
 }
