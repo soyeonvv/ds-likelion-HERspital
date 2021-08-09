@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import check_password
 from .forms import CheckPasswordForm
 from django.contrib import messages
 from account.decorators import login_message_required
+from .models import Setting
 
 
 #Authen=로그인, UserCre=회원가입
@@ -97,6 +98,7 @@ def mypage(request):
     return render(request, "account/mypage.html")
 def setting(request):
     return render(request, "account/setting.html")
+
 def stchange(request):
     return render(request, "account/stchange.html")
 def stcancel(request):
@@ -118,3 +120,11 @@ def userDelete(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'account/userDelete.html', {'password_form':password_form})
+
+def setting_update(request, id):
+    update_Setting = Setting.objects.get(id=id)
+    update_Setting.postcode = request.POST['postcode']
+    update_Setting.address = request.POST['address']
+    update_Setting.extraAddress = request.POST['extraAddress']
+    update_Setting.save()
+    return redirect('account:mypage', update_Setting.id)
