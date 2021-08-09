@@ -39,6 +39,7 @@
         <div style="border: 1px">
             <span style="margin-top:20px;font-size:40px;"></span>
         </div>
+        <form method="POST">
         {%csrf_token%}
         <table border="1">
             <tr>
@@ -64,11 +65,11 @@
             <tr>
                 <th>주소</th>
                 <td>
-                    <input type="text" id="sample6_postcode" placeholder="user.postcode">
+                    <input type="text" id="sample6_postcode" placeholder="user.postcode" name="postcode" value="{{user.postcode}}">
                     <input type="button" style="border:0; width:70px; font-size: 10px; color: black; background-color:rgb(241 229 217); height: 30px;"onclick="sample6_execDaumPostcode()" value="우편번호 찾기" a href=""><br>
-                    <input type="text" id="sample6_address" placeholder="user.address"><br>
-                    <input type="text" id="sample6_detailAddress" placeholder="user.detailAddress">
-                    <input type="text" id="sample6_extraAddress" placeholder="user.extraAddress">
+                    <input type="text" id="sample6_address" placeholder="user.address" name="address" value="{{user.address}}"><br>
+                    {% comment %} <input type="text" id="sample6_detailAddress" placeholder="user.detailAddress"> {% endcomment %}
+                    <input type="text" id="sample6_extraAddress" placeholder="user.extraAddress" name="extraAddress" value="{{user.extraAddress}}">
                     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                     <script>
                         function sample6_execDaumPostcode() {
@@ -127,11 +128,12 @@
                 <td>{{user.email}}</td>
             </tr>
         </table>
-        <div id=button>
+        <div id='button'>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">수정</button>
-            <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="cancel(this)">취소</a></button>
+<a href="" style="color:black;" onclick="cancel(this)"><button type="button" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);">취소</button></a>
         <a href="" onclick="change(this)"><h5>회원 탈퇴하기</h5></a>
         </div>
+        </form>
     </div>
 {% endblock %}
 </body>

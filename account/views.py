@@ -13,11 +13,10 @@ from .forms import CheckPasswordForm
 from django.contrib import messages
 from account.decorators import login_message_required
 
-
+from django.contrib.auth.forms import UserChangeForm
+from .forms import CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
 #Authen=로그인, UserCre=회원가입
-
-# def signup(request):
-#     return render(request, "account/signup.html")
 
 
 def login_view(request):
@@ -97,8 +96,18 @@ def signup(request):
 def mypage(request):
     return render(request, "account/mypage.html")
 
+#개인정보 수정
+@login_required
 def setting(request):
-    return render(request, "account/setting.html")
+  if request.method == 'POST':
+    user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
+    if user_change_form.is_valid():
+      user_change_form.save()
+      messages.info(request, '수정 성공')
+      return render(request,"account/mypage.html")
+  else:
+    user_change_form = CustomUserChangeForm(instance=request.user)
+  return render(request, "account/setting.html", {'user_change_form':user_change_form})
 
 # def update2(request ,id):
 #     update_setting = Setting.objects.get(id=id)
