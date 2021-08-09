@@ -56,11 +56,20 @@ def signup(request):
     
     if request.POST['password'] == request.POST['password2']:
       try:
-        user = CustomUser.objects.get(username = request.POST['userid'])
+        user = CustomUser.objects.get(username = request.POST['username'])
         return render(request, 'account/signup.html', {'error':'Username has already been taken.'})
       except CustomUser.DoesNotExist:
         user = CustomUser.objects.create_user(
-          request.POST['userid'], request.POST['password'], request.POST['username'])
+          request.POST['username'], #create_user가 username만 파라미터 받아서 다른 것은 직접 연결해줌
+          password = request.POST['password'], 
+          nickname = request.POST['nickname'],
+          birth = request.POST['birth'],
+          gender = request.POST['gender'],
+          email = request.POST['email'],
+          position = request.POST['position'], 
+          workplace = request.POST['workplace'],
+          certifyImg = request.POST['certifyImg']
+          )
         auth.login(request,user)
         return redirect("mainpage")
     else:
