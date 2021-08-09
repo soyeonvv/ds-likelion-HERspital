@@ -8,4 +8,5 @@ footer{
     text-align: center;
     padding: 7px;
     margin: -7px;
+    position:fixed;
 }
