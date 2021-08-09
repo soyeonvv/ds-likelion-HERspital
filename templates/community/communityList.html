@@ -22,12 +22,12 @@
             <div class="search">
             <div class="search_wrap">
                 <div class="search_box">
-                    <div class="btn btn_common">
-                        <i class="fas fa-search"></i>
-                    </div>
                     <form action="" method="GET">
                         <input type="text" class="input" name="search_key" value="{{ search_key }}" placeholder="Search...">
                     </form>
+                    <div class="btn btn_common" onclick="searchRun()">
+                        <a class="searchicon" href=""><i class="fas fa-search"></i></a>
+                    </div>
                 </div>
             </div>
             </div>
@@ -101,6 +101,16 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function searchRun() {
+            const searchIcon = document.querySelector(".searchicon"),
+                inputValue = document.querySelector(".input").value;
+
+            searchIcon.setAttribute('href', `?search_key=${inputValue}` );
+        }
+    </script>
+
 {% endblock %}
 </body>
 </html>

@@ -5,6 +5,7 @@ from .models import Community
 from .models import Expert
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 from django.db.models import Q
+from django.contrib import messages
 
 
 # def detail(request):
