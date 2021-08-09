@@ -7,6 +7,12 @@ from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import CustomUser
+# from .models import Setting
+from django.contrib.auth.hashers import check_password
+from .forms import CheckPasswordForm
+from django.contrib import messages
+from account.decorators import login_message_required
+
 
 #Authen=로그인, UserCre=회원가입
 
@@ -90,11 +96,29 @@ def signup(request):
     
 def mypage(request):
     return render(request, "account/mypage.html")
+
 def setting(request):
     return render(request, "account/setting.html")
-def stchange(request):
-    return render(request, "account/stchange.html")
-def stcancel(request):
-    return render(request, "account/stcancel.html")
-def stdelete(request):
-    return render(request, "account/stdelete.html")
+
+# def update2(request ,id):
+#     update_setting = Setting.objects.get(id=id)
+#     update_setting.postcode = request.POST['postcode']
+#     update_setting.address = request.POST['address']
+#     update_setting.extraAddress = request.POST['extraAddress']
+#     update_setting.save()
+#     return redirect('account:mypage', update_setting.id)
+
+@login_message_required
+def userDelete(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+        
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('/core/mainpage/')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'account/userDelete.html', {'password_form':password_form})

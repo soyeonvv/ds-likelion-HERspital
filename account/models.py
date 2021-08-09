@@ -13,3 +13,8 @@ class CustomUser(AbstractUser):
   postcode = models.CharField(max_length=100, blank=True) #우편번호
   address = models.CharField(max_length=100, blank=True) #주소
   extraAddress = models.CharField(max_length=100, blank=True) #세부주소
+
+# class Setting(models.Model):
+#   postcode = models.CharField(max_length=100, blank=True) #우편번호
+#   address = models.CharField(max_length=100, blank=True) #주소
+#   extraAddress = models.CharField(max_length=100, blank=True) #세부주소
