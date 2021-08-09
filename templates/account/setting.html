@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>setting</title>
     <link rel="stylesheet" href="{% static 'css/setting.css' %}"/>
     <script>
@@ -37,8 +39,7 @@
         <div style="border: 1px">
             <span style="margin-top:20px;font-size:40px;"></span>
         </div>
-        <form action= "{% url 'account:mypage' %}" method = "POST">
-        {% csrf_token %}
+        {%csrf_token%}
         <table border="1">
             <tr>
                 <th>아이디</th>
@@ -118,15 +119,6 @@
                             }).open();
                         }
                     </script>
-                    <!-- <label for="homenum"></label>
-                    <input type="text" id="homenum" name="homenum" placeholder="{{user.homenum}}">
-                    <button type="find">찾기</button>
-                    <br>
-                    <label for="location"></label>
-                    <input type="text" id="location" name="location" placeholder="{{user.location}}">
-                    <label for="detaillocation"></label>
-                    <input type="text" id="detaillocation" name="detaillocation" placeholder="{{user.detaillocation}}">
-                    <br> -->
                 </td>
             </tr>
 
@@ -135,7 +127,6 @@
                 <td>{{user.email}}</td>
             </tr>
         </table>
-        </form>
         <div id=button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:rgb(241 229 217); height: 43px;">수정</button>
             <button type="submit" style="border:0; width:120px; font-size: 18px; color: black; background-color:white; height: 37px; margin: 10px; outline-style:groove; outline-color: rgb(241 229 217);"><a href="" style="color:black;" onclick="cancel(this)">취소</a></button>

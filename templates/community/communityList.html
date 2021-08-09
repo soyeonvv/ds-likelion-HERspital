@@ -17,6 +17,7 @@
     {% include "partials/base.html" %}
 {% endblock%}
 {% block content %}
+  <div id="wrapper">
     <section>
         <div class="topContent">
             <div class="search">
@@ -42,9 +43,11 @@
                         <li><a href="?tag=true&ageTag=60대 이상">#60대 이상</a></li>
                     </ul>
                 </div>
+                {% if user.is_authenticated%}
                 <div class="newPostBtn_wrap">
                     <button class="newPostBtn"><i class="fas fa-pencil-alt"></i><a href="{% url 'community:communityWrite' %}" style="color: white;"> 글 작성하기</a></button>
                 </div>
+                {% endif %}
             </div>
             
         </div>
@@ -110,7 +113,7 @@
             searchIcon.setAttribute('href', `?search_key=${inputValue}` );
         }
     </script>
-
+  </div>
 {% endblock %}
 </body>
 </html>
