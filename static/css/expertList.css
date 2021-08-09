@@ -203,7 +203,7 @@ body{
     font-weight: 600;
     border-radius: 50%;
 }
-.pageul li.pageNumber:hover a,
+
 .pageul li.pageNumber.active a
 {
     background:#75CFB8;
@@ -218,4 +218,8 @@ body{
     margin-left:30px;
     font-weight: 700;
     font-size:17px;
+}
+.pageul li:first-child a:hover,
+.pageul li:last-child a:hover{
+    color: #75cfb8;
 }
