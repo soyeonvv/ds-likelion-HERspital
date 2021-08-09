@@ -23,14 +23,18 @@ def login_view(request):
   if request.method == 'POST':
     username = request.POST['username']
     password = request.POST['password']
-    user = CustomUser.objects.get(username = request.POST['username'])
-    
-    # user = auth.authenticate(request, username=username, password=password)
-    if user is not None:
-      auth.login(request, user)
-      return redirect('mainpage')
-    else:
-      return render(request, 'account/login.html', {'error':'username or password is incorrect'})
+    try:
+      # user = CustomUser.objects.get(username = username)
+      user = authenticate(request, username=username, password=password)
+      if user is not None:
+        login(request, user)
+        return redirect('mainpage')
+      else:
+        messages.info(request,'가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+        return render(request, 'account/login.html')
+    except CustomUser.DoesNotExist:
+      messages.info(request,'가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+      return redirect('account:login')
   else:
     return render(request, 'account/login.html')
 
