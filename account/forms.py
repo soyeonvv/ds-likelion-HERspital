@@ -25,3 +25,6 @@ class CheckPasswordForm(forms.Form):
         if password:
             if not check_password(password, confirm_password):
                 self.add_error('password', '비밀번호가 일치하지 않습니다.')
+    fields= ['username','password','password2','nickname','email','birth','gender','position','certifyImg','workplace'
+      ,'postcode','address','extraAddress'
+    ]
