@@ -60,7 +60,7 @@ def signup(request):
         return render(request, 'account/signup.html', {'error':'Username has already been taken.'})
       except CustomUser.DoesNotExist:
         user = CustomUser.objects.create_user(
-          request.POST['userid'], request.POST['password'], request.POST['username'], request.POST[''])
+          request.POST['userid'], request.POST['password'], request.POST['username'])
         auth.login(request,user)
         return redirect("mainpage")
     else:
