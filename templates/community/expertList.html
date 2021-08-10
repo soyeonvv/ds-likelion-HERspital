@@ -65,12 +65,20 @@
                     <tr>
                         <td id="tag">{{expert.age_tag}}</td>
                         <td id="title">
-                            {% if user.is_authenticated %}
+                            {% if user.is_authenticated and user.position == 'specialist' %}
                             <a href="{% url 'community:expert_detail' expert.id %}">
-                            {% else %}
+                            {% elif user.is_anonymous %}
                             <a href="{% url 'account:login' %}">
+                            {% elif user.position == 'normal' and expert.publicSetting == 'public' %}
+                            <a href="{% url 'community:expert_detail' expert.id %}">
+                            {% elif user.position == 'normal' and expert.publicSetting == 'private' %}
+                            <div style="display: none;">글 작성시 입력한 비밀번호를 입력해주세요</div>
                             {% endif %}
-                            {{expert.title}}</a></td>
+                            <span style="color: #75CFB8; cursor: pointer">{{expert.title}}</span></a>
+                            {% if expert.publicSetting == 'private' %}
+                            <img id="privateicon" src="{% static 'img/private.png' %}" width="15px" height="16px">
+                            {% endif %}
+                        </td>
                         <td id="writer">&nbsp&nbsp
                         {% if expert.author.gender == 'female'%}
                             <i class="fas fa-venus"></i>

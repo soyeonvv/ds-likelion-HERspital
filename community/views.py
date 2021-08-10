@@ -93,7 +93,6 @@ def communityWrite(request):
 def create(request):
     new_community = Community()
     new_community.title = request.POST['title']
-    new_community.publicSetting = True
     new_community.password_Post = request.POST['pwd']
     new_community.age_tag = request.POST['opage']
     new_community.image = request.FILES.get('image')
@@ -110,7 +109,6 @@ def communityedit(request,id):
 def update(request, id):
     update_community = Community.objects.get(id=id)
     update_community.title = request.POST['title']
-    update_community.publicSetting = True
     update_community.password_Post = request.POST['pwd']
     update_community.age_tag = request.POST['opage']
     update_community.image = request.FILES.get('image')
@@ -125,7 +123,7 @@ def consulting(request):
 def expertcreate(request):
     new_expert = Expert()
     new_expert.title = request.POST['title']
-    new_expert.publicSetting = True
+    new_expert.publicSetting = request.POST['publicSetting']
     new_expert.password_Post = request.POST['pwd']
     new_expert.age_tag = request.POST['opage']
     new_expert.image = request.FILES.get('image')
@@ -143,7 +141,7 @@ def expert_edit(request,id):
 def expert_update(request, id):
     update_Expert = Expert.objects.get(id=id)
     update_Expert.title = request.POST['title']
-    update_Expert.publicSetting = True
+    update_Expert.publicSetting = request.POST['publicSetting']
     update_Expert.password_Post = request.POST['pwd']
     update_Expert.age_tag = request.POST['opage']
     update_Expert.image = request.FILES.get('image')
