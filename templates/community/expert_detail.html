@@ -125,7 +125,7 @@
 <div class="community__reply">
     <img id="replyicon" src="{% static 'img/reply.png' %}">
     <div id="replytxt">답변</div>
-    <span id="review-count">1</span>
+    <span id="review-count">{{expertRes.count}}</span>
 </div>
 <hr>
     {% if user.position == 'specialist' %}
@@ -149,7 +149,7 @@
                 <td class="profileTD">
                     <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
                 </td>
-                <td>{{expertRe.author.username}} 전문의 <br>{{ expertRe.author.workplace}}</td>
+                <td>{{expertRe.author.nickname}} 전문의 <br>{{ expertRe.author.workplace}}</td>
                 <td class="likeTD">
                     <i class="fas fa-thumbs-up"><span class="numb">{{ expertRe.thumbsUp }}</span></i>
                 </td>
