@@ -29,14 +29,17 @@
             <h2>📝 내가 쓴 글 📝</h2>
             <article class="mylist" style="overflow:auto; width:95%; height:150px;">
                 <ul>
-                    <li><a href="http://naver.com">요즘 들어 부쩍 정신이 몽롱하고 기운도 없는 느낌이 들어요</a></li>
+                {% for community in communities %}
+                    <li><a href="{% url 'community:detail' community.id %}">{{community.title}}</a></li>
+                    {% comment %} <li><a href="http://naver.com">요즘 들어 부쩍 정신이 몽롱하고 기운도 없는 느낌이 들어요</a></li>
                     <li><a href="http://daum.net">다들 잔여백신 신청하셨나요??</a></li>
                     <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
                     <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
                     <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
                     <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
                     <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
-                    <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li>
+                    <li><a href="http://google.com">오늘 새로 가입했습니다 ^_^</a></li> {% endcomment %}
+                {% endfor %}
                 </ul>
             </article>
 

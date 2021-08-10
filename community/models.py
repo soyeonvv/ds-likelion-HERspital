@@ -1,4 +1,5 @@
 from django.db import models
+from account import models as account_models
 
 # Create your models here.
 class Community(models.Model):
@@ -17,7 +18,8 @@ class Community(models.Model):
     # 작성 날짜
     pub_date = models.DateTimeField()
     # 작성자 <- 익명으로 표시되지만, '자신이 쓴 글 보기'와 '성별 표시'를 위해서 글 작성자의 정보를 저장해야 함
-        # 사용자 DB가 생성되고 난 후, 만들 예정
+    author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return self.title
     
@@ -40,7 +42,8 @@ class Expert(models.Model):
     # 작성 날짜
     pub_date = models.DateTimeField()
     # 작성자 <- 익명으로 표시되지만, '자신이 쓴 글 보기'와 '성별 표시'를 위해서 글 작성자의 정보를 저장해야 함
-        # 사용자 DB가 생성되고 난 후, 만들 예정
+    author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return self.title
     
