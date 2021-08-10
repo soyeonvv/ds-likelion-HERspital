@@ -7,31 +7,36 @@ from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import CustomUser
+# from .models import Setting
 from django.contrib.auth.hashers import check_password
 from .forms import CheckPasswordForm
 from django.contrib import messages
 from account.decorators import login_message_required
-from .models import Setting
 
+from django.contrib.auth.forms import UserChangeForm
+from .forms import CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
 
+from community.models import Community
 #Authen=로그인, UserCre=회원가입
-
-# def signup(request):
-#     return render(request, "account/signup.html")
 
 
 def login_view(request):
   if request.method == 'POST':
     username = request.POST['username']
     password = request.POST['password']
-    user = CustomUser.objects.get(username = request.POST['username'])
-    
-    # user = auth.authenticate(request, username=username, password=password)
-    if user is not None:
-      auth.login(request, user)
-      return redirect('mainpage')
-    else:
-      return render(request, 'account/login.html', {'error':'username or password is incorrect'})
+    try:
+      # user = CustomUser.objects.get(username = username)
+      user = authenticate(request, username=username, password=password)
+      if user is not None:
+        login(request, user)
+        return redirect('mainpage')
+      else:
+        messages.info(request,'가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+        return render(request, 'account/login.html')
+    except CustomUser.DoesNotExist:
+      messages.info(request,'가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+      return redirect('account:login')
   else:
     return render(request, 'account/login.html')
 
@@ -95,17 +100,31 @@ def signup(request):
 #     return render(request, 'account/signup.html',{'form':form})
     
 def mypage(request):
-    return render(request, "account/mypage.html")
+  search = request.GET.get('search')
+  writer = request.user
+  communities = Community.objects.filter(author= writer).order_by('-pub_date')
+  return render(request, "account/mypage.html", {'communities':communities})
+
+#개인정보 수정
+@login_required
 def setting(request):
-    return render(request, "account/setting.html")
-    
-def setting_update(request, id):
-    update_Setting = Setting.objects.get(id=id)
-    update_Setting.postcode = request.POST['postcode']
-    update_Setting.address = request.POST['address']
-    update_Setting.extraAddress = request.POST['extraAddress']
-    update_Setting.save()
-    return redirect('account:mypage', update_Setting.id)
+  if request.method == 'POST':
+    user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
+    if user_change_form.is_valid():
+      user_change_form.save()
+      messages.info(request, '수정 성공')
+      return render(request,"account/mypage.html")
+  else:
+    user_change_form = CustomUserChangeForm(instance=request.user)
+  return render(request, "account/setting.html", {'user_change_form':user_change_form})
+
+# def update2(request ,id):
+#     update_setting = Setting.objects.get(id=id)
+#     update_setting.postcode = request.POST['postcode']
+#     update_setting.address = request.POST['address']
+#     update_setting.extraAddress = request.POST['extraAddress']
+#     update_setting.save()
+#     return redirect('account:mypage', update_setting.id)
 
 @login_message_required
 def userDelete(request):
@@ -121,11 +140,3 @@ def userDelete(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'account/userDelete.html', {'password_form':password_form})
-
-def setting_update(request, id):
-    update_Setting = Setting.objects.get(id=id)
-    update_Setting.postcode = request.POST['postcode']
-    update_Setting.address = request.POST['address']
-    update_Setting.extraAddress = request.POST['extraAddress']
-    update_Setting.save()
-    return redirect('account:mypage', update_Setting.id)
