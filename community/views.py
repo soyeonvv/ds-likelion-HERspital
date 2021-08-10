@@ -82,6 +82,7 @@ def expertList(request):
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
+    writerpw = request.POST.get('writerpw')
     return render(request, "community/expert_detail.html", {'expert':expert})
 
 def communityWrite(request):
