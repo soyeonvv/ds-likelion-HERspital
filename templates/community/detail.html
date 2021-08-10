@@ -12,13 +12,10 @@
     <div class="community__detail">
         <h3>[ {{ community.age_tag }} ]</h3>
         <h1>{{ community.title }}</h1>
-        <span>{{ community.pub_date | date:'y-m-d,H:i'}}</span>
-        <hr>
         <div class="modify_delete">
             <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer">수정</span> |
             <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer">삭제</span>
         </div>
-        <br>
         <div id="modify_password" style="display:none">
             <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
             <form action="" method="POST">
@@ -28,7 +25,7 @@
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
         </div>
-        <br>
+        <hr>
         {% if community.image %}
             <img src="{{community.image.url}}">
         {% endif %}
@@ -38,20 +35,26 @@
             <img id="replyicon" src="{% static 'img/reply.png' %}">
             <div id="replytxt">댓글</div>
             <span id="review-count">1</span>
+            <form action="{%url 'community:replycreate' %}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
             <div id="review">
                 <div class="review-row">
                     <textarea id="new-review" name="new_review" rows="5" cols="90" placeholder="댓글 남기기."></textarea><br>
                     <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
                 </div>
                 <br><br>
+                {% for community in replies %}
                 <div class="review-box">
                     <div class="review-row">
-                        <div class="review-date" style="float: left;">2021-08-03</div>
-                        <div class="review-content" style="padding-top: 40px;" >sample review<br></div>
+                        <div class="review-date" style="float: left;">{{reply.pub_date | date:'m-d'}}</div>
+                        <div class="review-content" style="padding-top: 40px;" >{{ reply.body }}<br></div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
+        </form>
         </div>
+        
     </div>
 
     <script>
@@ -109,8 +112,13 @@
 
         function check_pw(m_or_d) {
             const inputpwd = document.querySelector(".writerpw").value;
+<<<<<<< HEAD
             const writerpwd = "{{ community.password_Post }}";
 
+=======
+            const writerpwd = document.querySelector(".storedpw").innerText;
+            
+>>>>>>> 9a501c9f8f072790d096dc21b731280d78084894
             if(inputpwd == writerpwd) {
                 if(m_or_d == 'detail_modify') {
                     location.href="{%url 'community:communityedit' community.id%}";
@@ -120,6 +128,7 @@
                     if(n == true) {
                         location.href="{%url 'community:community_delete' community.id%}";
                     }
+                    
                 }
                 
             }else {
