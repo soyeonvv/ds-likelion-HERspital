@@ -49,3 +49,19 @@ class Expert(models.Model):
     
     def summary(self): #제목 글자수가 길면 끊어서 보여주도록
         return self.title[:30]
+
+class ExpertRe(models.Model):
+    #작성자(전문의) 외래키
+    author = models.ForeignKey(account_models.CustomUser, on_delete=models.CASCADE, null=True)
+    #질문글id 외래키
+    # post = models.ForeignKey(Expert, on_delete=models.CASCADE, null=True)
+    postId = models.CharField(max_length=100)
+    #좋아요 개수
+    thumbsUp = models.IntegerField(blank=True, default=0, null=True)
+    # 답변 내용
+    body = models.TextField()
+    # 작성 날짜
+    pub_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.body[:30]

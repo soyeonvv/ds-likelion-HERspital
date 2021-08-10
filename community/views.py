@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render,get_object_or_404
 from django.utils import timezone
 from .models import Community
 from .models import Expert
+from .models import ExpertRe
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 from django.db.models import Q
 from django.contrib import messages
@@ -82,8 +83,9 @@ def expertList(request):
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
+    expertRes = ExpertRe.objects.filter(postId=ex_id)
     writerpw = request.POST.get('writerpw')
-    return render(request, "community/expert_detail.html", {'expert':expert})
+    return render(request, "community/expert_detail.html", context ={'expert':expert, 'expertRes':expertRes})
 
 def communityWrite(request):
     return render(request, 'community/communityWrite.html')
@@ -159,3 +161,15 @@ def expert_delete(request, id):
     delete_expert = Expert.objects.get(id=id)
     delete_expert.delete()
     return redirect('community:expertList')
+
+
+#전문인 상담 페이지 답변 생성
+def expertRe_create(request):
+    new_expertRe = ExpertRe()
+    new_expertRe.body = request.POST.get('body')
+    new_expertRe.postId = request.POST.get('postId')
+    new_expertRe.author = request.user
+    new_expertRe.pub_date = timezone.now()
+    new_expertRe.thumbsUp = 0
+    new_expertRe.save()
+    return redirect('community:expert_detail',new_expertRe.postId )
