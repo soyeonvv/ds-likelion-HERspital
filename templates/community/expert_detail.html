@@ -115,13 +115,14 @@
     <span id="review-count">1</span>
 </div>
 <hr>
-    <button class="responseBtn" type="submit" onclick=openResponse()>답변하기</button>
-    <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
-    
-    <div class="response_submit">
-        <textarea class="response_content" placeholder="답변을 적어주세요:)" rows="10" wrap="hard"></textarea>
-    </div>
+    {% if user.position == 'specialist' %}
+        <button class="responseBtn" type="submit" onclick=openResponse()>답변하기</button>
+        <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
 
+        <div class="response_submit">
+            <textarea class="response_content" placeholder="답변을 적어주세요:)" rows="10" wrap="hard"></textarea>
+        </div>
+    {% endif %}
     {% comment %} 답변 부분 {% endcomment %}
     <div class="response">
         <table>
