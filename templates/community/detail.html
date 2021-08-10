@@ -23,8 +23,7 @@
             <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
             <form action="" method="POST">
                 {% csrf_token %}
-                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey();">
-                <div class="storedpw" style="display:none">{{ community.password_Post }}</div>
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey()">
                 <div id="modify_password_btn" onclick="check_pw(this.className)">확인</div>
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
@@ -109,9 +108,9 @@
         }
 
         function check_pw(m_or_d) {
-            const inputpwd = parseInt(document.querySelector(".writerpw").value);
-            const writerpwd = parseInt(document.querySelector(".storedpw").innerText);
-            
+            const inputpwd = document.querySelector(".writerpw").value;
+            const writerpwd = "{{ community.password_Post }}";
+
             if(inputpwd == writerpwd) {
                 if(m_or_d == 'detail_modify') {
                     location.href="{%url 'community:communityedit' community.id%}";
