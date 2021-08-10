@@ -99,13 +99,12 @@
 {% block content %}
 
 <section class="sec">
-    <h1>[{{expert.age_tag}}] {{ expert.title }}</h1>
+    <h1>[{{expert.age_tag}}]<br><br> {{ expert.title }}</h1>
     <span> {{ expert.pub_date | date:'y-m-d,H:i'}} </span>
     <hr>
-    <div id="info_tab">
         <div class="modify_delete">
-            <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer">수정</span> |
-            <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer">삭제</span>
+            <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer; text-align: right;">수정</span> |
+            <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer;">삭제</span>
         </div>
         <br>
         <div id="modify_password" style="display:none">
