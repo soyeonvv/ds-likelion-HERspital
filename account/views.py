@@ -139,8 +139,4 @@ def userDelete(request):
     else:
         password_form = CheckPasswordForm(request.user)
 
-<<<<<<< HEAD
     return render(request, 'account/userDelete.html', {'password_form':password_form})
-=======
-    return render(request, 'account/userDelete.html', {'password_form':password_form})
->>>>>>> 76b431c511827a18b6152098f2175f83ca705a8f
