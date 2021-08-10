@@ -65,3 +65,9 @@ class ExpertRe(models.Model):
 
     def __str__(self):
         return self.body[:30]
+
+class Reply(models.Model):
+    # 내용
+    body = models.TextField()
+    # 작성 날짜
+    pub_date = models.DateTimeField()
