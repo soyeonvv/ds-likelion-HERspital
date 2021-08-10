@@ -49,8 +49,6 @@ class Expert(models.Model):
     
     def summary(self): #제목 글자수가 길면 끊어서 보여주도록
         return self.title[:30]
-<<<<<<< HEAD
-=======
 
 class ExpertRe(models.Model):
     #작성자(전문의) 외래키
@@ -73,4 +71,3 @@ class Reply(models.Model):
     body = models.TextField()
     # 작성 날짜
     pub_date = models.DateTimeField()
->>>>>>> f4e1960f4566f5330a5a8e5cb6ad0365223a61f2

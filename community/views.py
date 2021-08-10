@@ -161,8 +161,6 @@ def expert_delete(request, id):
     delete_expert = Expert.objects.get(id=id)
     delete_expert.delete()
     return redirect('community:expertList')
-<<<<<<< HEAD
-=======
 
 
 #전문인 상담 페이지 답변 생성
@@ -200,4 +198,3 @@ def reply_update(request,id):
     update_reply.pub_date = timezone.now()
     update_reply.save()
     return redirect('community:detail', update_reply.id)
->>>>>>> f4e1960f4566f5330a5a8e5cb6ad0365223a61f2
