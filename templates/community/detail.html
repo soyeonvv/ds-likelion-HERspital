@@ -23,8 +23,7 @@
             <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
             <form action="" method="POST">
                 {% csrf_token %}
-                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey();">
-                <div class="storedpw" style="display:none">{{ community.password_Post }}</div>
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey()">
                 <div id="modify_password_btn" onclick="check_pw(this.className)">확인</div>
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
@@ -39,20 +38,26 @@
             <img id="replyicon" src="{% static 'img/reply.png' %}">
             <div id="replytxt">댓글</div>
             <span id="review-count">1</span>
+            <form action="{%url 'community:replycreate' %}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
             <div id="review">
                 <div class="review-row">
                     <textarea id="new-review" name="new_review" rows="5" cols="90" placeholder="댓글 남기기."></textarea><br>
                     <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
                 </div>
                 <br><br>
+                {% for community in replies %}
                 <div class="review-box">
                     <div class="review-row">
-                        <div class="review-date" style="float: left;">2021-08-03</div>
-                        <div class="review-content" style="padding-top: 40px;" >sample review<br></div>
+                        <div class="review-date" style="float: left;">{{reply.pub_date | date:'m-d'}}</div>
+                        <div class="review-content" style="padding-top: 40px;" >{{ reply.body }}<br></div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
+        </form>
         </div>
+        
     </div>
 
     <script>
@@ -109,9 +114,9 @@
         }
 
         function check_pw(m_or_d) {
-            const inputpwd = parseInt(document.querySelector(".writerpw").value);
-            const writerpwd = parseInt(document.querySelector(".storedpw").innerText);
-            
+            const inputpwd = document.querySelector(".writerpw").value;
+            const writerpwd = "{{ community.password_Post }}";
+
             if(inputpwd == writerpwd) {
                 if(m_or_d == 'detail_modify') {
                     location.href="{%url 'community:communityedit' community.id%}";

@@ -8,7 +8,7 @@ class Community(models.Model):
     # 공개설정
     publicSetting = models.BooleanField()
     # 비밀번호
-    password_Post = models.IntegerField(blank=True, null=True)
+    password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
     age_tag = models.CharField(max_length=100)
     # 사진
@@ -32,7 +32,7 @@ class Expert(models.Model):
     # 공개설정
     publicSetting = models.BooleanField()
     # 비밀번호
-    password_Post = models.IntegerField(blank=True, null=True)
+    password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
     age_tag = models.CharField(max_length=100)
     # 사진
@@ -65,3 +65,9 @@ class ExpertRe(models.Model):
 
     def __str__(self):
         return self.body[:30]
+
+class Reply(models.Model):
+    # 내용
+    body = models.TextField()
+    # 작성 날짜
+    pub_date = models.DateTimeField()

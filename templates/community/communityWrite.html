@@ -30,14 +30,10 @@
                 </div>
                 <div class="info" style="border-top: 1px dashed #75CFB8;">
                     <dl>
-                        <dt>공개 설정</dt>
-                        <dd><input type="radio" id="b" style="width: 13px; height: 13px;" name="publicSetting"><span style="font-size: 15px;">비공개</span><input type="radio" id="b" style="width: 13px; height: 13px;" name="publicSetting"><span style="font-size: 15px;">공개</span></dd>
-                    </dl>
-                    <dl>
-                        <dt style="padding-left: 60px;">비밀번호</dt>
+                        <dt>비밀번호</dt>
                         <dd><input type="password" id="b" style="width: 100px; height: 30px;" name="pwd" placeholder="숫자 입력"></dd>
                     </dl>
-                    <dl style="padding-left: 95px;">
+                    <dl>
                         <dt>연령</dt>
                         <dd>
                             <select name="opage" style="width:85px;height:35px;" >
@@ -50,13 +46,14 @@
                                 <option value="60대 이상">60대 이상</option>
                             </select>
                         </dd>
-                    </dl style="width: 300px;">
-                        <dt>사진 첨부</dt>
-                        <input id="file" type="file" name="image" style="height: 30px; padding-left: 45px; padding-top: 30px;">
+                    </dl>
+                    <dl>
+                        <dt style="display: inline-block;">사진 첨부</dt>
+                        <input id="file" type="file" name="image" style="width: 180px; padding-left: 30px;">
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea placeholder="상담 내용을 작성하세요." name="body"></textarea>
+                    <textarea placeholder="글을 작성하세요." name="body" style="resize:none;"></textarea>
                 </div>
             </div>
             <div class="bt_wrap">

@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import redirect, render,get_object_or_404
 from django.utils import timezone
-from .models import Community
+from .models import Community, Reply
 from .models import Expert
 from .models import ExpertRe
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
@@ -173,3 +173,28 @@ def expertRe_create(request):
     new_expertRe.thumbsUp = 0
     new_expertRe.save()
     return redirect('community:expert_detail',new_expertRe.postId )
+
+def reply(request):
+    replies = Reply.objects.all().order_by('-pub_date')
+    return render (request, 'detail.html', {'replies':replies})
+
+def reply_new(request):
+    return render (request, 'community:detail')
+
+def reply_create(request):
+    new_reply = Reply()
+    new_reply.body = request.POST.get('new_review','')
+    new_reply.pub_date = timezone.now()
+    new_reply.save()
+    return redirect('community:detail', new_reply.id)
+
+# def reply_edit(request,id):
+#     edit_reply = Reply.objects.get(id= id)
+#     return render(request,'edit.html',{Reply:edit_reply})
+
+def reply_update(request,id):
+    update_reply = Reply.objects.get(id = id)
+    update_reply.body = request.POST.get['new_review','']
+    update_reply.pub_date = timezone.now()
+    update_reply.save()
+    return redirect('community:detail', update_reply.id)
