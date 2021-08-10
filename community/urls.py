@@ -20,5 +20,13 @@ urlpatterns = [
     path('expert_update/<str:id>',expert_update, name="expert_update"),
     path('community_delete/<str:id>', community_delete, name="community_delete"),
     path('expert_delete/<str:id>', expert_delete, name="expert_delete"),
+<<<<<<< HEAD
 
+=======
+    path('expertRe_create/',expertRe_create,name="expertRe_create"),
+    path('reply/', reply, name="reply"),
+    path('reply_create/', reply_create, name="replycreate"),
+    # path('reply_edit/<str:id>',reply_edit,name="replyedit"),
+    path('reply_update/<str:id>',reply_update, name="replyupdate"),
+>>>>>>> f4e1960f4566f5330a5a8e5cb6ad0365223a61f2
 ]
