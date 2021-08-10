@@ -12,6 +12,8 @@
     <div class="community__detail">
         <h3>[ {{ community.age_tag }} ]</h3>
         <h1>{{ community.title }}</h1>
+        <span>{{ community.pub_date | date:'y-m-d,H:i'}}</span>
+        <hr>
         <div class="modify_delete">
             <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer">수정</span> |
             <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer">삭제</span>
@@ -25,7 +27,7 @@
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
         </div>
-        <hr>
+        <br>
         {% if community.image %}
             <img src="{{community.image.url}}">
         {% endif %}
@@ -112,13 +114,8 @@
 
         function check_pw(m_or_d) {
             const inputpwd = document.querySelector(".writerpw").value;
-<<<<<<< HEAD
             const writerpwd = "{{ community.password_Post }}";
 
-=======
-            const writerpwd = document.querySelector(".storedpw").innerText;
-            
->>>>>>> 9a501c9f8f072790d096dc21b731280d78084894
             if(inputpwd == writerpwd) {
                 if(m_or_d == 'detail_modify') {
                     location.href="{%url 'community:communityedit' community.id%}";
