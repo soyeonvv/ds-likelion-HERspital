@@ -17,7 +17,7 @@ from django.contrib.auth.forms import UserChangeForm
 from .forms import CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 
-from community.models import Community
+from community.models import Community, Reply
 #Authen=로그인, UserCre=회원가입
 
 
@@ -103,7 +103,8 @@ def mypage(request):
   search = request.GET.get('search')
   writer = request.user
   communities = Community.objects.filter(author= writer).order_by('-pub_date')
-  return render(request, "account/mypage.html", {'communities':communities})
+  replies = Reply.objects.filter(author=writer).order_by('-pub_date')
+  return render(request, "account/mypage.html", context={'communities':communities,'replies':replies})
 
 #개인정보 수정
 @login_required
