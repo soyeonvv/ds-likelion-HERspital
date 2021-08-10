@@ -46,8 +46,9 @@ def communityList(request):
 
 def detail(request,id):
     community = get_object_or_404(Community, pk = id)
+    replies = Reply.objects.filter(postId=id)
     writerpw = request.POST.get('writerpw')
-    return render(request, "community/detail.html", {'community':community})
+    return render(request, "community/detail.html", context={'community':community, 'replies':replies})
 
 def expertList(request):
     experts = Expert.objects.all().order_by('-pub_date')
@@ -172,19 +173,23 @@ def expertRe_create(request):
     new_expertRe.save()
     return redirect('community:expert_detail',new_expertRe.postId )
 
-def reply(request):
-    replies = Reply.objects.all().order_by('-pub_date')
-    return render (request, 'detail.html', {'replies':replies})
+# def reply(request):
+#     replies = Reply.objects.all().order_by('-pub_date')
+#     return render (request, 'detail.html', {'replies':replies})
 
-def reply_new(request):
-    return render (request, 'community:detail')
 
+# def reply_new(request):
+#     return render (request, 'community:detail')
+
+#커뮤니티 댓글 생성
 def reply_create(request):
     new_reply = Reply()
-    new_reply.body = request.POST.get('new_review','')
+    new_reply.body = request.POST.get('body')
     new_reply.pub_date = timezone.now()
+    new_reply.author = request.user
+    new_reply.postId = request.POST.get('postId')
     new_reply.save()
-    return redirect('community:detail', new_reply.id)
+    return redirect('community:detail', new_reply.postId)
 
 # def reply_edit(request,id):
 #     edit_reply = Reply.objects.get(id= id)
