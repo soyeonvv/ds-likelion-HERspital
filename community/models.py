@@ -5,8 +5,6 @@ from account import models as account_models
 class Community(models.Model):
     # 제목
     title = models.CharField(max_length=200)
-    # 공개설정
-    publicSetting = models.BooleanField()
     # 비밀번호
     password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
@@ -30,7 +28,7 @@ class Expert(models.Model):
     # 제목
     title = models.CharField(max_length=200)
     # 공개설정
-    publicSetting = models.BooleanField()
+    publicSetting = models.CharField(max_length=50)
     # 비밀번호
     password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
