@@ -71,7 +71,13 @@
                             <a href="{% url 'account:login' %}">
                             {% endif %}
                             {{expert.title}}</a></td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="writer">익명
+                        {% if expert.author.gender == 'female'%}
+                            <i class="fas fa-venus"></i>
+                            {% elif expert.author.gender == 'male' %}
+                            <i class="fas fa-mars"></i>
+                        {% endif %}
+                        </td>
                         <td id="date">{{expert.pub_date | date:'m-d'}}</td>
                         <td id="commentNum">0</td>
                     </tr>

@@ -96,6 +96,7 @@ def create(request):
     new_community.image = request.FILES.get('image')
     new_community.body = request.POST.get('body', '')
     new_community.pub_date = timezone.now()
+    new_community.author = request.user
     new_community.save()
     return redirect('community:detail', new_community.id)
 
@@ -127,6 +128,7 @@ def expertcreate(request):
     new_expert.image = request.FILES.get('image')
     new_expert.body = request.POST.get('body', '')
     new_expert.pub_date = timezone.now()
+    new_expert.author = request.user
     new_expert.save()
     return redirect('community:expert_detail', new_expert.id)
 

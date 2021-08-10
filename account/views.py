@@ -16,6 +16,8 @@ from account.decorators import login_message_required
 from django.contrib.auth.forms import UserChangeForm
 from .forms import CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
+
+from community.models import Community
 #Authen=로그인, UserCre=회원가입
 
 
@@ -98,7 +100,10 @@ def signup(request):
 #     return render(request, 'account/signup.html',{'form':form})
     
 def mypage(request):
-    return render(request, "account/mypage.html")
+  search = request.GET.get('search')
+  writer = request.user
+  communities = Community.objects.filter(author= writer).order_by('-pub_date')
+  return render(request, "account/mypage.html", {'communities':communities})
 
 #개인정보 수정
 @login_required
