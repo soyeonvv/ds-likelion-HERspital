@@ -13,8 +13,18 @@
         <h3>[ {{ community.age_tag }} ]</h3>
         <h1>{{ community.title }}</h1>
         <div class="modify_delete">
-            <a href="{%url 'community:communityedit' community.id%}">수정</a> |
-            <a href="{%url 'community:community_delete' community.id%}">삭제</a>
+            <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer">수정</span> |
+            <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer">삭제</span>
+        </div>
+        <div id="modify_password" style="display:none">
+            <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey();">
+                <div class="storedpw" style="display:none">{{ community.password_Post }}</div>
+                <div id="modify_password_btn" onclick="check_pw(this.className)">확인</div>
+            </form>
+            <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
         </div>
         <hr>
         {% if community.image %}
@@ -82,6 +92,43 @@
                 countEL.innerText = parseInt(count) + 1;
             }else{
                 warnEmpty();
+            }
+        }
+
+        function showpwbox(m_or_d) {
+            if(document.getElementById("modify_password").style=="display:none") {
+                document.getElementById("modify_password").style="display:visible";
+            }else document.getElementById("modify_password").style="display:visible";
+            
+            const btnvalue = m_or_d;
+            
+            document.getElementById("modify_password_btn").className = btnvalue;
+        }
+
+        function check_pw(m_or_d) {
+            const inputpwd = document.querySelector(".writerpw").value;
+            const writerpwd = document.querySelector(".storedpw").innerText;
+            
+            if(inputpwd == writerpwd) {
+                if(m_or_d == 'detail_modify') {
+                    location.href="{%url 'community:communityedit' community.id%}";
+                }
+                else if(m_or_d == 'detail_delete') {
+                    var n = confirm("정말로 삭제하시겠습니까?");
+                    if(n == true) {
+                        location.href="{%url 'community:community_delete' community.id%}";
+                    }
+                    
+                }
+                
+            }else {
+                document.getElementById("warningtxt").style="display:visible";
+            }
+        }
+
+        function enterkey() {
+            if(window.event.keyCode == 13) {
+                check_pw();
             }
         }
     </script>

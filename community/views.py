@@ -5,6 +5,7 @@ from .models import Community
 from .models import Expert
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 from django.db.models import Q
+from django.contrib import messages
 
 
 # def detail(request):
@@ -44,6 +45,7 @@ def communityList(request):
 
 def detail(request,id):
     community = get_object_or_404(Community, pk = id)
+    writerpw = request.POST.get('writerpw')
     return render(request, "community/detail.html", {'community':community})
 
 def expertList(request):
@@ -71,6 +73,12 @@ def expertList(request):
         except EmptyPage:
             experts = paginator.page(paginator.num_pages)
         return render(request,'community/expertList.html', {'experts':experts})
+    
+    # 검색기능
+    search_key = request.GET.get('search_key')
+    if search_key:
+        experts = Expert.objects.filter(title__icontains=search_key)
+
     return render(request, "community/expertList.html", {'experts':experts})
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
@@ -88,6 +96,7 @@ def create(request):
     new_community.image = request.FILES.get('image')
     new_community.body = request.POST.get('body', '')
     new_community.pub_date = timezone.now()
+    new_community.author = request.user
     new_community.save()
     return redirect('community:detail', new_community.id)
 
@@ -119,6 +128,7 @@ def expertcreate(request):
     new_expert.image = request.FILES.get('image')
     new_expert.body = request.POST.get('body', '')
     new_expert.pub_date = timezone.now()
+    new_expert.author = request.user
     new_expert.save()
     return redirect('community:expert_detail', new_expert.id)
 

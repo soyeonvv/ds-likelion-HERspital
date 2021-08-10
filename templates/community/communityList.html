@@ -17,17 +17,18 @@
     {% include "partials/base.html" %}
 {% endblock%}
 {% block content %}
+  <div id="wrapper">
     <section>
         <div class="topContent">
             <div class="search">
             <div class="search_wrap">
                 <div class="search_box">
-                    <div class="btn btn_common">
-                        <i class="fas fa-search"></i>
-                    </div>
                     <form action="" method="GET">
                         <input type="text" class="input" name="search_key" value="{{ search_key }}" placeholder="Search...">
                     </form>
+                    <div class="btn btn_common" onclick="searchRun()">
+                        <a class="searchicon" href=""><i class="fas fa-search"></i></a>
+                    </div>
                 </div>
             </div>
             </div>
@@ -42,9 +43,11 @@
                         <li><a href="?tag=true&ageTag=60대 이상">#60대 이상</a></li>
                     </ul>
                 </div>
+                {% if user.is_authenticated%}
                 <div class="newPostBtn_wrap">
                     <button class="newPostBtn"><i class="fas fa-pencil-alt"></i><a href="{% url 'community:communityWrite' %}" style="color: white;"> 글 작성하기</a></button>
                 </div>
+                {% endif %}
             </div>
             
         </div>
@@ -72,7 +75,13 @@
                             {% endif %}
                             {{community.summary}}</a>
                         </td>
-                        <td id="writer">익명<i class="fas fa-venus"></i></td>
+                        <td id="writer">익명
+                            {% if community.author.gender == 'female'%}
+                            <i class="fas fa-venus"></i>
+                            {% elif community.author.gender == 'male' %}
+                            <i class="fas fa-mars"></i>
+                            {% endif %}
+                        </td>
                         <td id="date">{{community.pub_date | date:'m-d'}}</td>
                         <td id="commentNum">2</td>
                     </tr>
@@ -101,6 +110,16 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function searchRun() {
+            const searchIcon = document.querySelector(".searchicon"),
+                inputValue = document.querySelector(".input").value;
+
+            searchIcon.setAttribute('href', `?search_key=${inputValue}` );
+        }
+    </script>
+  </div>
 {% endblock %}
 </body>
 </html>
