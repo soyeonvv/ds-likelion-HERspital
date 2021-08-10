@@ -251,10 +251,11 @@
             }
         }
 
-        window.onload = function checkSpecialist() {
+        window.onload = function checkApproach() {
             const userPosition = "{{ user.position }}";
+            const isPublic = "{{ expert.publicSetting }}";
 
-            if(userPosition == 'specialist') {
+            if(userPosition == 'specialist' || isPublic == 'public') {
                 document.getElementById("contents").style="display:visible";
                 document.getElementById("pwdbox").style="display:none";
             }
