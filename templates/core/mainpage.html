@@ -129,46 +129,56 @@
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
             infowindow.setContent('<div style="width:250px; heigh:70px; padding:8px;font-size:14px;">' + '<span style="color:#32be8f; font-size:18px">' + place.place_name + '</span>' + '<br><br>' + place.address_name + '<br>' + place.road_address_name + '<br>' + place.phone + '</div>');
             infowindow.open(map, marker);
+            //클릭한 병원의 이름으로 설정
+            var hospital_Name = document.getElementById('hospital_Name')
+            hospital_Name.value=place.place_name
+            //클릭하면 해당 병원의 리뷰만 뜨도록
+            //window.location.href="?name=true&hospital="+place.place_name
             });
         }
 
 	    </script>
         <!-- 정보 및 리뷰 -->
-        <form action="" method="post">
+        <form action="{% url 'core:create_review' %}" method="post">
+        {% csrf_token %}
         <div id="content">
             <div id="info">
                 <br><br><p id="hpinfo" style="text-align: center;" > </p><br><br>
                 <hr style="border-color: rgba(190, 190, 190, 0.26); width: 73%;"><br>
             </div>
             <div id="review">
-                <h2 style="text-align: center;">리뷰 ㅣ <span id="review-count">1</span>건</h2><br>
-                {% if user.is_authenticated %}
-                    <div>
-                    <a class="review_star">별점 : </a> 
-                    <div class="star-rating space-x-4 mx-auto" id="star-rating">
-                        <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
-                        <label for="5-stars" class="star pr-4">★</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
-                        <label for="4-stars" class="star">★</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
-                        <label for="3-stars" class="star">★</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
-                        <label for="2-stars" class="star">★</label>
-                        <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
-                        <label for="1-star" class="star">★</label>
-                    </div>
-                    <div class="review-row">
-                        <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
-                        <button type="submit" onclick="submitReview()" class="review_btn">등록</button><br>
-                    </div>
+            <h2 style="text-align: center;">리뷰 ㅣ <span id="review-count">{{reviews.count}}</span>건</h2><br>
+            {% if user.is_authenticated %}
+                <a class="review_star">별점 : </a> 
+                <div class="star-rating space-x-4 mx-auto" id="star-rating">
+                    <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                    <label for="5-stars" class="star pr-4">★</label>
+                    <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                    <label for="4-stars" class="star">★</label>
+                    <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                    <label for="3-stars" class="star">★</label>
+                    <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                    <label for="2-stars" class="star">★</label>
+                    <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
+                    <label for="1-star" class="star">★</label>
+                </div>
+                선택된 병원 : <input type="text" id="hospital_Name" name="hospital_Name">
+                <div class="review-row">
+                    <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
+                    <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
+                </div>
                 {% endif %}
         </form>
                 <br><br>
                 <div class="review-box">
+                    {% for review in reviews %}
                     <div class="review-row">
-                        <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div>
+                        <div class="review-date">익명 &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
+                        <div class="review-content" style="margin-bottom: 40px;">[{{review.hospital}}]{{review.body}}<br></div>
+                        {% comment %} <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
+                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div> {% endcomment %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -181,8 +191,7 @@
         alert("내용을 입력해주세요.");
     }
 
-    function starReview(){
-
+    {% comment %} function starReview(){
         if(document.getElementById("1-star").checked){
             starData = "★☆☆☆☆(1)";
         }else if(document.getElementById("2-stars").checked){
@@ -195,7 +204,7 @@
             starData = "★★★★★(5)";
         }
         return starData;
-    }
+    } {% endcomment %}
 
     function dateToString(date){
         const dateString = date.toISOString();
@@ -203,7 +212,7 @@
         return dateToString;
     }
 
-    function submitReview(){
+    {% comment %} function submitReview(){
         const newreviewEL = document.getElementById("new-review");
         const newreview = newreviewEL.value.trim();
 
@@ -252,7 +261,7 @@
         }else{
             warnEmpty();
         }
-    }
+    } {% endcomment %}
 </script>
 </body>
 </html>
