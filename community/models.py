@@ -5,8 +5,6 @@ from account import models as account_models
 class Community(models.Model):
     # 제목
     title = models.CharField(max_length=200)
-    # 공개설정
-    publicSetting = models.BooleanField()
     # 비밀번호
     password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
@@ -30,7 +28,7 @@ class Expert(models.Model):
     # 제목
     title = models.CharField(max_length=200)
     # 공개설정
-    publicSetting = models.BooleanField()
+    publicSetting = models.CharField(max_length=50)
     # 비밀번호
     password_Post = models.CharField(max_length=10, blank=True, null=True)
     # 연령 태그
@@ -71,3 +69,11 @@ class Reply(models.Model):
     body = models.TextField()
     # 작성 날짜
     pub_date = models.DateTimeField()
+    #작성자 외래키
+    author = models.ForeignKey(account_models.CustomUser, on_delete=models.CASCADE, null=True)
+    #게시글id
+    # post = models.ForeignKey(Community, on_delete=models.CASCADE, null=True)
+    postId = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.body[:30]

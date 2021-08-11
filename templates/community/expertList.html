@@ -70,7 +70,11 @@
                             {% else %}
                             <a href="{% url 'account:login' %}">
                             {% endif %}
-                            {{expert.title}}</a></td>
+                            {{expert.title}}</a>
+                            {% if expert.publicSetting == 'private' %}
+                            <img id="privateicon" src="{% static 'img/private.png' %}" width="15px" height="16px">
+                            {% endif %}
+                        </td>
                         <td id="writer">&nbsp&nbsp
                         {% if expert.author.gender == 'female'%}
                             <i class="fas fa-venus"></i>

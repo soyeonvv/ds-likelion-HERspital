@@ -42,7 +42,7 @@
         const navItem = document.querySelectorAll('.navitem');
         const navLength = navItem.length;
         for(let i=0; i<navLength; i++){
-            if(navItem[i].href === currentLocation){
+            if(currentLocation.includes(navItem[i].href)){
                 navItem[i].className = "navitem active"
             }
         }

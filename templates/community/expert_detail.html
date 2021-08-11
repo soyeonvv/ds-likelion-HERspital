@@ -99,9 +99,10 @@
 {% block content %}
 
 <section class="sec">
-    <h1>[{{expert.age_tag}}]<br><br> {{ expert.title }}</h1>
-    <span> {{ expert.pub_date | date:'y-m-d,H:i'}} </span>
-    <hr>
+    <div id="contents" style="display: none">
+        <h1>[{{expert.age_tag}}]<br><br> {{ expert.title }}</h1>
+        <span> {{ expert.pub_date | date:'y-m-d,H:i'}} </span>
+        <hr>
         <div class="modify_delete">
             <span onclick="showpwbox(this.id)" id="detail_modify" style="cursor: pointer; text-align: right;">수정</span> |
             <span onclick="showpwbox(this.id)" id="detail_delete" style="cursor: pointer;">삭제</span>
@@ -116,53 +117,64 @@
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
         </div>
-    </div>
-    <br>
-    {% if expert.image %}
+        <br>
+        {% if expert.image %}
             <img src="{{expert.image.url}}">
-    {% endif %}
-    <p id="questionContent">{{ expert.body }}</p>
-<div class="community__reply">
-    <img id="replyicon" src="{% static 'img/reply.png' %}">
-    <div id="replytxt">답변</div>
-    <span id="review-count">1</span>
-</div>
-<hr>
-    {% if user.position == 'specialist' %}
-        <form action="{% url 'community:expertRe_create'%}" method="POST" enctype="multipart/form-data">
-        {%csrf_token%}
-        <button class="responseBtn" type="button" onclick=openResponse()>답변하기</button>
-        <button class="registerBtn" type="submit">답변 등록</button>
-        <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>
-
-        <div class="response_submit">
-            <input type="hidden" name="postId" value="{{expert.id}}">
-            <textarea class="response_content" placeholder="답변을 적어주세요:)" rows="10" wrap="hard" name="body"></textarea>
+        {% endif %}
+        <p id="questionContent">{{ expert.body }}</p>
+        <div class="community__reply">
+            <img id="replyicon" src="{% static 'img/reply.png' %}">
+            <div id="replytxt">답변</div>
+            <span id="review-count">{{expertRes.count}}</span>
         </div>
+        <hr>
+        {% if user.position == 'specialist' %}
+        <form action="{% url 'community:expertRe_create'%}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <button class="responseBtn" type="button" onclick=openResponse()>답변하기</button>
+            <button class="registerBtn" type="submit">답변 등록</button>
+            <button class="cancelBtn" type="button" onclick=closeResponse()>취소하기</button>   
+
+            <div class="response_submit">
+                <input type="hidden" name="postId" value="{{expert.id}}">
+                <textarea class="response_content" placeholder="답변을 적어주세요:)" rows="10" wrap="hard" name="body"></textarea>
+            </div>
         </form>
-    {% endif %}
-    {% comment %} 답변 부분 {% endcomment %}
-    <div class="response">
-        <table border 1px solid>
-        {% for expertRe in expertRes %}
-            <tr>
-                <td class="profileTD">
-                    <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
-                </td>
-                <td>{{expertRe.author.username}} 전문의 <br>{{ expertRe.author.workplace}}</td>
-                <td class="likeTD">
-                    <i class="fas fa-thumbs-up"><span class="numb">{{ expertRe.thumbsUp }}</span></i>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="responseTD">
-                    {{expertRe.body}}<br>
-                    {{expertRe.pub_date | date:'m-d,H:i'}}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+        {% endif %}
+        {% comment %} 답변 부분 {% endcomment %}
+        <div class="response">
+            <table border 1px solid>
+            {% for expertRe in expertRes %}
+                <tr>
+                    <td class="profileTD">
+                        <img id="doctor_profile" src="{% static 'img/doctor_profile.png' %}">
+                    </td>
+                    <td>{{expertRe.author.nickname}} 전문의 <br>{{ expertRe.author.workplace}}</td>
+                    <td class="likeTD">
+                        <i class="fas fa-thumbs-up"><span class="numb">{{ expertRe.thumbsUp }}</span></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="responseTD">
+                        {{expertRe.body}}<br>
+                        {{expertRe.pub_date | date:'m-d,H:i'}}
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
     </div>
+    
+    <div id="pwdbox" style="text-align: center;">
+        <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            비밀번호: <input type="password" class="pwcheck" name="pwcheck" value="{{ pwcheck }}">
+            <div id="modify_password_btn" onclick="pwCheck()">확인</div>
+        </form>
+        <div id="warningTxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
+    </div>
+    
 </section>
 <script>
     var state = 'close';
@@ -224,6 +236,28 @@
         function enterkey() {
             if(window.event.keyCode == 13) {
                 check_pw();
+            }
+        }
+
+        function pwCheck() {
+            const inputpwd = parseInt(document.querySelector(".pwcheck").value);
+            const writerpwd = "{{ expert.password_Post }}";
+            
+            if(inputpwd == writerpwd) {
+                document.getElementById("contents").style="display:visible";
+                document.getElementById("pwdbox").style="display:none";
+            }else {
+                document.getElementById("warningTxt").style="display:visible";
+            }
+        }
+
+        window.onload = function checkApproach() {
+            const userPosition = "{{ user.position }}";
+            const isPublic = "{{ expert.publicSetting }}";
+
+            if(userPosition == 'specialist' || isPublic == 'public') {
+                document.getElementById("contents").style="display:visible";
+                document.getElementById("pwdbox").style="display:none";
             }
         }
 </script>
