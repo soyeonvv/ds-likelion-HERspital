@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from account import models as account_models
 
 # Create your models here.
@@ -17,6 +18,8 @@ class Community(models.Model):
     pub_date = models.DateTimeField()
     # 작성자 <- 익명으로 표시되지만, '자신이 쓴 글 보기'와 '성별 표시'를 위해서 글 작성자의 정보를 저장해야 함
     author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
+    # 조회수
+    hits = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -41,7 +44,8 @@ class Expert(models.Model):
     pub_date = models.DateTimeField()
     # 작성자 <- 익명으로 표시되지만, '자신이 쓴 글 보기'와 '성별 표시'를 위해서 글 작성자의 정보를 저장해야 함
     author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
-
+    # 조회수
+    hits = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
     
@@ -55,14 +59,16 @@ class ExpertRe(models.Model):
     # post = models.ForeignKey(Expert, on_delete=models.CASCADE, null=True)
     postId = models.CharField(max_length=100)
     #좋아요 개수
-    thumbsUp = models.IntegerField(blank=True, default=0, null=True)
+    likes_user = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes_user', default=0) 
     # 답변 내용
     body = models.TextField()
     # 작성 날짜
     pub_date = models.DateTimeField()
-
     def __str__(self):
         return self.body[:30]
+
+    def count_likes_user(self): # total likes_user
+        return self.likes_user.count()
 
 class Reply(models.Model):
     # 내용

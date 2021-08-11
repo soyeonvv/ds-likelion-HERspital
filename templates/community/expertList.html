@@ -57,7 +57,7 @@
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
-                        <th>답변</th>
+                        <th>조회수</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,16 +65,12 @@
                     <tr>
                         <td id="tag">{{expert.age_tag}}</td>
                         <td id="title">
-                            {% if user.is_authenticated and user.position == 'specialist' %}
+                            {% if user.is_authenticated %}
                             <a href="{% url 'community:expert_detail' expert.id %}">
-                            {% elif user.is_anonymous %}
+                            {% else %}
                             <a href="{% url 'account:login' %}">
-                            {% elif user.position == 'normal' and expert.publicSetting == 'public' %}
-                            <a href="{% url 'community:expert_detail' expert.id %}">
-                            {% elif user.position == 'normal' and expert.publicSetting == 'private' %}
-                            <div style="display: none;">글 작성시 입력한 비밀번호를 입력해주세요</div>
                             {% endif %}
-                            <span style="color: #75CFB8; cursor: pointer">{{expert.title}}</span></a>
+                            {{expert.title}}</a>
                             {% if expert.publicSetting == 'private' %}
                             <img id="privateicon" src="{% static 'img/private.png' %}" width="15px" height="16px">
                             {% endif %}
@@ -87,7 +83,7 @@
                         {% endif %}
                         </td>
                         <td id="date">{{expert.pub_date | date:'m-d'}}</td>
-                        <td id="commentNum">0</td>
+                        <td id="commentNum">{{expert.hits}}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

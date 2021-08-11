@@ -1,4 +1,5 @@
 import requests
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from .models import Review
 from django.utils import timezone
@@ -21,3 +22,11 @@ def create_review(request):
     new_review.rating = request.POST.get('rating')
     new_review.save()
     return redirect('core:mainpage')
+=======
+from django.shortcuts import render
+
+
+# Create your views here.
+def mainpage(request):
+    return render(request, "core/mainpage.html")
+>>>>>>> 6cf177a17340d55ea548a210761dc2d6723dca1c

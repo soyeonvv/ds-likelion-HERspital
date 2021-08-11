@@ -139,15 +139,16 @@
 
 	    </script>
         <!-- 정보 및 리뷰 -->
+        <form action="{% url 'core:create_review' %}" method="post">
+        {% csrf_token %}
         <div id="content">
             <div id="info">
                 <br><br><p id="hpinfo" style="text-align: center;" > </p><br><br>
                 <hr style="border-color: rgba(190, 190, 190, 0.26); width: 73%;"><br>
             </div>
             <div id="review">
-            <form method="POST" action="{% url 'core:create_review' %}">
-            {% csrf_token %}
-                <h2 style="text-align: center;">리뷰 ㅣ <span id="review-count">{{reviews.count}}</span>건</h2><br>
+            <h2 style="text-align: center;">리뷰 ㅣ <span id="review-count">{{reviews.count}}</span>건</h2><br>
+            {% if user.is_authenticated %}
                 <a class="review_star">별점 : </a> 
                 <div class="star-rating space-x-4 mx-auto" id="star-rating">
                     <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
@@ -166,7 +167,8 @@
                     <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
                     <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
                 </div>
-            </form>
+                {% endif %}
+        </form>
                 <br><br>
                 <div class="review-box">
                     {% for review in reviews %}
