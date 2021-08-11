@@ -10,6 +10,11 @@
     {% endblock %}
     <title>HERspital</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2&libraries=services,clusterer,drawing"></script>
+    <style>
+      #hospital_Name{
+        margin-bottom: 10px;
+      }
+    </style>
 </head>
 <body>
     {% block navbar %}
@@ -129,11 +134,13 @@
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
             infowindow.setContent('<div style="width:250px; heigh:70px; padding:8px;font-size:14px;">' + '<span style="color:#32be8f; font-size:18px">' + place.place_name + '</span>' + '<br><br>' + place.address_name + '<br>' + place.road_address_name + '<br>' + place.phone + '</div>');
             infowindow.open(map, marker);
-            //클릭한 병원의 이름으로 설정
-            var hospital_Name = document.getElementById('hospital_Name')
-            hospital_Name.value=place.place_name
             //클릭하면 해당 병원의 리뷰만 뜨도록
-            //window.location.href="?name=true&hospital="+place.place_name
+            var bread = document.getElementById('bread');
+            bread.innerHTML = place.place_name+"의 리뷰만 보기";
+            bread.href="core/review_detail?name=true&hospital="+place.place_name;
+            //클릭한 병원의 이름으로 설정
+            var hospital_Name = document.getElementById('hospital_Name');
+            hospital_Name.value=place.place_name;
             });
         }
 
@@ -144,6 +151,7 @@
         <div id="content">
             <div id="info">
                 <br><br><p id="hpinfo" style="text-align: center;" > </p><br><br>
+                <a id="bread" href="" target="fan">기본</a>
                 <hr style="border-color: rgba(190, 190, 190, 0.26); width: 73%;"><br>
             </div>
             <div id="review">
@@ -162,24 +170,18 @@
                     <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
                     <label for="1-star" class="star">★</label>
                 </div>
-                선택된 병원 : <input type="text" id="hospital_Name" name="hospital_Name">
+                <a class="review_star">선택된 병원 : <input type="text" id="hospital_Name" name="hospital_Name"></a>
                 <div class="review-row">
                     <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
                     <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
                 </div>
-                {% endif %}
+            {% endif %}
         </form>
                 <br><br>
-                <div class="review-box">
-                    {% for review in reviews %}
-                    <div class="review-row">
-                        <div class="review-date">익명 &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">[{{review.hospital}}]{{review.body}}<br></div>
-                        {% comment %} <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div> {% endcomment %}
-                    </div>
-                    {% endfor %}
-                </div>
+                <iframe name="fan" id="iframe" src="{% url 'core:review_detail' %}" target="_self" 
+                style="width:100%; height:300px; border: 2px solid #FFC478; border-radius: 10px;">
+                    이 브라우저는 iframe을 지원하지 않습니다.
+                </iframe>
             </div>
         </div>
     </div>
