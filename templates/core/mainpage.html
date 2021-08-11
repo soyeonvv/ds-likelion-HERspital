@@ -134,13 +134,13 @@
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
             infowindow.setContent('<div style="width:250px; heigh:70px; padding:8px;font-size:14px;">' + '<span style="color:#32be8f; font-size:18px">' + place.place_name + '</span>' + '<br><br>' + place.address_name + '<br>' + place.road_address_name + '<br>' + place.phone + '</div>');
             infowindow.open(map, marker);
-            //클릭한 병원의 이름으로 설정
-            var hospital_Name = document.getElementById('hospital_Name');
-            hospital_Name.value=place.place_name;
             //클릭하면 해당 병원의 리뷰만 뜨도록
             var bread = document.getElementById('bread');
             bread.innerHTML = place.place_name+"의 리뷰만 보기";
             bread.href="core/review_detail?name=true&hospital="+place.place_name;
+            //클릭한 병원의 이름으로 설정
+            var hospital_Name = document.getElementById('hospital_Name');
+            hospital_Name.value=place.place_name;
             });
         }
 
@@ -151,7 +151,7 @@
         <div id="content">
             <div id="info">
                 <br><br><p id="hpinfo" style="text-align: center;" > </p><br><br>
-                <a id="bread" href="" target="fan"></a>
+                <a id="bread" href="" target="fan">기본</a>
                 <hr style="border-color: rgba(190, 190, 190, 0.26); width: 73%;"><br>
             </div>
             <div id="review">
