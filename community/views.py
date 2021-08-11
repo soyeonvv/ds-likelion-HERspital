@@ -90,12 +90,17 @@ def expertList(request):
         experts = Expert.objects.filter(title__icontains=search_key)
 
     return render(request, "community/expertList.html", {'experts':experts})
+
 def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
     expertRes = ExpertRe.objects.filter(postId=ex_id)
     writerpw = request.POST.get('writerpw')
     pwcheck = request.POST.get('pwcheck')
+    expert.hits += 1
+    expert.save()
     return render(request, "community/expert_detail.html", context ={'expert':expert, 'expertRes':expertRes})
+    # 조회수 기능
+
 
 def communityWrite(request):
     return render(request, 'community/communityWrite.html')

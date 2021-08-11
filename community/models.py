@@ -44,6 +44,8 @@ class Expert(models.Model):
     pub_date = models.DateTimeField()
     # 작성자 <- 익명으로 표시되지만, '자신이 쓴 글 보기'와 '성별 표시'를 위해서 글 작성자의 정보를 저장해야 함
     author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
+    # 조회수
+    hits = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.title
     
