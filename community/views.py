@@ -53,6 +53,9 @@ def detail(request,id):
     community = get_object_or_404(Community, pk = id)
     replies = Reply.objects.filter(postId=id)
     writerpw = request.POST.get('writerpw')
+    # 조회수 기능
+    community.hits += 1
+    community.save()
     return render(request, "community/detail.html", context={'community':community, 'replies':replies})
 
 def expertList(request):
