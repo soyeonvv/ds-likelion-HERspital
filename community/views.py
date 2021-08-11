@@ -7,6 +7,11 @@ from .models import ExpertRe
 from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+import json
+from django.http import HttpResponse
+
 
 
 # def detail(request):
@@ -48,6 +53,9 @@ def detail(request,id):
     community = get_object_or_404(Community, pk = id)
     replies = Reply.objects.filter(postId=id)
     writerpw = request.POST.get('writerpw')
+    # 조회수 기능
+    community.hits += 1
+    community.save()
     return render(request, "community/detail.html", context={'community':community, 'replies':replies})
 
 def expertList(request):
@@ -189,7 +197,6 @@ def reply_create(request):
     new_reply.pub_date = timezone.now()
     new_reply.author = request.user
     new_reply.postId = request.POST.get('postId')
-    new_reply.replyCount = request.POST.get('replyCount')
     new_reply.save()
     return redirect('community:detail', new_reply.postId)
 
@@ -203,3 +210,19 @@ def reply_update(request,id):
     update_reply.pub_date = timezone.now()
     update_reply.save()
     return redirect('community:detail', update_reply.id)
+
+#전문인 좋아요 수
+def video_like(request):
+    pk = request.POST.get('pk', None)
+    video = get_object_or_404(ExpertRe, pk=pk)
+    user = request.user
+
+    if video.likes_user.filter(id=user.id).exists():
+        video.likes_user.remove(user)
+        message = '좋아요 취소'
+    else:
+        video.likes_user.add(user)
+        message = '좋아요'
+
+    context = {'likes_count':video.count_likes_user(), 'message': message}
+    return HttpResponse(json.dumps(context), content_type="application/json")
