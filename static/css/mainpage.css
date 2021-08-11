@@ -59,6 +59,7 @@ h5 {text-align: right;}
     padding: 10px; 
     border: 2px solid #FFC478; 
     border-radius: 10px;
+    width:100%;
 }
 .review_btn{
     font-size: 15px; 
