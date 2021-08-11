@@ -121,7 +121,7 @@
         {% if expert.image %}
             <img src="{{expert.image.url}}">
         {% endif %}
-        <p id="questionContent">{{ expert.body }}</p>
+        <p id="questionContent" style="white-space: pre-wrap;">{{ expert.body }}</p>
         <div class="community__reply">
             <img id="replyicon" src="{% static 'img/reply.png' %}">
             <div id="replytxt">답변</div>
