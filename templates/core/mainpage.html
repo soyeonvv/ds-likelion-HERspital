@@ -10,6 +10,11 @@
     {% endblock %}
     <title>HERspital</title>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=944c613fcf3d3b09b562ee8c5a116fd2&libraries=services,clusterer,drawing"></script>
+    <style>
+      #hospital_Name{
+        margin-bottom: 10px;
+      }
+    </style>
 </head>
 <body>
     {% block navbar %}
@@ -165,7 +170,7 @@
                     <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
                     <label for="1-star" class="star">★</label>
                 </div>
-                선택된 병원 : <input type="text" id="hospital_Name" name="hospital_Name">
+                <a class="review_star">선택된 병원 : <input type="text" id="hospital_Name" name="hospital_Name"></a>
                 <div class="review-row">
                     <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
                     <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
@@ -177,10 +182,10 @@
                 <div class="review-box">
                     {% for review in reviews %}
                     <div class="review-row">
-                        <div class="review-date">익명 &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">[{{review.hospital}}]{{review.body}}<br></div>
-                        {% comment %} <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div> {% endcomment %}
+                        <div class="review-date">[{{review.hospital}}] &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
+                        <div class="review-content" style="margin-bottom: 40px;">{{review.body}}<br></div>
+                        <!-- {% comment %} <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
+                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div> {% endcomment %} -->
                     </div>
                     {% endfor %}
                 </div>

@@ -76,15 +76,17 @@
         #info_tab div{ flex-grow:0; }
 
 /* 테이블 */
-        table{width:100%; padding:10px;}
+        table{width:100%; padding:10px; border-collapse: collapse; }
         .profileTD{
             width:20px;
         }
         .likeTD{
             text-align: right;
+            
         }
         .responseTD{
             line-height: 30px;
+            border-top: 1px solid #444444;
         }
         .response_submit{
             display:none;
@@ -143,7 +145,7 @@
         {% endif %}
         {% comment %} 답변 부분 {% endcomment %}
         <div class="response">
-            <table border 1px solid>
+            <table>
             {% for expertRe in expertRes %}
                 <tr>
                     <td class="profileTD">
