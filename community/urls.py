@@ -25,4 +25,5 @@ urlpatterns = [
     path('reply_create/', reply_create, name="replycreate"),
     # path('reply_edit/<str:id>',reply_edit,name="replyedit"),
     path('reply_update/<str:id>',reply_update, name="replyupdate"),
+    path('like/', community_views.video_like, name='video_like'),
 ]
