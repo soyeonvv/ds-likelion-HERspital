@@ -32,7 +32,7 @@
         {% if community.image %}
             <img src="{{community.image.url}}">
         {% endif %}
-        <p>{{ community.body }}</p>
+        <p style="white-space: pre-wrap;">{{ community.body }}</p>
         <br><br><br>
         <div class="community__reply">
             <img id="replyicon" src="{% static 'img/reply.png' %}">
