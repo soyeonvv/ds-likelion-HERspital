@@ -8,12 +8,27 @@
     <link rel="stylesheet" href="{% static 'css/mainpage.css' %} "/>
     <title>Document</title>
 </head>
+<style>
+  @font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Cafe24SsurroundAir';
+}
+.review-date{
+  color:#74D0B9;
+}
+</style>
 <body>
     <div class="review-box">
         {% for review in reviews %}
         <div class="review-row">
-            <div class="review-date">[{{review.hospital}}] &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
-            <div class="review-content" style="margin-bottom: 40px;">{{review.body}}<br></div>
+            <div class="review-date">[{{review.hospital}}] &emsp;{{review.starReview}}&emsp;</div><br>
+            <div class="review-content" style="margin-bottom: 40px;">{{review.body}}<br><br>{{review.pub_date}}</div>
         </div>
         {% endfor %}
     </div>
