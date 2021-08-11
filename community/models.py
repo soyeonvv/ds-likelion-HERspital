@@ -46,7 +46,6 @@ class Expert(models.Model):
     author = models.ForeignKey(account_models.CustomUser,on_delete=models.CASCADE, null=True)
     # 조회수
     hits = models.PositiveIntegerField(default=0)
-
     def __str__(self):
         return self.title
     
@@ -65,7 +64,6 @@ class ExpertRe(models.Model):
     body = models.TextField()
     # 작성 날짜
     pub_date = models.DateTimeField()
-
     def __str__(self):
         return self.body[:30]
 
