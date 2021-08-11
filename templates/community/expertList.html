@@ -83,12 +83,11 @@
                         {% endif %}
                         </td>
                         <td id="date">{{expert.pub_date | date:'m-d'}}</td>
-                        <td id="commentNum">{{expertRes.count}}</td>
+                        <td id="commentNum">{{ ExpertRe.likes_user_set.all|length }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-
             <div class="pageNum_wrap">
                 <ul class="pageul">
                     {% if experts.has_previous %}
