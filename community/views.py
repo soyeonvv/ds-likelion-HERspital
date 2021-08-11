@@ -189,6 +189,7 @@ def reply_create(request):
     new_reply.pub_date = timezone.now()
     new_reply.author = request.user
     new_reply.postId = request.POST.get('postId')
+    new_reply.replyCount = request.POST.get('replyCount')
     new_reply.save()
     return redirect('community:detail', new_reply.postId)
 

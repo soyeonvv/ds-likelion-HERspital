@@ -74,6 +74,8 @@ class Reply(models.Model):
     #게시글id
     # post = models.ForeignKey(Community, on_delete=models.CASCADE, null=True)
     postId = models.CharField(max_length=100)
+    #댓글수
+    replyCount = models.IntegerField(blank=True, default=0, null=True)
 
     def __str__(self):
         return self.body[:30]

@@ -43,6 +43,7 @@
             <div id="review">
                 <div class="review-row">
                     <input type="hidden" name="postId" value="{{community.id}}">
+                    <input type="hidden" name="replyCount" value="{{replies.count}}">
                     <textarea id="new-review" name="body" rows="5" cols="90" placeholder="댓글 남기기."></textarea><br>
                     <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
                 </div>
@@ -52,6 +53,7 @@
                     <div class="review-row">
                         <div class="review-date" style="float: left;">{{reply.pub_date | date:'m-d'}}</div>
                         <div class="review-content" style="padding-top: 40px;" >{{ reply.body }}<br></div>
+                        <br><hr>
                     </div>
                 </div>
                 {% endfor %}
