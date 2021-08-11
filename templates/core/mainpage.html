@@ -175,22 +175,9 @@
                     <textarea id="new-review" name="new_review" rows="5" cols="170" placeholder="리뷰를 작성하세요. 단, 삭제는 불가능합니다."></textarea><br>
                     <button type="submit" {%comment%}onclick="submitReview()"{%endcomment%} class="review_btn">등록</button><br>
                 </div>
-                {% endif %}
+            {% endif %}
         </form>
                 <br><br>
-                <!--
-                <div class="review-box">
-                    {% for review in reviews %}
-                    <div class="review-row">
-                        <div class="review-date">[{{review.hospital}}] &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">{{review.body}}<br></div>
-                        <!-- {% comment %} <div class="review-date">익명 &emsp;★★★☆☆(3)&emsp;2021-08-03</div><br>
-                        <div class="review-content" style="margin-bottom: 40px;">sample review<br></div> {% endcomment %} -->
-                    </div>
-                    {% endfor %}
-                </div>
-                -->
-                <hr>
                 <iframe name="fan" id="iframe" src="{% url 'core:review_detail' %}" target="_self" 
                 style="width:100%; height:300px; border: 2px solid #FFC478; border-radius: 10px;">
                     이 브라우저는 iframe을 지원하지 않습니다.

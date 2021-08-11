@@ -12,8 +12,8 @@
     <div class="review-box">
         {% for review in reviews %}
         <div class="review-row">
-            <div class="review-date">익명 &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
-            <div class="review-content" style="margin-bottom: 40px;">[{{review.hospital}}]{{review.body}}<br></div>
+            <div class="review-date">[{{review.hospital}}] &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
+            <div class="review-content" style="margin-bottom: 40px;">{{review.body}}<br></div>
         </div>
         {% endfor %}
     </div>
