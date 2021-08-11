@@ -105,3 +105,7 @@ h5 {text-align: right;}
     float: left; 
     margin-left: 2%;
 }
+
+#info{
+    text-align: center;
+}
