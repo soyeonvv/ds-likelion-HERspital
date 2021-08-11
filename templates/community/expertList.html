@@ -83,7 +83,13 @@
                         {% endif %}
                         </td>
                         <td id="date">{{expert.pub_date | date:'m-d'}}</td>
-                        <td id="commentNum">{{expert.hits}}</td>
+                        <td id="commentNum">
+                            {% if expert.publicSetting == 'public' %}
+                            {{expert.hits}}
+                            {% else %}
+                            -
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
