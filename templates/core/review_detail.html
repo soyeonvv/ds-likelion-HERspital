@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mainpage.css' %} "/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="review-box">
+        {% for review in reviews %}
+        <div class="review-row">
+            <div class="review-date">익명 &emsp;{{review.starReview}}&emsp;{{review.pub_date}}</div><br>
+            <div class="review-content" style="margin-bottom: 40px;">[{{review.hospital}}]{{review.body}}<br></div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

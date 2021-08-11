@@ -21,3 +21,12 @@ def create_review(request):
     new_review.rating = request.POST.get('rating')
     new_review.save()
     return redirect('core:mainpage')
+
+def review_detail(request):
+    name = request.GET.get('name')
+    reviews = Review.objects.all().order_by('-pub_date')
+    if name == 'true':
+        hospital = request.GET.get('hospital')
+        reviews = Review.objects.filter(hospital = hospital).order_by('-pub_date')
+        return render(request, "core/review_detail.html", {'reviews':reviews})
+    return render(request, "core/review_detail.html", {'reviews':reviews})
