@@ -86,6 +86,7 @@ def expert_detail(request,ex_id):
     expert = get_object_or_404(Expert, pk = ex_id)
     expertRes = ExpertRe.objects.filter(postId=ex_id)
     writerpw = request.POST.get('writerpw')
+    pwcheck = request.POST.get('pwcheck')
     return render(request, "community/expert_detail.html", context ={'expert':expert, 'expertRes':expertRes})
 
 def communityWrite(request):
