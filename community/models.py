@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from account import models as account_models
 
 # Create your models here.
@@ -55,7 +56,7 @@ class ExpertRe(models.Model):
     # post = models.ForeignKey(Expert, on_delete=models.CASCADE, null=True)
     postId = models.CharField(max_length=100)
     #좋아요 개수
-    thumbsUp = models.IntegerField(blank=True, default=0, null=True)
+    likes_user = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='likes_user', default=0) 
     # 답변 내용
     body = models.TextField()
     # 작성 날짜
@@ -63,6 +64,9 @@ class ExpertRe(models.Model):
 
     def __str__(self):
         return self.body[:30]
+
+    def count_likes_user(self): # total likes_user
+        return self.likes_user.count()
 
 class Reply(models.Model):
     # 내용
