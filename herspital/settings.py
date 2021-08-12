@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pb@h0v0h(ki^y1*^p%b39gtcx^brt*9ezc_x51nqcx63pdojn!'
+SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY','pb@h0v0h(ki^y1*^p%b39gtcx^brt*9ezc_x51nqcx63pdojn!')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,3 +136,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#AWS
+
+AWS_ACCESS_KEY_ID = 'AKIAZ4REJ5RNFQCO7AAP'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'likelion-hackathon-herspital'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
