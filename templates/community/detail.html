@@ -23,7 +23,7 @@
             <div>글 작성시 입력한 비밀번호를 입력해주세요.</div>
             <form action="" method="POST">
                 {% csrf_token %}
-                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey()">
+                비밀번호: <input type="password" class="writerpw" name="writerpw" value="{{ writerpw }}" onkeydown="enterkey()" placeholder="입력 후 확인 버튼 클릭">
                 <div id="modify_password_btn" onclick="check_pw(this.className)">확인</div>
             </form>
             <div id="warningtxt" style="display:none">비밀번호가 일치하지 않습니다.</div>
